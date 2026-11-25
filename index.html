@@ -6,11 +6,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="HỆ THỐNG">
-  <meta name="theme-color" content="#010611">
+  <meta name="theme-color" content="#01040d">
   <title>HỆ THỐNG SOLO LEVELING - QUÂN VƯƠNG THỨC TỈNH</title>
   
   <link rel="manifest" href="./manifest.json">
-  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="icon" type="image/png" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
   
   <!-- Phông chữ chuẩn Manhwa Solo Leveling hỗ trợ 100% tiếng Việt -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +62,6 @@
       position: relative;
     }
 
-    /* Canvas hiệu ứng tàn tro bóng đêm */
     #shadowCanvas {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -69,7 +69,6 @@
       z-index: 1;
     }
 
-    /* Hiệu ứng quét Hologram */
     body::after {
       content: "";
       position: fixed;
@@ -87,7 +86,7 @@
     }
 
     .app-container {
-      max-width: 450px;
+      max-width: 460px;
       margin: 0 auto;
       padding: 12px;
       position: relative;
@@ -112,22 +111,24 @@
       align-items: center;
       gap: 8px;
     }
+    .top-app-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
+    }
     .rank-badge-s {
       background: linear-gradient(135deg, #7b2cbf, #00f0ff);
       color: #fff;
       font-family: var(--font-manhwa);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 2px;
       letter-spacing: 1px;
       text-shadow: 0 0 10px #00f0ff;
       border: 1px solid #00f0ff;
-      animation: rankPulse 2s infinite alternate;
-    }
-    @keyframes rankPulse {
-      0% { box-shadow: 0 0 6px #00f0ff; }
-      100% { box-shadow: 0 0 16px #9d4edd, 0 0 25px #00f0ff; }
     }
     .player-name-top {
       font-family: var(--font-manhwa);
@@ -153,13 +154,9 @@
       cursor: pointer;
       color: var(--neon-cyan);
       padding: 3px;
-      transition: transform 0.2s;
-    }
-    .btn-top-icon:active {
-      transform: scale(0.9);
     }
 
-    /* KHUNG CỬA SỔ HỆ THỐNG MANHWA */
+    /* KHUNG CỬA SỔ HỆ THỐNG */
     .system-window {
       background: var(--window-bg);
       border: 1.5px solid var(--window-border);
@@ -217,11 +214,8 @@
       letter-spacing: 1.2px;
       margin-top: 4px;
       text-transform: uppercase;
-      text-shadow: 0 0 6px rgba(0, 180, 255, 0.4);
     }
-    .window-body {
-      padding: 14px;
-    }
+    .window-body { padding: 14px; }
 
     /* MỤC TIÊU */
     .section-headline {
@@ -237,11 +231,7 @@
     }
 
     /* THẺ NHIỆM VỤ */
-    .quest-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .quest-list { display: flex; flex-direction: column; gap: 12px; }
     .quest-card {
       background: rgba(1, 9, 23, 0.85);
       border: 1px solid rgba(0, 210, 255, 0.35);
@@ -266,13 +256,26 @@
       background: var(--neon-green);
       box-shadow: 0 0 8px var(--neon-green);
     }
-
     .quest-card-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 6px;
     }
+    .quest-tag-tier {
+      display: inline-block;
+      font-size: 10px;
+      font-family: var(--font-manhwa);
+      padding: 1px 5px;
+      border-radius: 2px;
+      margin-right: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .tier-short { background: #023e8a; color: #00f0ff; border: 1px solid #00f0ff; }
+    .tier-mid { background: #5a189a; color: #ffb703; border: 1px solid #ffb703; }
+    .tier-long { background: #b00020; color: #ff3366; border: 1px solid #ff3366; }
+
     .quest-status-badge {
       font-family: var(--font-manhwa);
       font-size: 13px;
@@ -280,12 +283,8 @@
       color: var(--neon-cyan);
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      text-shadow: 0 0 6px var(--neon-cyan);
     }
-    .quest-card.completed .quest-status-badge {
-      color: var(--neon-green);
-      text-shadow: 0 0 6px var(--neon-green);
-    }
+    .quest-card.completed .quest-status-badge { color: var(--neon-green); }
     .quest-name {
       font-family: var(--font-body);
       font-size: 14px;
@@ -310,10 +309,7 @@
       text-align: right;
       letter-spacing: 1px;
     }
-    .quest-card.completed .quest-progress-text {
-      color: var(--neon-green);
-      text-shadow: 0 0 10px var(--neon-green);
-    }
+    .quest-card.completed .quest-progress-text { color: var(--neon-green); }
 
     .progress-bar-bg {
       width: 100%;
@@ -330,24 +326,6 @@
       background: linear-gradient(90deg, #0055ff, var(--neon-cyan));
       box-shadow: 0 0 12px var(--neon-cyan);
       transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-    }
-    .progress-bar-fill::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(
-        -45deg,
-        rgba(255,255,255,0.2) 0px,
-        rgba(255,255,255,0.2) 4px,
-        transparent 4px,
-        transparent 8px
-      );
-      animation: barScan 1.5s linear infinite;
-    }
-    @keyframes barScan {
-      0% { background-position: 0 0; }
-      100% { background-position: 16px 0; }
     }
     .quest-card.completed .progress-bar-fill {
       background: linear-gradient(90deg, #1b8a36, var(--neon-green));
@@ -376,7 +354,6 @@
     .btn-step:active {
       background: var(--neon-cyan);
       color: #000;
-      box-shadow: 0 0 14px var(--neon-cyan);
       transform: scale(0.94);
     }
     .btn-done-task {
@@ -389,15 +366,11 @@
       padding: 4px 12px;
       cursor: pointer;
       border-radius: 2px;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 10px rgba(0, 180, 255, 0.4);
     }
     .quest-card.completed .btn-done-task {
       background: linear-gradient(135deg, #168039, #00ff66);
       border-color: var(--neon-green);
       color: #000;
-      text-shadow: none;
-      box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
     }
 
     /* CẢNH BÁO HÌNH PHẠT */
@@ -409,12 +382,6 @@
       border-radius: 4px;
       text-align: center;
       box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
-      animation: alertPulse 2.5s infinite;
-    }
-    @keyframes alertPulse {
-      0% { border-color: #ff003c; box-shadow: 0 0 15px rgba(255, 0, 60, 0.35); }
-      50% { border-color: #ff4d6d; box-shadow: 0 0 28px rgba(255, 0, 60, 0.7); }
-      100% { border-color: #ff003c; box-shadow: 0 0 15px rgba(255, 0, 60, 0.35); }
     }
     .warning-penalty-title {
       font-family: var(--font-manhwa);
@@ -423,12 +390,7 @@
       color: var(--neon-red);
       letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 0 10px var(--neon-red);
       margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
     }
     .warning-penalty-desc {
       font-family: var(--font-manhwa);
@@ -437,7 +399,6 @@
       color: #ffd2da;
       line-height: 1.45;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
     }
 
     .countdown-container {
@@ -447,16 +408,6 @@
       justify-content: center;
       margin-top: 16px;
       padding: 6px 0;
-    }
-    .stopwatch-ring {
-      width: 44px;
-      height: 44px;
-      border: 2px solid var(--neon-cyan);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 15px var(--neon-cyan);
     }
     .countdown-text {
       font-family: var(--font-manhwa);
@@ -496,7 +447,6 @@
       font-size: 11px;
       font-weight: 700;
       color: var(--neon-green);
-      text-shadow: 0 0 8px var(--neon-green);
       letter-spacing: 1px;
       text-transform: uppercase;
       text-align: center;
@@ -509,8 +459,8 @@
       animation: shadowFloat 3s infinite alternate ease-in-out;
     }
     @keyframes shadowFloat {
-      0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 10px var(--neon-cyan)); }
-      100% { transform: translateY(-4px) scale(1.02); filter: drop-shadow(0 0 22px var(--neon-cyan)) drop-shadow(0 0 35px var(--neon-purple)); }
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-4px) scale(1.02); }
     }
 
     .hunter-profile-info {
@@ -526,11 +476,10 @@
       border-bottom: 1px solid rgba(0, 210, 255, 0.18);
       padding-bottom: 3px;
     }
-    .profile-label { color: #8ba3c7; letter-spacing: 0.5px; }
-    .profile-val { color: #fff; font-weight: 700; letter-spacing: 0.8px; }
+    .profile-label { color: #8ba3c7; }
+    .profile-val { color: #fff; font-weight: 700; }
     .val-glow { color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan); }
 
-    /* NÚT BỐC THĂM NGHỀ NGHIỆP CỰC CHIẾN */
     .btn-job-gacha {
       width: 100%;
       background: linear-gradient(135deg, #7b2cbf, #9d4edd, #00d2ff);
@@ -544,16 +493,9 @@
       cursor: pointer;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      box-shadow: 0 0 15px rgba(157, 78, 221, 0.6);
       margin-top: 6px;
-      transition: all 0.2s;
-    }
-    .btn-job-gacha:active {
-      transform: scale(0.97);
-      box-shadow: 0 0 25px var(--neon-cyan);
     }
 
-    /* KHUNG ĐO THỂ TRẠNG THỰC TẾ */
     .health-diagnostic-banner {
       background: rgba(2, 20, 45, 0.85);
       border: 1px solid var(--neon-cyan);
@@ -577,23 +519,15 @@
       text-transform: uppercase;
     }
 
-    /* Các thanh HP, MP, Mức độ mệt */
-    .bars-section {
-      margin: 10px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .bars-section { margin: 10px 0; display: flex; flex-direction: column; gap: 8px; }
     .bar-row-header {
       display: flex;
       justify-content: space-between;
       font-family: var(--font-manhwa);
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1px;
     }
 
-    /* BẢNG THUỘC TÍNH */
     .stat-points-banner {
       display: flex;
       justify-content: space-between;
@@ -607,8 +541,6 @@
       font-size: 14px;
       font-weight: 700;
       color: var(--neon-gold);
-      letter-spacing: 1px;
-      box-shadow: 0 0 14px rgba(255, 183, 3, 0.4);
     }
     .stat-points-badge {
       font-size: 16px;
@@ -619,11 +551,7 @@
       border-radius: 12px;
     }
 
-    .attributes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
+    .attributes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .attr-card {
       background: rgba(1, 10, 26, 0.8);
       border: 1px solid rgba(0, 210, 255, 0.3);
@@ -638,7 +566,6 @@
       font-size: 13px;
       font-weight: 700;
       color: #90b8e6;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
     .attr-card-val {
@@ -646,7 +573,6 @@
       font-size: 18px;
       font-weight: 700;
       color: #fff;
-      text-shadow: 0 0 8px var(--neon-cyan);
     }
     .btn-attr-plus {
       width: 26px;
@@ -662,26 +588,142 @@
       align-items: center;
       justify-content: center;
       border-radius: 3px;
-      transition: all 0.15s;
     }
-    .btn-attr-plus:disabled {
-      opacity: 0.2;
-      cursor: not-allowed;
-      border-color: #333;
-      background: #111;
+    .btn-attr-plus:disabled { opacity: 0.2; cursor: not-allowed; background: #111; }
+
+    /* ========================================================= */
+    /* TAB 5: HỆ THỐNG MỤC TIÊU 3 TẦNG & BIỂU ĐỒ GANTT (MỚI) */
+    /* ========================================================= */
+    .goal-tier-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 14px;
     }
-    .btn-attr-plus:not(:disabled):active {
-      transform: scale(0.9);
-      box-shadow: 0 0 14px var(--neon-cyan);
+    .tier-tab-btn {
+      background: rgba(1, 12, 30, 0.8);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      border-radius: 4px;
+      color: #8ba3c7;
+      font-family: var(--font-manhwa);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .tier-tab-btn.active {
+      background: linear-gradient(135deg, rgba(0, 85, 204, 0.6), rgba(0, 210, 255, 0.3));
+      border-color: var(--neon-cyan);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+    }
+    .tier-counter-badge {
+      font-size: 10px;
+      display: block;
+      color: var(--neon-gold);
+      margin-top: 2px;
     }
 
-    /* BẢNG PHẦN THƯỞNG ĐỜI THỰC */
-    .reward-box-list {
+    /* BIỂU ĐỒ GANTT TIMELINE HOLOGRAPHIC */
+    .gantt-section {
+      margin-top: 18px;
+      border-top: 1.5px solid rgba(0, 210, 255, 0.4);
+      padding-top: 14px;
+    }
+    .gantt-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .gantt-title {
+      font-family: var(--font-manhwa);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .gantt-timeline-box {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 16px;
     }
+    .gantt-row-card {
+      background: rgba(1, 10, 26, 0.9);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      border-radius: 4px;
+      padding: 10px 12px;
+      transition: all 0.2s;
+    }
+    .gantt-row-card:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 210, 255, 0.35);
+    }
+    .gantt-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .gantt-goal-title {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .gantt-days-left {
+      font-family: var(--font-manhwa);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--neon-gold);
+      letter-spacing: 0.5px;
+    }
+
+    /* Thanh Timeline Gantt Bar */
+    .gantt-bar-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(0, 25, 55, 0.8);
+      border-radius: 3px;
+      border: 1px solid rgba(0, 210, 255, 0.25);
+      position: relative;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+    .gantt-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0055ff, var(--neon-cyan));
+      box-shadow: 0 0 8px var(--neon-cyan);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+    .gantt-row-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #8ba3c7;
+      margin-top: 4px;
+    }
+    .btn-del-goal {
+      background: none;
+      border: 1px solid rgba(255, 51, 68, 0.5);
+      color: var(--neon-red);
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    /* BẢNG PHẦN THƯỞNG ĐỜI THỰC */
+    .reward-box-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
     .reward-card {
       background: rgba(2, 14, 36, 0.9);
       border: 1.5px solid rgba(0, 210, 255, 0.4);
@@ -689,14 +731,11 @@
       padding: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
     }
     .reward-card:hover, .reward-card.selected {
       border-color: var(--neon-cyan);
       background: rgba(0, 40, 90, 0.9);
       box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
-      transform: translateY(-2px);
     }
     .reward-card-title {
       font-family: var(--font-manhwa);
@@ -705,33 +744,13 @@
       color: var(--neon-cyan);
       letter-spacing: 1px;
       text-transform: uppercase;
-      text-shadow: 0 0 10px var(--neon-cyan);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .reward-card-desc {
-      font-size: 13px;
-      color: #b0c8e8;
-      margin-top: 6px;
-      line-height: 1.4;
-    }
+    .reward-card-desc { font-size: 13px; color: #b0c8e8; margin-top: 6px; }
 
-    .confirm-prompt-title {
-      font-family: var(--font-manhwa);
-      font-size: 16px;
-      font-weight: 700;
-      text-align: center;
-      color: #fff;
-      letter-spacing: 1.5px;
-      margin: 16px 0 10px;
-      text-transform: uppercase;
-    }
-    .reward-btn-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+    .reward-btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .btn-reward-confirm {
       font-family: var(--font-manhwa);
       font-size: 15px;
@@ -741,17 +760,11 @@
       cursor: pointer;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      transition: all 0.2s;
     }
     .btn-accept-reward {
       background: linear-gradient(135deg, #0055cc, #00d2ff);
       border: 1.5px solid var(--neon-cyan);
       color: #fff;
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
-    }
-    .btn-accept-reward:active {
-      transform: scale(0.96);
-      box-shadow: 0 0 25px var(--neon-cyan);
     }
     .btn-decline-reward {
       background: rgba(30, 40, 60, 0.6);
@@ -773,11 +786,7 @@
       margin-bottom: 10px;
       text-transform: uppercase;
     }
-    .inventory-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
+    .inventory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
     .inv-card {
       aspect-ratio: 1;
       background: rgba(1, 10, 26, 0.85);
@@ -790,11 +799,6 @@
       font-size: 22px;
       cursor: pointer;
       position: relative;
-      transition: all 0.2s;
-    }
-    .inv-card:hover {
-      border-color: var(--neon-gold);
-      box-shadow: 0 0 12px rgba(255, 183, 3, 0.5);
     }
     .inv-qty-tag {
       position: absolute;
@@ -823,11 +827,6 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-shadow: 0 0 8px var(--neon-cyan);
     }
     .notice-content-text {
       font-family: var(--font-manhwa);
@@ -901,6 +900,7 @@
       border-radius: 14px;
       cursor: pointer;
     }
+
     .btn-ignite-goal {
       width: 100%;
       background: linear-gradient(135deg, #7b2cbf, #0055cc, #00d2ff);
@@ -959,7 +959,7 @@
       border-bottom: 2px solid var(--neon-cyan);
     }
 
-    /* MODAL CHUNG CHO LỄ BỐC THĂM & ĐO THỂ TRẠNG */
+    /* MODAL */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -972,21 +972,9 @@
       padding: 16px;
     }
     .modal-overlay.active { display: flex; }
-    .modal-box {
-      width: 100%;
-      max-width: 420px;
-      animation: modalPop 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    }
-    @keyframes modalPop {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+    .modal-box { width: 100%; max-width: 420px; }
 
-    /* Giao diện vòng quay bốc thăm */
-    .gacha-stage {
-      text-align: center;
-      padding: 20px 10px;
-    }
+    .gacha-stage { text-align: center; padding: 20px 10px; }
     .gacha-orb {
       width: 90px;
       height: 90px;
@@ -1025,6 +1013,7 @@
     <!-- THANH TRẠNG THÁI TRÊN CÙNG -->
     <div class="top-bar">
       <div class="top-player-info">
+        <img src="./icon-192.png" alt="Level Up Icon" class="top-app-icon">
         <span class="rank-badge-s" id="topRankBadge">HẠNG S</span>
         <span class="player-name-top" id="topPlayerName" onclick="editPlayerName()" title="Bấm để đổi tên">PHẠM ĐÌNH HẢI ✎</span>
       </div>
@@ -1034,7 +1023,7 @@
       </div>
     </div>
 
-    <!-- TAB 1: BẢNG NHIỆM VỤ -->
+    <!-- TAB 1: BẢNG NHIỆM VỤ HẰNG NGÀY -->
     <div id="tabQuest" class="tab-content">
       <div class="system-window">
         <div class="window-inner-frame">
@@ -1047,12 +1036,13 @@
             <div class="window-title">
               <span>ⓘ</span> THÔNG TIN NHIỆM VỤ
             </div>
-            <div class="window-subtitle">NHIỆM VỤ HẰNG NGÀY - CHUẨN BỊ ĐỂ TRỞ NÊN MẠNH HƠN</div>
+            <div class="window-subtitle">NHIỆM VỤ HẰNG NGÀY - TÍCH HỢP TỪ CÁC MỤC TIÊU</div>
           </div>
 
           <div class="window-body">
-            <div class="section-headline">MỤC TIÊU</div>
+            <div class="section-headline">MỤC TIÊU HÔM NAY</div>
 
+            <!-- Danh sách nhiệm vụ (không bao giờ bị ghi đè, cộng dồn từ các mục tiêu) -->
             <div class="quest-list" id="questListContainer">
               <!-- Render từ JS -->
             </div>
@@ -1069,12 +1059,6 @@
 
             <!-- ĐỒNG HỒ ĐẾM NGƯỢC -->
             <div class="countdown-container">
-              <div class="stopwatch-ring">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2">
-                  <circle cx="12" cy="12" r="9" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
               <div class="countdown-text" id="dailyCountdown">--:--:--</div>
               <span style="font-size: 12px; color: #8ba3c7; font-family: var(--font-manhwa); letter-spacing: 1px;">
                 THỜI GIAN CÒN LẠI ĐẾN GIỜ XỬ PHẠT
@@ -1082,7 +1066,7 @@
             </div>
 
             <div style="display: flex; gap: 8px; margin-top: 14px;">
-              <button class="btn-step" style="flex: 1; padding: 10px;" onclick="resetQuestsPrompt()">↺ ĐẶT LẠI NGÀY MỚI</button>
+              <button class="btn-step" style="flex: 1; padding: 10px;" onclick="resetQuestsPrompt()">↺ ĐẶT LẠI TIẾN ĐỘ</button>
               <button class="btn-step" style="flex: 1; padding: 10px; border-color: var(--neon-gold); color: var(--neon-gold);" onclick="switchTab('tabReward')">🎁 MỞ BẢNG THƯỞNG</button>
             </div>
           </div>
@@ -1148,7 +1132,6 @@
                   <span class="profile-val" id="statusFatigue" style="color: var(--neon-purple); text-shadow: 0 0 8px var(--neon-purple);">0%</span>
                 </div>
                 
-                <!-- Nút bốc thăm chuyển nghề -->
                 <button class="btn-job-gacha" onclick="openJobGachaModal()">
                   🎲 BỐC THĂM NGHỀ NGHIỆP
                 </button>
@@ -1170,7 +1153,7 @@
             <div class="bars-section">
               <div>
                 <div class="bar-row-header">
-                  <span style="color: #ff3366; text-shadow: 0 0 8px #ff3366;">HP (SỨC KHỎE THỂ CHẤT)</span>
+                  <span style="color: #ff3366;">HP (SỨC KHỎE THỂ CHẤT)</span>
                   <span id="hpText" style="color: #ff3366;">100 / 100</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -1180,7 +1163,7 @@
 
               <div>
                 <div class="bar-row-header">
-                  <span style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan);">MP (NĂNG LƯỢNG TINH THẦN & Ý CHÍ)</span>
+                  <span style="color: var(--neon-cyan);">MP (NĂNG LƯỢNG TINH THẦN & Ý CHÍ)</span>
                   <span id="mpText" style="color: var(--neon-cyan);">50 / 50</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -1190,7 +1173,7 @@
 
               <div>
                 <div class="bar-row-header">
-                  <span style="color: var(--neon-purple); text-shadow: 0 0 8px var(--neon-purple);">MỨC ĐỘ MỆT MỎI (FATIGUE)</span>
+                  <span style="color: var(--neon-purple);">MỨC ĐỘ MỆT MỎI (FATIGUE)</span>
                   <span id="fatigueBarText" style="color: var(--neon-purple);">0 / 100</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -1275,7 +1258,7 @@
             <div class="window-title">
               <span>⬡</span> THƯỞNG NHIỆM VỤ
             </div>
-            <div class="window-subtitle">CHỌN PHẦN THƯỞNG CỦA BẠN (CÓ THỂ CHỌN MỘT TRONG CÁC MỤC DƯỚI ĐÂY)</div>
+            <div class="window-subtitle">CHỌN PHẦN THƯỞNG CỦA BẠN</div>
           </div>
 
           <div class="window-body">
@@ -1305,14 +1288,11 @@
               </div>
             </div>
 
-            <div class="confirm-prompt-title">BẠN CÓ MUỐN XÁC NHẬN?</div>
-
             <div class="reward-btn-grid">
               <button class="btn-reward-confirm btn-accept-reward" onclick="claimSelectedReward()">CHẤP NHẬN</button>
               <button class="btn-reward-confirm btn-decline-reward" onclick="switchTab('tabQuest')">TỪ CHỐI</button>
             </div>
 
-            <!-- TỦ ĐỒ VẬT PHẨM ĐỜI THỰC -->
             <div class="inventory-zone">
               <div class="inventory-headline">TỦ ĐỒ & VOUCHER TỰ THƯỞNG ĐÃ THU THẬP</div>
               <div class="inventory-grid" id="inventoryContainer">
@@ -1329,14 +1309,14 @@
       <div class="notice-box">
         <div class="notice-tag-header">ⓘ THÔNG BÁO</div>
         <div class="notice-content-text">
-          HỆ THỐNG NÀY SẼ GIÚP <span style="color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green);">NGƯỜI CHƠI</span> PHÁT TRIỂN
+          HỆ THỐNG NÀY SẼ GIÚP <span style="color: var(--neon-green);">NGƯỜI CHƠI</span> PHÁT TRIỂN
         </div>
       </div>
 
-      <div class="notice-box" style="border-color: var(--neon-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.45);">
-        <div class="notice-tag-header" style="color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red);">ⓘ THÔNG BÁO</div>
+      <div class="notice-box" style="border-color: var(--neon-red);">
+        <div class="notice-tag-header" style="color: var(--neon-red);">ⓘ THÔNG BÁO</div>
         <div class="notice-content-text">
-          NẾU BẠN KHÔNG TUÂN THỦ THEO YÊU CẦU TỪ HỆ THỐNG BẠN CÓ THỂ SẼ NHẬN <span style="color: var(--neon-red); text-shadow: 0 0 12px var(--neon-red);">HÌNH PHẠT</span>
+          NẾU BẠN KHÔNG TUÂN THỦ THEO YÊU CẦU TỪ HỆ THỐNG BẠN CÓ THỂ SẼ NHẬN <span style="color: var(--neon-red);">HÌNH PHẠT</span>
         </div>
       </div>
 
@@ -1361,7 +1341,7 @@
       </div>
     </div>
 
-    <!-- TAB 5: BỘ CHIA NHỎ MỤC TIÊU -->
+    <!-- TAB 5: BỘ QUẢN LÝ MỤC TIÊU 3 TẦNG & BIỂU ĐỒ GANTT (MỚI) -->
     <div id="tabGoalAI" class="tab-content" style="display: none;">
       <div class="system-window">
         <div class="window-inner-frame">
@@ -1371,30 +1351,45 @@
           <div class="gothic-corner gothic-br"></div>
 
           <div class="window-header">
-            <div class="window-title">⚙ PHÂN GIẢI MỤC TIÊU</div>
-            <div class="window-subtitle">BỘ NÃO AI CHIA NHỎ MỤC TIÊU LỚN THÀNH NHIỆM VỤ THỰC CHIẾN</div>
+            <div class="window-title">⚙ QUẢN LÝ MỤC TIÊU 3 TẦNG</div>
+            <div class="window-subtitle">PHÂN RÃ THÔNG MINH - KHÔNG GHI ĐÈ NHIỆM VỤ CŨ</div>
           </div>
 
           <div class="window-body">
+            <!-- 3 Tabs chọn tầng mục tiêu -->
+            <div class="goal-tier-tabs">
+              <button class="tier-tab-btn active" id="btnTierShort" onclick="selectTierTab('short')">
+                ⚡ NGẮN HẠN
+                <span class="tier-counter-badge" id="countShort">(0/5)</span>
+              </button>
+              <button class="tier-tab-btn" id="btnTierMid" onclick="selectTierTab('mid')">
+                🎯 TRUNG HẠN
+                <span class="tier-counter-badge" id="countMid">(0/5)</span>
+              </button>
+              <button class="tier-tab-btn" id="btnTierLong" onclick="selectTierTab('long')">
+                👑 DÀI HẠN
+                <span class="tier-counter-badge" id="countLong">(0/5)</span>
+              </button>
+            </div>
+
+            <!-- Form thêm mục tiêu mới theo tầng -->
             <div class="form-group">
-              <label class="form-label">MỤC TIÊU BẠN MUỐN ĐẠT ĐƯỢC:</label>
-              <input type="text" class="form-input" id="goalInput" placeholder="VD: Giảm 4kg mỡ, Đọc xong 3 cuốn sách, v.v.">
-              <div class="preset-chips-box">
-                <span class="preset-badge" onclick="fillGoal('Giảm 4kg mỡ thừa & vóc dáng săn chắc', 30, 'VIT')">🏃 Giảm cân 30 ngày</span>
-                <span class="preset-badge" onclick="fillGoal('Đọc xong 2 cuốn sách phát triển bản thân', 21, 'INT')">📚 Đọc sách 21 ngày</span>
-                <span class="preset-badge" onclick="fillGoal('Tập chống đẩy và cơ ngực nở nang', 30, 'STR')">💪 Tập cơ bắp 30 ngày</span>
-                <span class="preset-badge" onclick="fillGoal('Dậy sớm lúc 6h và ngủ đủ 7 tiếng', 14, 'AGI')">⏰ Dậy sớm 14 ngày</span>
-                <span class="preset-badge" onclick="fillGoal('Uống đủ 2.5 lít nước & chăm sóc da mặt', 14, 'CHA')">✨ Ngoại hình 14 ngày</span>
+              <label class="form-label" id="tierFormTitle">TÊN MỤC TIÊU NGẮN HẠN (7 - 30 NGÀY):</label>
+              <input type="text" class="form-input" id="goalInput" placeholder="VD: Giảm 2kg mỡ, Đọc xong 1 cuốn sách...">
+              
+              <!-- Chips gợi ý theo từng tầng -->
+              <div class="preset-chips-box" id="presetChipsContainer">
+                <!-- Render từ JS tùy theo tầng -->
               </div>
             </div>
 
             <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div>
                 <label class="form-label">THỜI GIAN (SỐ NGÀY):</label>
-                <input type="number" class="form-input" id="goalDays" value="30" min="3" max="365">
+                <input type="number" class="form-input" id="goalDays" value="21" min="3" max="730">
               </div>
               <div>
-                <label class="form-label">THUỘC TÍNH TRỌNG TÂM:</label>
+                <label class="form-label">THUỘC TÍNH CHÍNH:</label>
                 <select class="form-select" id="goalStatFocus">
                   <option value="STR">Sức mạnh (STR)</option>
                   <option value="VIT" selected>Thể lực (VIT)</option>
@@ -1406,18 +1401,37 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">MỨC ĐỘ THỬ THÁCH:</label>
-              <select class="form-select" id="goalIntensity">
-                <option value="normal">Thợ Săn Tập Sự (Dễ thở, kiên trì mỗi ngày)</option>
-                <option value="hard" selected>Thợ Săn Hạng B (Kỷ luật nghiêm khắc)</option>
-                <option value="solo">Quân Vương Bóng Đêm (Hardcore Solo Leveling)</option>
-              </select>
+            <button class="btn-ignite-goal" onclick="addNewTierGoal()">
+              ⚡ THÊM MỤC TIÊU & TẠO NHIỆM VỤ HÀNG NGÀY
+            </button>
+
+            <!-- ============================================= -->
+            <!-- BIỂU ĐỒ GANTT TIMELINE TRỰC QUAN -->
+            <!-- ============================================= -->
+            <div class="gantt-section">
+              <div class="gantt-header-row">
+                <div class="gantt-title">
+                  <span>📊</span> BIỂU ĐỒ GANTT TIẾN ĐỘ
+                </div>
+                <div style="font-size: 11px; color: var(--neon-cyan); font-family: var(--font-manhwa);">
+                  THEO DÕI DÒNG THỜI GIAN
+                </div>
+              </div>
+
+              <!-- Bộ lọc hiển thị trên Gantt -->
+              <div style="display: flex; gap: 6px; margin-bottom: 10px; overflow-x: auto;">
+                <button class="btn-step" id="ganttFilterAll" onclick="filterGantt('all')">TẤT CẢ</button>
+                <button class="btn-step" id="ganttFilterShort" onclick="filterGantt('short')">NGẮN HẠN</button>
+                <button class="btn-step" id="ganttFilterMid" onclick="filterGantt('mid')">TRUNG HẠN</button>
+                <button class="btn-step" id="ganttFilterLong" onclick="filterGantt('long')">DÀI HẠN</button>
+              </div>
+
+              <!-- Danh sách các thanh Gantt Bar -->
+              <div class="gantt-timeline-box" id="ganttListContainer">
+                <!-- Render từ JS -->
+              </div>
             </div>
 
-            <button class="btn-ignite-goal" onclick="generateDailyQuestsFromGoal()">
-              ⚡ PHÂN TÍCH VÀ BƠM VÀO BẢNG NHIỆM VỤ
-            </button>
           </div>
         </div>
       </div>
@@ -1448,7 +1462,7 @@
     </button>
   </nav>
 
-  <!-- MODAL 1: LỄ BỐC THĂM NGHỀ NGHIỆP (JOB AWAKENING GACHA) -->
+  <!-- MODAL BỐC THĂM NGHỀ NGHIỆP -->
   <div class="modal-overlay" id="jobGachaModal">
     <div class="modal-box">
       <div class="system-window">
@@ -1469,12 +1483,8 @@
                 <div style="font-size: 18px; font-weight: 700; color: #fff; font-family: var(--font-manhwa);" id="jobNameDisplay">QUÂN VƯƠNG BÓNG ĐÊM</div>
                 <div style="font-size: 12px; color: var(--neon-cyan); margin-top: 4px;" id="jobPassiveDisplay">Nội tại: +2 Sức mạnh, Tăng 20% khả năng đốt mỡ</div>
               </div>
-              <button class="btn-job-gacha" id="btnRollJob" onclick="rollJobGacha()">
-                BẮT ĐẦU BỐC THĂM NGHỀ
-              </button>
-              <button class="btn-step" style="width: 100%; margin-top: 8px; padding: 8px;" onclick="closeJobGachaModal()">
-                ĐÓNG LẠI
-              </button>
+              <button class="btn-job-gacha" id="btnRollJob" onclick="rollJobGacha()">BẮT ĐẦU BỐC THĂM NGHỀ</button>
+              <button class="btn-step" style="width: 100%; margin-top: 8px; padding: 8px;" onclick="closeJobGachaModal()">ĐÓNG LẠI</button>
             </div>
           </div>
         </div>
@@ -1482,7 +1492,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: ĐO THỂ TRẠNG ĐỜI THỰC (HEALTH & ENERGY DIAGNOSTIC) -->
+  <!-- MODAL ĐO THỂ TRẠNG ĐỜI THỰC -->
   <div class="modal-overlay" id="healthCheckModal">
     <div class="modal-box">
       <div class="system-window">
@@ -1526,16 +1536,13 @@
             <button class="btn-job-gacha" style="background: linear-gradient(135deg, #0055cc, #00d2ff);" onclick="applyHealthDiagnostic()">
               CẬP NHẬT VÀO HỆ THỐNG
             </button>
-            <button class="btn-step" style="width: 100%; margin-top: 8px; padding: 8px;" onclick="closeHealthCheckModal()">
-              HỦY BỎ
-            </button>
+            <button class="btn-step" style="width: 100%; margin-top: 8px; padding: 8px;" onclick="closeHealthCheckModal()">HỦY BỎ</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SCRIPT LOGIC HỆ THỐNG VÀ HIỆU ỨNG TÀN TRO -->
   <script>
     // ==========================================
     // 1. TÀN TRO BÓNG ĐÊM (SHADOW EMBERS)
@@ -1543,11 +1550,7 @@
     const canvas = document.getElementById("shadowCanvas");
     const ctx = canvas.getContext("2d");
     let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
@@ -1578,7 +1581,6 @@
       }
     }
     for (let i = 0; i < 45; i++) particles.push(new ShadowParticle());
-
     function animateEmbers() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(p => { p.update(); p.draw(); });
@@ -1587,63 +1589,15 @@
     animateEmbers();
 
     // ==========================================
-    // 2. DỮ LIỆU VÀ KHO NGHỀ NGHIỆP GACHA
+    // 2. DỮ LIỆU THỢ SĂN & CẤU TRÚC MỤC TIÊU 3 TẦNG
     // ==========================================
     const JOB_POOL = [
-      {
-        rank: "[HẠNG S]",
-        name: "QUÂN VƯƠNG BÓNG ĐÊM",
-        title: "CHÚA TỂ TRỖI DẬY",
-        icon: "👑",
-        passive: "Nội tại: Tăng 20% hiệu quả đốt mỡ, nhận +2 Sức mạnh và +1 Kỷ luật",
-        buffAttr: "STR",
-        buffVal: 2
-      },
-      {
-        rank: "[HẠNG S]",
-        name: "ĐẠI PHÁP SƯ TRI THỨC",
-        title: "KẺ NẮM GIỮ CHÂN LÝ",
-        icon: "🔮",
-        passive: "Nội tại: Tiêu hao ít Mana khi đọc sách, nhận +3 Trí tuệ",
-        buffAttr: "INT",
-        buffVal: 3
-      },
-      {
-        rank: "[HẠNG A]",
-        name: "HIỆP SĨ KỶ LUẬT THÉP",
-        title: "PHÁO ĐÀI BẤT KHẢ XÂM PHẠM",
-        icon: "🛡️",
-        passive: "Nội tại: Giảm 30% mức độ mệt mỏi khi duy trì thể dục, nhận +2 Thể lực",
-        buffAttr: "VIT",
-        buffVal: 2
-      },
-      {
-        rank: "[HẠNG A]",
-        name: "SÁT THỦ THẦN TỐC",
-        title: "BÓNG MA CHỚP NHOÁNG",
-        icon: "🗡️",
-        passive: "Nội tại: Hoàn thành công việc với tốc độ cao, nhận +2 Kỷ luật (AGI)",
-        buffAttr: "AGI",
-        buffVal: 2
-      },
-      {
-        rank: "[HẠNG A]",
-        name: "BÁ CHỦ THAO LƯỢC",
-        title: "BẬC THẦY KẾ HOẠCH",
-        icon: "📜",
-        passive: "Nội tại: Quản lý thời gian xuất sắc, nhận +2 Nhạy bén (PER)",
-        buffAttr: "PER",
-        buffVal: 2
-      },
-      {
-        rank: "[HẠNG B]",
-        name: "CHIẾN BINH BỀN BỈ",
-        title: "KẺ SỐNG SÓT BẤT DIỆT",
-        icon: "⚔️",
-        passive: "Nội tại: Cơ thể hồi phục thần tốc, nhận +2 Sức sống (VIT)",
-        buffAttr: "VIT",
-        buffVal: 2
-      }
+      { rank: "[HẠNG S]", name: "QUÂN VƯƠNG BÓNG ĐÊM", title: "CHÚA TỂ TRỖI DẬY", icon: "👑", passive: "Nội tại: Tăng 20% hiệu quả đốt mỡ, nhận +2 Sức mạnh và +1 Kỷ luật", buffAttr: "STR", buffVal: 2 },
+      { rank: "[HẠNG S]", name: "ĐẠI PHÁP SƯ TRI THỨC", title: "KẺ NẮM GIỮ CHÂN LÝ", icon: "🔮", passive: "Nội tại: Tiêu hao ít Mana khi đọc sách, nhận +3 Trí tuệ", buffAttr: "INT", buffVal: 3 },
+      { rank: "[HẠNG A]", name: "HIỆP SĨ KỶ LUẬT THÉP", title: "PHÁO ĐÀI BẤT KHẢ XÂM PHẠM", icon: "🛡️", passive: "Nội tại: Giảm 30% mức độ mệt mỏi khi duy trì thể dục, nhận +2 Thể lực", buffAttr: "VIT", buffVal: 2 },
+      { rank: "[HẠNG A]", name: "SÁT THỦ THẦN TỐC", title: "BÓNG MA CHỚP NHOÁNG", icon: "🗡️", passive: "Nội tại: Hoàn thành công việc với tốc độ cao, nhận +2 Kỷ luật (AGI)", buffAttr: "AGI", buffVal: 2 },
+      { rank: "[HẠNG A]", name: "BÁ CHỦ THAO LƯỢC", title: "BẬC THẦY KẾ HOẠCH", icon: "📜", passive: "Nội tại: Quản lý thời gian xuất sắc, nhận +2 Nhạy bén (PER)", buffAttr: "PER", buffVal: 2 },
+      { rank: "[HẠNG B]", name: "CHIẾN BINH BỀN BỈ", title: "KẺ SỐNG SÓT BẤT DIỆT", icon: "⚔️", passive: "Nội tại: Cơ thể hồi phục thần tốc, nhận +2 Sức sống (VIT)", buffAttr: "VIT", buffVal: 2 }
     ];
 
     const DEFAULT_DATA = {
@@ -1659,21 +1613,28 @@
       mp: 50,
       mpMax: 50,
       fatigue: 0,
-      unallocatedPoints: 0, // CHỈ TĂNG KHI LÀM XONG NHIỆM VỤ!
-      stats: {
-        STR: 12,
-        VIT: 10,
-        INT: 14,
-        CHA: 10,
-        AGI: 10,
-        PER: 10
-      },
+      unallocatedPoints: 0,
+      stats: { STR: 12, VIT: 10, INT: 14, CHA: 10, AGI: 10, PER: 10 },
+      // Danh sách mục tiêu 3 tầng (tối đa 5 mỗi loại)
+      goals: [
+        {
+          id: "g_init_1",
+          name: "Rèn luyện thể lực cơ bản & giảm mỡ",
+          type: "short", // short (7-30d), mid (31-180d), long (181-730d)
+          startDate: new Date().toISOString().slice(0, 10),
+          endDate: new Date(Date.now() + 21*86400000).toISOString().slice(0, 10),
+          totalDays: 21,
+          completedDays: 0,
+          stat: "VIT",
+          completed: false
+        }
+      ],
+      // Danh sách nhiệm vụ hằng ngày (CỘNG DỒN, KHÔNG GHI ĐÈ)
       quests: [
-        { id: "q1", name: "Chống đẩy", target: 50, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-        { id: "q2", name: "Gập bụng", target: 50, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-        { id: "q3", name: "Squat cơ đùi", target: 50, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false },
-        { id: "q4", name: "Chạy bộ / Đi bộ", target: 3, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false },
-        { id: "q5", name: "Đọc 10 trang sách hoặc học điều mới", target: 10, current: 0, unit: "trang", attr: "INT", attrVal: 1, completed: false }
+        { id: "q1", goalId: "g_init_1", tier: "short", name: "Chống đẩy rèn ngực và tay", target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
+        { id: "q2", goalId: "g_init_1", tier: "short", name: "Gập bụng siết cơ cốt lõi", target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
+        { id: "q3", goalId: "g_init_1", tier: "short", name: "Squat cơ đùi & đốt mỡ", target: 40, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false },
+        { id: "q4", goalId: "g_init_1", tier: "short", name: "Chạy bộ hoặc đi bộ nhanh", target: 3, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false }
       ],
       inventory: [
         { id: "item1", name: "Thẻ Miễn Phạt 1 Ngày", icon: "🛡️", desc: "Dùng để tránh bị phạt khi bận việc đột xuất.", qty: 1 },
@@ -1681,7 +1642,7 @@
       ],
       logs: [
         { time: "08:00", text: "Hệ thống thức tỉnh. Chào mừng Thợ săn Phạm Đình Hải!" },
-        { time: "08:05", text: "Bảng nhiệm vụ hàng ngày sẵn sàng. Hãy hoàn thành để tích điểm!" }
+        { time: "08:05", text: "Cơ chế quản lý mục tiêu 3 tầng & Biểu đồ Gantt đã sẵn sàng." }
       ],
       rewardClaimedToday: false,
       selectedRewardIndex: 2,
@@ -1690,6 +1651,7 @@
     };
 
     let hunterData = JSON.parse(localStorage.getItem("SOLO_SYSTEM_HUNTER_DATA") || "null") || DEFAULT_DATA;
+    if (!hunterData.goals) hunterData.goals = DEFAULT_DATA.goals;
 
     function saveData() {
       localStorage.setItem("SOLO_SYSTEM_HUNTER_DATA", JSON.stringify(hunterData));
@@ -1697,7 +1659,7 @@
     }
 
     // ==========================================
-    // 3. ÂM THANH KIẾM CHÉM & CHIME
+    // 3. ÂM THANH & RUNG
     // ==========================================
     let audioCtx = null;
     function getAudioContext() {
@@ -1711,7 +1673,6 @@
       try {
         const ctx = getAudioContext();
         const now = ctx.currentTime;
-
         if (type === 'slash') {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
@@ -1809,125 +1770,276 @@
     }
 
     // ==========================================
-    // 4. BỐC THĂM NGHỀ NGHIỆP (JOB AWAKENING GACHA)
+    // 4. QUẢN LÝ MỤC TIÊU 3 TẦNG & PHÂN RÃ CỘNG DỒN
     // ==========================================
-    function openJobGachaModal() {
-      playSound('chime');
-      document.getElementById("jobGachaModal").classList.add("active");
-      document.getElementById("gachaResultZone").style.display = "none";
-      document.getElementById("btnRollJob").style.display = "block";
-    }
-    function closeJobGachaModal() {
-      document.getElementById("jobGachaModal").classList.remove("active");
+    let currentSelectedTier = "short"; // short | mid | long
+    let ganttFilterMode = "all";
+
+    const PRESETS_BY_TIER = {
+      short: [
+        { name: "Đọc xong 1 cuốn sách phát triển bản thân", days: 14, stat: "INT" },
+        { name: "Giảm 2kg mỡ thừa & vóc dáng săn chắc", days: 21, stat: "VIT" },
+        { name: "Dậy sớm lúc 6h00 liên tục", days: 21, stat: "AGI" },
+        { name: "Chống đẩy 50 cái mỗi ngày", days: 30, stat: "STR" }
+      ],
+      mid: [
+        { name: "Giảm 6kg mỡ và lên cơ ngực bắp tay", days: 90, stat: "STR" },
+        { name: "Thi đậu chứng chỉ chuyên môn Dầu khí/Quản lý", days: 90, stat: "INT" },
+        { name: "Chạy bộ tích lũy đủ 200km", days: 120, stat: "VIT" },
+        { name: "Xây dựng thần thái & phong cách chỉn chu", days: 60, stat: "CHA" }
+      ],
+      long: [
+        { name: "Thăng tiến vị trí Kỹ sư Trưởng / Quản lý dự án", days: 365, stat: "PER" },
+        { name: "Giao tiếp tiếng Anh lưu loát với chuyên gia", days: 180, stat: "INT" },
+        { name: "Vóc dáng chuẩn 6 múi & thể lực dẻo dai đỉnh cao", days: 365, stat: "VIT" },
+        { name: "Xây dựng quỹ tiết kiệm tự do tài chính", days: 365, stat: "AGI" }
+      ]
+    };
+
+    function selectTierTab(tier) {
+      playSound('click');
+      currentSelectedTier = tier;
+      ['short', 'mid', 'long'].forEach(t => {
+        const btn = document.getElementById("btnTier" + capitalize(t));
+        if (btn) {
+          if (t === tier) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+
+      const titles = {
+        short: "TÊN MỤC TIÊU NGẮN HẠN (7 - 30 NGÀY):",
+        mid: "TÊN MỤC TIÊU TRUNG HẠN (1 - 6 THÁNG):",
+        long: "TÊN MỤC TIÊU DÀI HẠN (6 THÁNG - 2 NĂM):"
+      };
+      const defaultDays = { short: 21, mid: 90, long: 365 };
+
+      document.getElementById("tierFormTitle").textContent = titles[tier];
+      document.getElementById("goalDays").value = defaultDays[tier];
+      renderPresets();
     }
 
-    function rollJobGacha() {
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function renderPresets() {
+      const container = document.getElementById("presetChipsContainer");
+      if (!container) return;
+      container.innerHTML = "";
+
+      const presets = PRESETS_BY_TIER[currentSelectedTier] || [];
+      presets.forEach(p => {
+        const badge = document.createElement("span");
+        badge.className = "preset-badge";
+        badge.textContent = `${p.name} (${p.days} ngày)`;
+        badge.onclick = () => {
+          playSound('click');
+          document.getElementById("goalInput").value = p.name;
+          document.getElementById("goalDays").value = p.days;
+          document.getElementById("goalStatFocus").value = p.stat;
+        };
+        container.appendChild(badge);
+      });
+    }
+
+    function updateTierCounters() {
+      const shortCount = hunterData.goals.filter(g => g.type === 'short').length;
+      const midCount = hunterData.goals.filter(g => g.type === 'mid').length;
+      const longCount = hunterData.goals.filter(g => g.type === 'long').length;
+
+      document.getElementById("countShort").textContent = `(${shortCount}/5)`;
+      document.getElementById("countMid").textContent = `(${midCount}/5)`;
+      document.getElementById("countLong").textContent = `(${longCount}/5)`;
+    }
+
+    // THÊM MỤC TIÊU MỚI: BẢO TỒN NHIỆM VỤ CŨ, CỘNG DỒN NHIỆM VỤ MỚI
+    function addNewTierGoal() {
+      const name = document.getElementById("goalInput").value.trim();
+      const days = parseInt(document.getElementById("goalDays").value) || 21;
+      const stat = document.getElementById("goalStatFocus").value;
+      const type = currentSelectedTier;
+
+      if (!name) {
+        alert("Vui lòng nhập tên mục tiêu của anh!");
+        return;
+      }
+
+      // Kiểm tra giới hạn 5 mục tiêu mỗi loại
+      const countInTier = hunterData.goals.filter(g => g.type === type).length;
+      if (countInTier >= 5) {
+        alert(`Anh đã đạt giới hạn tối đa 5/5 mục tiêu ${getTierName(type)}!\nHãy hoàn thành hoặc xóa bớt 1 mục tiêu cũ trước khi thêm mới nhé.`);
+        return;
+      }
+
       playSound('slash');
       triggerScreenShake();
-      const btn = document.getElementById("btnRollJob");
-      btn.disabled = true;
-      btn.textContent = "ĐANG THỨC TỈNH BÓNG ĐÊM...";
 
-      const orb = document.getElementById("gachaOrbIcon");
-      orb.style.animation = "orbSpin 0.3s infinite linear";
+      const goalId = "g_" + Date.now();
+      const startDate = new Date().toISOString().slice(0, 10);
+      const endDate = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
 
-      setTimeout(() => {
-        const selectedJob = JOB_POOL[Math.floor(Math.random() * JOB_POOL.length)];
-        hunterData.job = selectedJob.name;
-        hunterData.title = selectedJob.title;
-        if (hunterData.stats[selectedJob.buffAttr] !== undefined) {
-          hunterData.stats[selectedJob.buffAttr] += selectedJob.buffVal;
-        }
+      // Tạo mục tiêu mới
+      const newGoal = {
+        id: goalId,
+        name: name,
+        type: type,
+        startDate: startDate,
+        endDate: endDate,
+        totalDays: days,
+        completedDays: 0,
+        stat: stat,
+        completed: false
+      };
 
-        orb.style.animation = "orbSpin 2s infinite linear";
-        orb.textContent = selectedJob.icon;
+      // TỰ ĐỘNG PHÂN RÃ MỤC TIÊU THÀNH CÁC TASK NHỎ HẰNG NGÀY
+      let newDailyQuests = [];
 
-        document.getElementById("jobRankDisplay").textContent = selectedJob.rank;
-        document.getElementById("jobNameDisplay").textContent = selectedJob.name;
-        document.getElementById("jobPassiveDisplay").textContent = selectedJob.passive;
-        document.getElementById("gachaResultZone").style.display = "block";
-
-        btn.disabled = false;
-        btn.textContent = "BỐC THĂM LẠI";
-        playSound('levelup');
-        triggerScreenShake();
-
-        addLog(`THỨC TỈNH NGHỀ: Nhận nghề nghiệp [${selectedJob.name}]! ${selectedJob.passive}`);
-        saveData();
-      }, 1200);
-    }
-
-    // ==========================================
-    // 5. ĐO THỂ TRẠNG ĐỜI THỰC (HEALTH & ENERGY DIAGNOSTIC)
-    // ==========================================
-    function openHealthCheckModal() {
-      playSound('click');
-      document.getElementById("healthCheckModal").classList.add("active");
-    }
-    function closeHealthCheckModal() {
-      document.getElementById("healthCheckModal").classList.remove("active");
-    }
-
-    function applyHealthDiagnostic() {
-      const sleep = document.getElementById("diagSleep").value;
-      const diet = document.getElementById("diagDiet").value;
-      const stress = document.getElementById("diagStress").value;
-
-      playSound('chime');
-      triggerScreenShake();
-
-      let hp = 100, mp = 100, fatigue = 0;
-
-      // 1. Giấc ngủ
-      if (sleep === 'good') {
-        hp = 100; mp = 100; fatigue = 0;
-      } else if (sleep === 'normal') {
-        hp = 80; mp = 75; fatigue = 15;
+      if (stat === 'STR' || name.toLowerCase().includes("cơ bắp") || name.toLowerCase().includes("chống đẩy") || name.toLowerCase().includes("gym")) {
+        const count = type === 'short' ? 40 : (type === 'mid' ? 60 : 80);
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `[${getTierName(type)}] Chống đẩy rèn thể lực: ${name}`, target: count, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, name: `[${getTierName(type)}] Squat cơ đùi & đốt mỡ`, target: count, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false });
+      } else if (stat === 'INT' || name.toLowerCase().includes("sách") || name.toLowerCase().includes("học") || name.toLowerCase().includes("tiếng anh")) {
+        const pages = type === 'short' ? 15 : (type === 'mid' ? 20 : 10);
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `[${getTierName(type)}] Đọc sách/Học chuyên môn: ${name}`, target: pages, current: 0, unit: "trang", attr: "INT", attrVal: 1, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, name: `[${getTierName(type)}] Ghi lại 1 bài học thực tế`, target: 1, current: 0, unit: "ý", attr: "PER", attrVal: 1, completed: false });
+      } else if (stat === 'VIT' || name.toLowerCase().includes("chạy") || name.toLowerCase().includes("giảm") || name.toLowerCase().includes("thể lực")) {
+        const km = type === 'short' ? 3 : (type === 'mid' ? 5 : 4);
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `[${getTierName(type)}] Chạy bộ/Đi bộ: ${name}`, target: km, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, name: `[${getTierName(type)}] Uống 2.5L nước & Không ăn vặt`, target: 2.5, current: 0, unit: "lít", attr: "CHA", attrVal: 1, completed: false });
       } else {
-        hp = 50; mp = 45; fatigue = 40;
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `[${getTierName(type)}] Hành động kỷ luật: ${name}`, target: 1, current: 0, unit: "lần", attr: stat, attrVal: 1, completed: false });
       }
 
-      // 2. Ăn uống
-      if (diet === 'clean') {
-        hp = Math.min(100, hp + 10);
-      } else if (diet === 'junk') {
-        fatigue += 15;
-      }
+      // THÊM MỤC TIÊU VÀ CỘNG DỒN NHIỆM VỤ VÀO BẢNG CHÍNH (KHÔNG XÓA TASK CŨ!)
+      hunterData.goals.push(newGoal);
+      hunterData.quests = hunterData.quests.concat(newDailyQuests);
 
-      // 3. Tinh thần
-      if (stress === 'calm') {
-        mp = Math.min(100, mp + 20);
-      } else if (stress === 'high') {
-        mp = Math.max(10, mp - 30);
-        fatigue += 20;
-      }
-
-      hunterData.hp = hp;
-      hunterData.mp = mp;
-      hunterData.fatigue = Math.min(100, fatigue);
-
-      addLog(`Check-in thể trạng: HP: ${hp}%, MP: ${mp}%, Mệt mỏi: ${hunterData.fatigue}%.`);
+      addLog(`Thêm mục tiêu ${getTierName(type)}: [${name}] (${days} ngày). Đã sinh thêm ${newDailyQuests.length} nhiệm vụ hàng ngày mới.`);
       saveData();
-      closeHealthCheckModal();
-      alert(`ĐÃ CẬP NHẬT THỂ TRẠNG THỰC TẾ:\n- Sức khỏe (HP): ${hp}%\n- Tinh thần (MP): ${mp}%\n- Mức độ mệt: ${hunterData.fatigue}%`);
+
+      document.getElementById("goalInput").value = "";
+      alert(`ĐÃ THÊM MỤC TIÊU THÀNH CÔNG!\n- Loại: ${getTierName(type)}\n- Tên: ${name}\n- Thời gian: ${days} ngày\n✓ Các nhiệm vụ cũ vẫn được bảo lưu nguyên vẹn và đã cộng thêm ${newDailyQuests.length} nhiệm vụ mới vào BẢNG NHIỆM VỤ!`);
+    }
+
+    function getTierName(type) {
+      if (type === 'short') return 'Ngắn hạn';
+      if (type === 'mid') return 'Trung hạn';
+      return 'Dài hạn';
     }
 
     // ==========================================
-    // 6. RENDER NHIỆM VỤ & CỘNG ĐIỂM KHI LÀM THẬT
+    // 5. BIỂU ĐỒ GANTT TIMELINE
+    // ==========================================
+    function filterGantt(type) {
+      playSound('click');
+      ganttFilterMode = type;
+      renderGanttChart();
+    }
+
+    function renderGanttChart() {
+      const container = document.getElementById("ganttListContainer");
+      if (!container) return;
+      container.innerHTML = "";
+
+      let filteredGoals = hunterData.goals;
+      if (ganttFilterMode !== 'all') {
+        filteredGoals = hunterData.goals.filter(g => g.type === ganttFilterMode);
+      }
+
+      if (filteredGoals.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 20px; color: #8ba3c7; font-size: 13px;">
+            Chưa có mục tiêu nào trong mục này.<br>Anh hãy thêm mục tiêu ở phía trên nhé!
+          </div>
+        `;
+        return;
+      }
+
+      const now = new Date();
+
+      filteredGoals.forEach(g => {
+        const start = new Date(g.startDate);
+        const end = new Date(g.endDate);
+        const totalDurationMs = end - start;
+        const elapsedMs = Math.max(0, now - start);
+        
+        let timePct = totalDurationMs > 0 ? Math.min(100, Math.round((elapsedMs / totalDurationMs) * 100)) : 100;
+        
+        // Tính số ngày còn lại
+        const diffDays = Math.ceil((end - now) / 86400000);
+        let daysLeftText = diffDays > 0 ? `Còn ${diffDays} ngày` : `Đến hạn`;
+
+        const tierBadgeClass = g.type === 'short' ? 'tier-short' : (g.type === 'mid' ? 'tier-mid' : 'tier-long');
+
+        const card = document.createElement("div");
+        card.className = "gantt-row-card";
+        card.innerHTML = `
+          <div class="gantt-row-top">
+            <div>
+              <span class="quest-tag-tier ${tierBadgeClass}">${getTierName(g.type)}</span>
+              <span class="gantt-goal-title">${g.name}</span>
+            </div>
+            <div class="gantt-days-left">${daysLeftText}</div>
+          </div>
+          <div class="gantt-bar-track">
+            <div class="gantt-bar-fill" style="width: ${timePct}%;"></div>
+          </div>
+          <div class="gantt-row-bottom">
+            <span>Bắt đầu: ${g.startDate} ➔ Kết thúc: ${g.endDate} (${g.totalDays} ngày)</span>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <span style="color: var(--neon-cyan); font-weight: bold;">+${getAttrName(g.stat)}</span>
+              <button class="btn-del-goal" onclick="deleteGoal('${g.id}')">Xóa</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function deleteGoal(goalId) {
+      const g = hunterData.goals.find(item => item.id === goalId);
+      if (!g) return;
+
+      if (confirm(`Anh có chắc chắn muốn xóa mục tiêu:\n"${g.name}"?\n(Các nhiệm vụ hằng ngày liên kết với mục tiêu này cũng sẽ được gỡ bỏ)`)) {
+        playSound('slash');
+        hunterData.goals = hunterData.goals.filter(item => item.id !== goalId);
+        hunterData.quests = hunterData.quests.filter(q => q.goalId !== goalId);
+        addLog(`Đã xóa mục tiêu [${g.name}].`);
+        saveData();
+      }
+    }
+
+    // ==========================================
+    // 6. RENDER NHIỆM VỤ HẰNG NGÀY
     // ==========================================
     function renderQuests() {
       const container = document.getElementById("questListContainer");
       if (!container) return;
       container.innerHTML = "";
 
+      if (hunterData.quests.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 25px; color: #8ba3c7; font-size: 13px;">
+            Hiện chưa có nhiệm vụ nào.<br>Anh hãy vào tab <b>⚡ Mục Tiêu</b> để tạo mục tiêu mới, hệ thống sẽ tự sinh nhiệm vụ nhé!
+          </div>
+        `;
+        return;
+      }
+
       hunterData.quests.forEach((q, idx) => {
         const pct = Math.min(100, Math.round((q.current / q.target) * 100));
+        const tierBadgeClass = q.tier === 'short' ? 'tier-short' : (q.tier === 'mid' ? 'tier-mid' : 'tier-long');
+
         const card = document.createElement("div");
         card.className = `quest-card ${q.completed ? 'completed' : ''}`;
         card.innerHTML = `
           <div class="quest-card-top">
             <div>
-              <div class="quest-status-badge">${q.completed ? '[ĐÃ HOÀN THÀNH]' : '[ĐANG THỰC HIỆN]'}</div>
+              <div style="margin-bottom: 2px;">
+                <span class="quest-tag-tier ${tierBadgeClass}">${getTierName(q.tier || 'short')}</span>
+                <span class="quest-status-badge">${q.completed ? '[ĐÃ HOÀN THÀNH]' : '[ĐANG THỰC HIỆN]'}</span>
+              </div>
               <div class="quest-name">${q.name}</div>
               <div class="quest-attr-reward">+1 Điểm Tích Lũy | +${q.attrVal} ${getAttrName(q.attr)} | +20 EXP</div>
             </div>
@@ -1974,17 +2086,13 @@
       saveData();
     }
 
-    // CHỈ KHI HOÀN THÀNH NHIỆM VỤ THẬT MỚI ĐƯỢC +1 ĐIỂM TÍCH
     function completeQuest(idx) {
       const q = hunterData.quests[idx];
       q.completed = true;
       playSound('slash');
       triggerScreenShake();
 
-      // CỘNG ĐÚNG +1 ĐIỂM TÍCH LŨY TỰ DO
       hunterData.unallocatedPoints += 1;
-
-      // Cộng thẳng chỉ số tương ứng
       if (hunterData.stats[q.attr] !== undefined) {
         hunterData.stats[q.attr] += q.attrVal;
       }
@@ -1992,7 +2100,7 @@
       addLog(`Hoàn thành [${q.name}]! +1 Điểm tích lũy, +${q.attrVal} ${getAttrName(q.attr)}, +20 EXP.`);
 
       const allDone = hunterData.quests.every(item => item.completed);
-      if (allDone) {
+      if (allDone && hunterData.quests.length > 0) {
         playSound('levelup');
         addLog(`CHIẾN THẮNG TUYỆT ĐỐI! Toàn bộ nhiệm vụ hôm nay đã hoàn thành! Bảng phần thưởng sẵn sàng.`);
         setTimeout(() => {
@@ -2009,7 +2117,7 @@
         hunterData.exp -= hunterData.expMax;
         hunterData.level += 1;
         hunterData.expMax = Math.round(hunterData.expMax * 1.3);
-        hunterData.unallocatedPoints += 2; // Thăng cấp nhận +2 điểm
+        hunterData.unallocatedPoints += 2;
         hunterData.hpMax += 10;
         hunterData.hp = hunterData.hpMax;
         hunterData.mpMax += 5;
@@ -2054,7 +2162,6 @@
         const valEl = document.getElementById("attr" + statKey);
         const btnEl = document.getElementById("btnStat" + statKey);
         if (valEl) valEl.textContent = hunterData.stats[statKey];
-        // RÀNG BUỘC CHẶT CHẼ: CHỈ KHI CÓ ĐIỂM MỚI BẤM ĐƯỢC
         if (btnEl) btnEl.disabled = (hunterData.unallocatedPoints <= 0);
       });
     }
@@ -2071,14 +2178,7 @@
     }
 
     function getAttrName(key) {
-      const map = {
-        'STR': 'Sức mạnh',
-        'VIT': 'Thể lực',
-        'INT': 'Trí tuệ',
-        'CHA': 'Ngoại hình',
-        'AGI': 'Kỷ luật',
-        'PER': 'Nhạy bén'
-      };
+      const map = { 'STR': 'Sức mạnh', 'VIT': 'Thể lực', 'INT': 'Trí tuệ', 'CHA': 'Ngoại hình', 'AGI': 'Kỷ luật', 'PER': 'Nhạy bén' };
       return map[key] || key;
     }
 
@@ -2091,7 +2191,89 @@
     }
 
     // ==========================================
-    // 8. BẢNG PHẦN THƯỞNG ĐỜI THỰC
+    // 8. BỐC THĂM NGHỀ NGHIỆP & ĐO THỂ TRẠNG
+    // ==========================================
+    function openJobGachaModal() {
+      playSound('chime');
+      document.getElementById("jobGachaModal").classList.add("active");
+      document.getElementById("gachaResultZone").style.display = "none";
+      document.getElementById("btnRollJob").style.display = "block";
+    }
+    function closeJobGachaModal() { document.getElementById("jobGachaModal").classList.remove("active"); }
+
+    function rollJobGacha() {
+      playSound('slash');
+      triggerScreenShake();
+      const btn = document.getElementById("btnRollJob");
+      btn.disabled = true;
+      btn.textContent = "ĐANG THỨC TỈNH BÓNG ĐÊM...";
+
+      const orb = document.getElementById("gachaOrbIcon");
+      orb.style.animation = "orbSpin 0.3s infinite linear";
+
+      setTimeout(() => {
+        const selectedJob = JOB_POOL[Math.floor(Math.random() * JOB_POOL.length)];
+        hunterData.job = selectedJob.name;
+        hunterData.title = selectedJob.title;
+        if (hunterData.stats[selectedJob.buffAttr] !== undefined) {
+          hunterData.stats[selectedJob.buffAttr] += selectedJob.buffVal;
+        }
+
+        orb.style.animation = "orbSpin 2s infinite linear";
+        orb.textContent = selectedJob.icon;
+
+        document.getElementById("jobRankDisplay").textContent = selectedJob.rank;
+        document.getElementById("jobNameDisplay").textContent = selectedJob.name;
+        document.getElementById("jobPassiveDisplay").textContent = selectedJob.passive;
+        document.getElementById("gachaResultZone").style.display = "block";
+
+        btn.disabled = false;
+        btn.textContent = "BỐC THĂM LẠI";
+        playSound('levelup');
+        triggerScreenShake();
+
+        addLog(`THỨC TỈNH NGHỀ: Nhận [${selectedJob.name}]! ${selectedJob.passive}`);
+        saveData();
+      }, 1200);
+    }
+
+    function openHealthCheckModal() {
+      playSound('click');
+      document.getElementById("healthCheckModal").classList.add("active");
+    }
+    function closeHealthCheckModal() { document.getElementById("healthCheckModal").classList.remove("active"); }
+
+    function applyHealthDiagnostic() {
+      const sleep = document.getElementById("diagSleep").value;
+      const diet = document.getElementById("diagDiet").value;
+      const stress = document.getElementById("diagStress").value;
+
+      playSound('chime');
+      triggerScreenShake();
+
+      let hp = 100, mp = 100, fatigue = 0;
+      if (sleep === 'good') { hp = 100; mp = 100; fatigue = 0; }
+      else if (sleep === 'normal') { hp = 80; mp = 75; fatigue = 15; }
+      else { hp = 50; mp = 45; fatigue = 40; }
+
+      if (diet === 'clean') hp = Math.min(100, hp + 10);
+      else if (diet === 'junk') fatigue += 15;
+
+      if (stress === 'calm') mp = Math.min(100, mp + 20);
+      else if (stress === 'high') { mp = Math.max(10, mp - 30); fatigue += 20; }
+
+      hunterData.hp = hp;
+      hunterData.mp = mp;
+      hunterData.fatigue = Math.min(100, fatigue);
+
+      addLog(`Check-in thể trạng: HP: ${hp}%, MP: ${mp}%, Mệt mỏi: ${hunterData.fatigue}%.`);
+      saveData();
+      closeHealthCheckModal();
+      alert(`ĐÃ CẬP NHẬT THỂ TRẠNG THỰC TẾ:\n- Sức khỏe (HP): ${hp}%\n- Tinh thần (MP): ${mp}%\n- Mức độ mệt: ${hunterData.fatigue}%`);
+    }
+
+    // ==========================================
+    // 9. PHẦN THƯỞNG ĐỜI THỰC
     // ==========================================
     function selectReward(num) {
       playSound('click');
@@ -2121,7 +2303,6 @@
         addLog("ĐÃ NHẬN THƯỞNG #2: Nhận +3 Điểm Tích Lũy tự do!");
         alert("🎉 ĐÃ NHẬN THƯỞNG #2:\nNhận +3 Điểm chỉ số!\nVào BẢNG TRẠNG THÁI để cộng điểm cho Sức mạnh, Trí tuệ hoặc Ngoại hình!");
       } else if (choice === 3) {
-        // DANH SÁCH THƯỞNG ĐỜI THỰC CỰC THIẾT THỰC
         const realLifeRewards = [
           { name: "Voucher Cà Phê / Trà Sữa", icon: "☕", desc: "Tự thưởng 1 ly cà phê/trà sữa ngon lành nhất quán quen không áy náy." },
           { name: "Vé Nghỉ Ngơi: 45 Phút Xem Phim", icon: "🎬", desc: "Xem 1 tập phim Netflix hoặc đọc truyện tranh thư giãn hợp pháp." },
@@ -2160,10 +2341,7 @@
         const slot = document.createElement("div");
         slot.className = "inv-card";
         slot.title = `${item.name}: ${item.desc}`;
-        slot.innerHTML = `
-          <span>${item.icon}</span>
-          <span class="inv-qty-tag">x${item.qty}</span>
-        `;
+        slot.innerHTML = `<span>${item.icon}</span><span class="inv-qty-tag">x${item.qty}</span>`;
         slot.onclick = () => useInventoryItem(item);
         container.appendChild(slot);
       });
@@ -2182,7 +2360,6 @@
         } else {
           item.qty -= 1;
         }
-
         hunterData.inventory = hunterData.inventory.filter(i => i.qty > 0);
         addLog(`Đã sử dụng vật phẩm [${item.name}].`);
         saveData();
@@ -2190,7 +2367,7 @@
     }
 
     // ==========================================
-    // 9. THÔNG BÁO VÀ NHẬT KÝ
+    // 10. NHẬT KÝ & ĐỒNG HỒ
     // ==========================================
     function addLog(text) {
       const now = new Date();
@@ -2204,96 +2381,14 @@
       const container = document.getElementById("systemLogFeed");
       if (!container) return;
       container.innerHTML = "";
-
       hunterData.logs.forEach(log => {
         const div = document.createElement("div");
         div.className = "log-row";
-        div.innerHTML = `
-          <div class="log-row-time">[HỆ THỐNG] ${log.time}</div>
-          <div>${log.text}</div>
-        `;
+        div.innerHTML = `<div class="log-row-time">[HỆ THỐNG] ${log.time}</div><div>${log.text}</div>`;
         container.appendChild(div);
       });
     }
 
-    // ==========================================
-    // 10. BỘ CHIA NHỎ MỤC TIÊU
-    // ==========================================
-    function fillGoal(name, days, stat) {
-      playSound('click');
-      document.getElementById("goalInput").value = name;
-      document.getElementById("goalDays").value = days;
-      document.getElementById("goalStatFocus").value = stat;
-    }
-
-    function generateDailyQuestsFromGoal() {
-      const goal = document.getElementById("goalInput").value.trim();
-      const days = parseInt(document.getElementById("goalDays").value) || 30;
-      const stat = document.getElementById("goalStatFocus").value;
-      const intensity = document.getElementById("goalIntensity").value;
-
-      if (!goal) {
-        alert("Vui lòng nhập mục tiêu bạn muốn đạt được!");
-        return;
-      }
-
-      playSound('slash');
-      triggerScreenShake();
-
-      let generatedQuests = [];
-
-      if (stat === 'STR' || goal.toLowerCase().includes("cơ bắp") || goal.toLowerCase().includes("tập gym") || goal.toLowerCase().includes("chống đẩy")) {
-        const base = (intensity === 'solo') ? 100 : (intensity === 'hard' ? 60 : 35);
-        generatedQuests = [
-          { id: "g_" + Date.now() + "_1", name: `Chống đẩy rèn ngực và tay`, target: base, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_2", name: `Gập bụng siết cơ cốt lõi`, target: base, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_3", name: `Squat kích hoạt thân dưới`, target: base, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_4", name: `Ăn đủ đạm & uống 2 lít nước`, target: 2, current: 0, unit: "lít", attr: "CHA", attrVal: 1, completed: false }
-        ];
-      } else if (stat === 'VIT' || goal.toLowerCase().includes("giảm") || goal.toLowerCase().includes("chạy") || goal.toLowerCase().includes("thể lực")) {
-        const km = (intensity === 'solo') ? 10 : (intensity === 'hard' ? 5 : 3);
-        generatedQuests = [
-          { id: "g_" + Date.now() + "_1", name: `Chạy bộ hoặc đi bộ nhanh`, target: km, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_2", name: `Không ăn vặt & không ăn sau 20h`, target: 1, current: 0, unit: "lần", attr: "AGI", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_3", name: `Uống đủ nước thanh lọc cơ thể`, target: 2.5, current: 0, unit: "lít", attr: "CHA", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_4", name: `Squat đốt mỡ thừa`, target: 40, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false }
-        ];
-      } else if (stat === 'INT' || goal.toLowerCase().includes("sách") || goal.toLowerCase().includes("học") || goal.toLowerCase().includes("tiếng anh")) {
-        const pages = (intensity === 'solo') ? 30 : (intensity === 'hard' ? 20 : 10);
-        generatedQuests = [
-          { id: "g_" + Date.now() + "_1", name: `Đọc sách chuyên môn hoặc bài học mới`, target: pages, current: 0, unit: "trang", attr: "INT", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_2", name: `Ghi chú 1 bài học thực tế vào sổ`, target: 1, current: 0, unit: "ý", attr: "PER", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_3", name: `Học 10 từ vựng hoặc 1 kiến thức mới`, target: 10, current: 0, unit: "từ", attr: "INT", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_4", name: `Vận động giãn cơ chống mỏi mắt`, target: 15, current: 0, unit: "phút", attr: "VIT", attrVal: 1, completed: false }
-        ];
-      } else if (stat === 'CHA' || goal.toLowerCase().includes("ngoại hình") || goal.toLowerCase().includes("da") || goal.toLowerCase().includes("phong thái")) {
-        generatedQuests = [
-          { id: "g_" + Date.now() + "_1", name: `Chăm sóc da & vệ sinh cá nhân tươm tất`, target: 2, current: 0, unit: "lần", attr: "CHA", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_2", name: `Uống đủ 2.5 lít nước ấm mỗi ngày`, target: 2.5, current: 0, unit: "lít", attr: "CHA", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_3", name: `Giữ lưng thẳng khi ngồi & đi lại`, target: 3, current: 0, unit: "giờ", attr: "PER", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_4", name: `Tập thể dục giữ vóc dáng cân đối`, target: 30, current: 0, unit: "phút", attr: "VIT", attrVal: 1, completed: false }
-        ];
-      } else {
-        generatedQuests = [
-          { id: "g_" + Date.now() + "_1", name: `Thực hiện 40 cái chống đẩy`, target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_2", name: `Đi bộ / Chạy bộ bền bỉ`, target: 3, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_3", name: `Đọc sách hoặc trau dồi kiến thức`, target: 15, current: 0, unit: "phút", attr: "INT", attrVal: 1, completed: false },
-          { id: "g_" + Date.now() + "_4", name: `Tập trung hoàn thành công việc đúng giờ`, target: 1, current: 0, unit: "ngày", attr: "AGI", attrVal: 1, completed: false }
-        ];
-      }
-
-      hunterData.quests = generatedQuests;
-      hunterData.rewardClaimedToday = false;
-      addLog(`Mục tiêu mới: [${goal}] (${days} ngày) đã được phân giải thành công vào Bảng Nhiệm Vụ!`);
-      saveData();
-
-      alert(`⚡ HỆ THỐNG ĐÃ PHÂN GIẢI THÀNH CÔNG!\nMục tiêu: ${goal}\nThời hạn: ${days} ngày.\nĐã nạp ${generatedQuests.length} nhiệm vụ hàng ngày vào BẢNG NHIỆM VỤ!`);
-      switchTab('tabQuest');
-    }
-
-    // ==========================================
-    // 11. ĐỒNG HỒ & BẢO TRÌ NGÀY MỚI
-    // ==========================================
     function updateClockAndCountdown() {
       const now = new Date();
       document.getElementById("systemClock").textContent = now.toTimeString().split(' ')[0];
@@ -2315,9 +2410,9 @@
       const todayDate = now.toISOString().slice(0, 10);
       if (hunterData.lastActiveDate !== todayDate) {
         const allDone = hunterData.quests.every(q => q.completed);
-        if (!allDone) {
+        if (!allDone && hunterData.quests.length > 0) {
           hunterData.fatigue = Math.min(100, hunterData.fatigue + 25);
-          hunterData.hp = Math.max(10, hunterData.hp - 20); // Bị phạt trừ HP thật!
+          hunterData.hp = Math.max(10, hunterData.hp - 20);
           addLog("CẢNH BÁO: Chưa hoàn thành nhiệm vụ ngày hôm qua! Bị trừ 20 HP, Mức độ mệt tăng +25%.");
         }
         hunterData.quests.forEach(q => {
@@ -2331,7 +2426,7 @@
     }
 
     function resetQuestsPrompt() {
-      if (confirm("Bạn có muốn đặt lại tiến độ nhiệm vụ về 0 để luyện tập lại không?")) {
+      if (confirm("Bạn có muốn đặt lại tiến độ nhiệm vụ hôm nay về 0 để luyện tập lại không?")) {
         hunterData.quests.forEach(q => {
           q.current = 0;
           q.completed = false;
@@ -2347,6 +2442,8 @@
       renderStatus();
       renderInventory();
       renderLogs();
+      renderGanttChart();
+      updateTierCounters();
       selectReward(hunterData.selectedRewardIndex || 2);
     }
 
@@ -2356,6 +2453,7 @@
 
     setInterval(updateClockAndCountdown, 1000);
     updateClockAndCountdown();
+    renderPresets();
     renderAll();
   </script>
 </body>
