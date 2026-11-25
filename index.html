@@ -6,37 +6,36 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="HỆ THỐNG">
-  <meta name="theme-color" content="#030c1b">
-  <title>HỆ THỐNG SOLO LEVELING - PHÁT TRIỂN BẢN THÂN</title>
+  <meta name="theme-color" content="#010611">
+  <title>HỆ THỐNG SOLO LEVELING - QUÂN VƯƠNG THỨC TỈNH</title>
   
   <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="./icon-192.png">
   
-  <!-- Phông chữ manhwa / sci-fi hỗ trợ 100% tiếng Việt không bị lỗi font hay nhảy chữ -->
+  <!-- Phông chữ chuẩn Manhwa Solo Leveling hỗ trợ 100% tiếng Việt -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Oswald:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=Oswald:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark: #020713;
-      --bg-gradient: linear-gradient(180deg, #020817 0%, #06152d 50%, #030a18 100%);
-      --window-bg: rgba(6, 21, 46, 0.92);
-      --window-border: #00b4d8;
-      --window-glow: 0 0 16px rgba(0, 180, 216, 0.45);
-      --neon-blue: #00f0ff;
-      --neon-cyan: #38bdf8;
-      --neon-green: #39ff14;
-      --neon-red: #ff3344;
+      --bg-abyss: #01040d;
+      --window-bg: rgba(3, 14, 34, 0.94);
+      --window-border: #00d2ff;
+      --window-inner-border: rgba(0, 210, 255, 0.35);
+      --window-glow: 0 0 25px rgba(0, 210, 255, 0.5), inset 0 0 20px rgba(0, 100, 220, 0.3);
+      --neon-cyan: #00f0ff;
+      --neon-blue: #0088ff;
+      --neon-purple: #9d4edd;
+      --neon-shadow: #7b2cbf;
+      --neon-green: #00ff66;
+      --neon-red: #ff003c;
       --neon-gold: #ffb703;
-      --neon-purple: #b5179e;
       --text-main: #f0f6fc;
-      --text-muted: #8ba3c7;
-      /* Phông chữ chuẩn manhwa, hỗ trợ tiếng Việt 100% không bao giờ lỗi */
-      --font-system: 'Oswald', 'Chakra Petch', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-tech: 'Chakra Petch', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Be Vietnam Pro', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-sub: 'Oswald', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-muted: #7e9bbd;
+      --font-manhwa: 'Oswald', 'Chakra Petch', 'Segoe UI', sans-serif;
+      --font-tech: 'Chakra Petch', 'Segoe UI', sans-serif;
+      --font-body: 'Be Vietnam Pro', 'Segoe UI', sans-serif;
     }
 
     * {
@@ -48,188 +47,257 @@
     }
 
     body {
-      background: var(--bg-dark);
-      background-image: var(--bg-gradient);
+      background: var(--bg-abyss);
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(0, 180, 255, 0.18) 0%, transparent 65%),
+        radial-gradient(circle at 50% 80%, rgba(123, 44, 191, 0.15) 0%, transparent 65%),
+        linear-gradient(180deg, #01040d 0%, #030d22 50%, #010511 100%);
       color: var(--text-main);
       font-family: var(--font-body);
       min-height: 100vh;
       overflow-x: hidden;
       padding-top: env(safe-area-inset-top, 20px);
-      padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 75px);
+      padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 80px);
       position: relative;
     }
 
-    /* Hiệu ứng tia quét và ma trận huyền ảo kiểu Solo Leveling */
-    body::before {
-      content: "";
+    /* Canvas hiệu ứng tàn tro bóng đêm bay lên (Shadow Monarch Embers) */
+    #shadowCanvas {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at 50% 20%, rgba(0, 180, 216, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(rgba(0,0,0,0) 0px, rgba(0,0,0,0) 3px, rgba(0, 30, 60, 0.15) 3px, rgba(0, 30, 60, 0.15) 6px);
+      top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none;
       z-index: 1;
     }
 
-    /* Container chính tối ưu cho iPhone 14 Plus (màn hình 428 x 926 px) */
+    /* Hiệu ứng lưới quét Hologram Manhwa */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15) 0px,
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.7;
+    }
+
     .app-container {
-      max-width: 460px;
+      max-width: 450px;
       margin: 0 auto;
       padding: 12px;
       position: relative;
-      z-index: 2;
+      z-index: 5;
     }
 
-    /* THANH TRẠNG THÁI TRÊN CÙNG */
+    /* THANH TRẠNG THÁI NHANH CỰC CHIẾN */
     .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(3, 15, 33, 0.85);
-      border: 1px solid rgba(0, 180, 216, 0.4);
-      border-radius: 8px;
+      background: rgba(2, 10, 25, 0.9);
+      border: 1px solid var(--window-border);
+      border-radius: 4px;
       padding: 8px 12px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      margin-bottom: 14px;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.35);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
     }
     .top-player-info {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .rank-badge {
-      background: linear-gradient(135deg, #023e8a, #0077b6);
-      border: 1px solid var(--neon-blue);
+    .rank-badge-s {
+      background: linear-gradient(135deg, #7b2cbf, #00f0ff);
       color: #fff;
-      font-family: var(--font-system);
-      font-size: 11px;
-      font-weight: 900;
-      padding: 2px 6px;
-      border-radius: 4px;
-      text-shadow: 0 0 8px var(--neon-blue);
+      font-family: var(--font-manhwa);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 2px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px #00f0ff;
+      border: 1px solid #00f0ff;
+      animation: rankPulse 2s infinite alternate;
+    }
+    @keyframes rankPulse {
+      0% { box-shadow: 0 0 6px #00f0ff; }
+      100% { box-shadow: 0 0 16px #9d4edd, 0 0 25px #00f0ff; }
     }
     .player-name-top {
-      font-family: var(--font-system);
-      font-size: 13px;
+      font-family: var(--font-manhwa);
+      font-size: 14px;
       font-weight: 700;
       color: #fff;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+      cursor: pointer;
     }
     .system-clock {
-      font-family: var(--font-system);
-      font-size: 12px;
+      font-family: var(--font-tech);
+      font-size: 13px;
+      font-weight: 700;
       color: var(--neon-cyan);
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      text-shadow: 0 0 8px var(--neon-cyan);
     }
-    .audio-btn {
+    .btn-top-icon {
       background: none;
       border: none;
-      color: var(--neon-cyan);
-      font-size: 16px;
+      font-size: 17px;
       cursor: pointer;
-      padding: 4px;
+      color: var(--neon-cyan);
+      padding: 3px;
+      transition: transform 0.2s;
+    }
+    .btn-top-icon:active {
+      transform: scale(0.9);
     }
 
-    /* GIAO DIỆN HỘP THOẠI HỆ THỐNG (SOLO LEVELING WINDOW FRAME) */
+    /* ========================================================= */
+    /* KHUNG CỬA SỔ HỆ THỐNG (CHUẨN 100% MANHWA SOLO LEVELING) */
+    /* ========================================================= */
     .system-window {
       background: var(--window-bg);
       border: 1.5px solid var(--window-border);
-      box-shadow: var(--window-glow), inset 0 0 20px rgba(0, 100, 180, 0.25);
-      border-radius: 6px;
+      box-shadow: var(--window-glow);
+      border-radius: 4px;
       position: relative;
       margin-bottom: 16px;
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
-    /* Hoa văn 4 góc Gothic Manhwa */
-    .corner {
+    /* Viền phụ bên trong tạo chiều sâu Game UI */
+    .window-inner-frame {
+      border: 1px solid var(--window-inner-border);
+      margin: 4px;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    /* HOA VĂN 4 GÓC GOTHIC MANHWA SIÊU TINH XẢO */
+    .gothic-corner {
       position: absolute;
-      width: 14px;
-      height: 14px;
+      width: 22px;
+      height: 22px;
       pointer-events: none;
       z-index: 10;
     }
-    .corner-tl { top: 3px; left: 3px; border-top: 2px solid var(--neon-blue); border-left: 2px solid var(--neon-blue); }
-    .corner-tr { top: 3px; right: 3px; border-top: 2px solid var(--neon-blue); border-right: 2px solid var(--neon-blue); }
-    .corner-bl { bottom: 3px; left: 3px; border-bottom: 2px solid var(--neon-blue); border-left: 2px solid var(--neon-blue); }
-    .corner-br { bottom: 3px; right: 3px; border-bottom: 2px solid var(--neon-blue); border-right: 2px solid var(--neon-blue); }
+    .gothic-tl {
+      top: 2px; left: 2px;
+      border-top: 2.5px solid var(--neon-cyan);
+      border-left: 2.5px solid var(--neon-cyan);
+      box-shadow: -2px -2px 8px var(--neon-cyan);
+    }
+    .gothic-tr {
+      top: 2px; right: 2px;
+      border-top: 2.5px solid var(--neon-cyan);
+      border-right: 2.5px solid var(--neon-cyan);
+      box-shadow: 2px -2px 8px var(--neon-cyan);
+    }
+    .gothic-bl {
+      bottom: 2px; left: 2px;
+      border-bottom: 2.5px solid var(--neon-cyan);
+      border-left: 2.5px solid var(--neon-cyan);
+      box-shadow: -2px 2px 8px var(--neon-cyan);
+    }
+    .gothic-br {
+      bottom: 2px; right: 2px;
+      border-bottom: 2.5px solid var(--neon-cyan);
+      border-right: 2.5px solid var(--neon-cyan);
+      box-shadow: 2px 2px 8px var(--neon-cyan);
+    }
 
-    /* Tiêu đề cửa sổ */
+    /* Header thanh cửa sổ */
     .window-header {
-      padding: 12px 14px 8px;
+      padding: 14px 16px 10px;
       text-align: center;
       position: relative;
-      border-bottom: 1px solid rgba(0, 180, 216, 0.25);
-      background: linear-gradient(180deg, rgba(0, 180, 216, 0.15) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(0, 210, 255, 0.22) 0%, rgba(3, 15, 38, 0.4) 100%);
+      border-bottom: 1px solid rgba(0, 210, 255, 0.4);
     }
     .window-title {
-      font-family: var(--font-system);
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
+      font-family: var(--font-manhwa);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 2px;
       color: #ffffff;
-      text-shadow: 0 0 10px var(--neon-blue), 0 0 20px rgba(0, 240, 255, 0.6);
+      text-transform: uppercase;
+      text-shadow: 
+        0 0 10px var(--neon-cyan),
+        0 0 20px var(--neon-blue),
+        0 0 30px rgba(0, 150, 255, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
     }
     .window-subtitle {
-      font-family: var(--font-sub);
+      font-family: var(--font-manhwa);
       font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-      letter-spacing: 1px;
+      font-weight: 600;
+      color: #90b8e6;
+      letter-spacing: 1.2px;
       margin-top: 4px;
       text-transform: uppercase;
+      text-shadow: 0 0 6px rgba(0, 180, 255, 0.4);
     }
 
     .window-body {
       padding: 14px;
     }
 
-    /* MỤC TIÊU SECTION (XANH LÁ NEON CHUẨN ẢNH 1) */
+    /* TIÊU ĐỀ MỤC TIÊU XANH LÁ NEON RỰC RỠ (ẢNH 1) */
     .section-headline {
-      font-family: var(--font-system);
-      font-size: 16px;
-      font-weight: 900;
+      font-family: var(--font-manhwa);
+      font-size: 18px;
+      font-weight: 700;
       color: var(--neon-green);
-      text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
-      letter-spacing: 2px;
+      text-shadow: 
+        0 0 8px var(--neon-green),
+        0 0 20px rgba(0, 255, 102, 0.6);
+      letter-spacing: 3px;
       text-align: center;
       margin-bottom: 14px;
       text-transform: uppercase;
     }
 
-    /* NHIỆM VỤ LIST */
+    /* THẺ NHIỆM VỤ CHIẾN BINH */
     .quest-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
     .quest-card {
-      background: rgba(2, 12, 28, 0.7);
-      border: 1px solid rgba(0, 180, 216, 0.35);
-      border-radius: 6px;
+      background: rgba(1, 9, 23, 0.85);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      border-radius: 4px;
       padding: 10px 12px;
-      transition: all 0.2s;
+      position: relative;
+      transition: all 0.25s ease;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .quest-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 3px; height: 100%;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
     }
     .quest-card.completed {
       border-color: var(--neon-green);
-      background: rgba(10, 40, 25, 0.5);
+      background: rgba(4, 28, 18, 0.85);
+    }
+    .quest-card.completed::before {
+      background: var(--neon-green);
+      box-shadow: 0 0 8px var(--neon-green);
     }
 
     .quest-card-top {
@@ -239,14 +307,17 @@
       margin-bottom: 6px;
     }
     .quest-status-badge {
-      font-family: var(--font-sub);
-      font-size: 12px;
+      font-family: var(--font-manhwa);
+      font-size: 13px;
       font-weight: 700;
       color: var(--neon-cyan);
       letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 6px var(--neon-cyan);
     }
     .quest-card.completed .quest-status-badge {
       color: var(--neon-green);
+      text-shadow: 0 0 6px var(--neon-green);
     }
     .quest-name {
       font-family: var(--font-body);
@@ -256,47 +327,68 @@
       margin-top: 2px;
     }
     .quest-attr-reward {
-      font-size: 11px;
+      font-family: var(--font-tech);
+      font-size: 12px;
       color: var(--neon-gold);
-      font-weight: 600;
+      font-weight: 700;
       margin-top: 2px;
+      letter-spacing: 0.5px;
     }
     .quest-progress-text {
-      font-family: var(--font-system);
-      font-size: 14px;
+      font-family: var(--font-manhwa);
+      font-size: 16px;
       font-weight: 700;
       color: #fff;
-      text-shadow: 0 0 6px var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-cyan);
       text-align: right;
+      letter-spacing: 1px;
     }
     .quest-card.completed .quest-progress-text {
       color: var(--neon-green);
-      text-shadow: 0 0 6px var(--neon-green);
+      text-shadow: 0 0 10px var(--neon-green);
     }
 
-    /* Thanh tiến trình */
+    /* Thanh năng lượng Hologram có sọc quét di chuyển */
     .progress-bar-bg {
       width: 100%;
-      height: 6px;
-      background: rgba(0, 40, 80, 0.6);
-      border-radius: 3px;
+      height: 8px;
+      background: rgba(0, 30, 60, 0.7);
+      border-radius: 2px;
       overflow: hidden;
       margin: 8px 0;
-      border: 1px solid rgba(0, 180, 216, 0.2);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      position: relative;
     }
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0077b6, var(--neon-blue));
-      box-shadow: 0 0 8px var(--neon-blue);
-      border-radius: 3px;
-      transition: width 0.3s ease;
+      background: linear-gradient(90deg, #0055ff, var(--neon-cyan));
+      box-shadow: 0 0 12px var(--neon-cyan);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .progress-bar-fill::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255,255,255,0.2) 0px,
+        rgba(255,255,255,0.2) 4px,
+        transparent 4px,
+        transparent 8px
+      );
+      animation: barScan 1.5s linear infinite;
+    }
+    @keyframes barScan {
+      0% { background-position: 0 0; }
+      100% { background-position: 16px 0; }
     }
     .quest-card.completed .progress-bar-fill {
-      background: linear-gradient(90deg, #2b9348, var(--neon-green));
-      box-shadow: 0 0 8px var(--neon-green);
+      background: linear-gradient(90deg, #1b8a36, var(--neon-green));
+      box-shadow: 0 0 12px var(--neon-green);
     }
 
-    /* Nút tương tác số lượng */
+    /* Các nút bấm cyber góc xiên */
     .quest-controls {
       display: flex;
       justify-content: flex-end;
@@ -305,213 +397,269 @@
       margin-top: 6px;
     }
     .btn-step {
-      background: rgba(0, 60, 120, 0.5);
-      border: 1px solid var(--neon-blue);
+      background: rgba(0, 40, 90, 0.6);
+      border: 1px solid var(--neon-cyan);
       color: var(--text-main);
-      font-family: var(--font-system);
-      font-size: 11px;
+      font-family: var(--font-manhwa);
+      font-size: 13px;
       font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 4px;
+      padding: 3px 8px;
       cursor: pointer;
+      border-radius: 2px;
       transition: all 0.15s;
     }
     .btn-step:active {
-      background: var(--neon-blue);
+      background: var(--neon-cyan);
       color: #000;
-      box-shadow: 0 0 10px var(--neon-blue);
-      transform: scale(0.96);
+      box-shadow: 0 0 14px var(--neon-cyan);
+      transform: scale(0.94);
     }
     .btn-done-task {
-      background: linear-gradient(135deg, #0077b6, #00b4d8);
-      border: 1px solid var(--neon-blue);
+      background: linear-gradient(135deg, #0055cc, #00a6ff);
+      border: 1px solid var(--neon-cyan);
       color: #fff;
-      font-family: var(--font-sub);
-      font-size: 12px;
+      font-family: var(--font-manhwa);
+      font-size: 13px;
       font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 4px;
+      padding: 4px 12px;
       cursor: pointer;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 10px rgba(0, 180, 255, 0.4);
     }
     .quest-card.completed .btn-done-task {
-      background: linear-gradient(135deg, #2b9348, #38b000);
+      background: linear-gradient(135deg, #168039, #00ff66);
       border-color: var(--neon-green);
+      color: #000;
+      text-shadow: none;
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
     }
 
-    /* CẢNH BÁO HÌNH PHẠT (ĐỎ CHUẨN ẢNH 1) */
+    /* ========================================================= */
+    /* CẢNH BÁO HÌNH PHẠT ĐỎ RỰC OMINOUS (CHUẨN ẢNH 1 & 4) */
+    /* ========================================================= */
     .warning-penalty-box {
       margin-top: 18px;
       padding: 12px;
-      background: rgba(40, 5, 10, 0.6);
-      border: 1px dashed var(--neon-red);
-      border-radius: 6px;
+      background: rgba(35, 2, 8, 0.85);
+      border: 1.5px solid var(--neon-red);
+      border-radius: 4px;
       text-align: center;
-      box-shadow: 0 0 12px rgba(255, 51, 68, 0.25);
+      box-shadow: 0 0 20px rgba(255, 0, 60, 0.4), inset 0 0 15px rgba(255, 0, 60, 0.2);
+      animation: alertPulse 2.5s infinite;
+    }
+    @keyframes alertPulse {
+      0% { border-color: #ff003c; box-shadow: 0 0 15px rgba(255, 0, 60, 0.35); }
+      50% { border-color: #ff4d6d; box-shadow: 0 0 28px rgba(255, 0, 60, 0.7); }
+      100% { border-color: #ff003c; box-shadow: 0 0 15px rgba(255, 0, 60, 0.35); }
     }
     .warning-penalty-title {
-      font-family: var(--font-system);
-      font-size: 13px;
-      font-weight: 900;
+      font-family: var(--font-manhwa);
+      font-size: 15px;
+      font-weight: 700;
       color: var(--neon-red);
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(255, 51, 68, 0.7);
+      text-shadow: 0 0 10px var(--neon-red), 0 0 20px rgba(255, 0, 60, 0.8);
       margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
     .warning-penalty-desc {
-      font-family: var(--font-sub);
-      font-size: 12px;
+      font-family: var(--font-manhwa);
+      font-size: 13px;
       font-weight: 600;
-      color: #ffccd5;
-      line-height: 1.4;
+      color: #ffd2da;
+      line-height: 1.45;
       text-transform: uppercase;
+      letter-spacing: 0.8px;
     }
 
-    /* ĐỒNG HỒ ĐẾM NGƯỢC (ẢNH 1) */
+    /* ĐỒNG HỒ ĐẾM NGƯỢC SOLO LEVELING */
     .countdown-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin-top: 16px;
-      padding: 8px 0;
+      padding: 6px 0;
     }
-    .stopwatch-icon {
-      width: 44px;
-      height: 44px;
-      filter: drop-shadow(0 0 8px var(--neon-blue));
-      animation: pulse 2s infinite ease-in-out;
+    .stopwatch-ring {
+      width: 46px;
+      height: 46px;
+      border: 2px solid var(--neon-cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px var(--neon-cyan);
+      animation: rotateSlow 8s linear infinite;
+    }
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
     .countdown-text {
-      font-family: var(--font-system);
-      font-size: 16px;
-      font-weight: 900;
-      color: var(--neon-blue);
-      letter-spacing: 2px;
-      margin-top: 4px;
-      text-shadow: 0 0 10px var(--neon-blue);
+      font-family: var(--font-manhwa);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 2.5px;
+      margin-top: 6px;
+      text-shadow: 0 0 12px var(--neon-cyan);
     }
 
-    /* ======================================================== */
-    /* BẢNG TRẠNG THÁI (STATUS WINDOW - CHUẨN ẢNH 3) */
-    /* ======================================================== */
-    .status-profile-grid {
+    /* ========================================================= */
+    /* BẢNG TRẠNG THÁI SIÊU CHIẾN (CHUẨN ẢNH 3 - KÈM TRANG BỊ) */
+    /* ========================================================= */
+    .status-layout-grid {
       display: grid;
-      grid-template-columns: 120px 1fr;
+      grid-template-columns: 140px 1fr;
       gap: 12px;
       margin-bottom: 14px;
     }
 
-    /* Khu vực bóng nhân vật Shadow Hunter & các ô trang bị */
-    .character-avatar-zone {
+    /* Khu vực trung tâm: Nhân vật bóng đêm & Các ô trang bị 2 bên */
+    .character-showcase {
       position: relative;
-      width: 120px;
-      height: 180px;
-      background: radial-gradient(circle at 50% 50%, rgba(0, 180, 216, 0.25) 0%, rgba(2, 8, 20, 0.8) 80%);
-      border: 1px solid rgba(0, 180, 216, 0.4);
-      border-radius: 6px;
+      width: 140px;
+      height: 220px;
+      background: 
+        radial-gradient(circle at 50% 40%, rgba(0, 210, 255, 0.3) 0%, rgba(123, 44, 191, 0.25) 50%, rgba(1, 5, 15, 0.95) 90%);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: inset 0 0 20px rgba(0, 210, 255, 0.35);
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
-    .shadow-silhouette {
-      width: 80px;
-      height: 140px;
-      filter: drop-shadow(0 0 12px var(--neon-blue));
-      animation: shadowFloat 3s infinite alternate ease-in-out;
-    }
-    .hunter-tag {
+    .hunter-title-tag {
       position: absolute;
       top: 6px;
-      font-family: var(--font-system);
-      font-size: 9px;
-      font-weight: 900;
+      font-family: var(--font-manhwa);
+      font-size: 11px;
+      font-weight: 700;
       color: var(--neon-green);
-      text-shadow: 0 0 6px var(--neon-green);
+      text-shadow: 0 0 8px var(--neon-green);
       letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    /* Vector bóng Sung Jin-Woo với mắt phát sáng rực */
+    .shadow-monarch-svg {
+      width: 95px;
+      height: 165px;
+      filter: drop-shadow(0 0 12px var(--neon-cyan)) drop-shadow(0 0 25px rgba(123, 44, 191, 0.7));
+      animation: shadowFloat 3s infinite alternate ease-in-out;
+    }
+    @keyframes shadowFloat {
+      0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 10px var(--neon-cyan)); }
+      100% { transform: translateY(-4px) scale(1.02); filter: drop-shadow(0 0 22px var(--neon-cyan)) drop-shadow(0 0 35px var(--neon-purple)); }
     }
 
-    /* Thông tin chung của nhân vật */
-    .hunter-general-info {
+    /* Các ô trang bị xung quanh nhân vật */
+    .equip-slots-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .equip-slot {
+      aspect-ratio: 1;
+      background: rgba(1, 10, 26, 0.85);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      font-family: var(--font-sub);
-      font-size: 13px;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .info-row {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(0, 180, 216, 0.15);
-      padding-bottom: 3px;
+    .equip-slot:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 10px var(--neon-cyan);
     }
-    .info-label {
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-    .info-val {
-      color: #fff;
-      font-weight: 700;
-      font-family: var(--font-system);
-      font-size: 12px;
-    }
-    .val-highlight {
-      color: var(--neon-blue);
-      text-shadow: 0 0 6px var(--neon-blue);
+    .equip-slot-name {
+      font-size: 8px;
+      font-family: var(--font-manhwa);
+      color: #8ba3c7;
+      margin-top: 2px;
+      text-transform: uppercase;
     }
 
-    /* Các thanh HP, MP, Mệt mỏi */
-    .bar-stat-group {
-      margin: 10px 0;
+    /* Bảng thông tin thợ săn bên phải */
+    .hunter-profile-info {
       display: flex;
       flex-direction: column;
       gap: 6px;
+      font-family: var(--font-manhwa);
+      font-size: 14px;
     }
-    .stat-bar-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .stat-bar-header {
+    .profile-row {
       display: flex;
       justify-content: space-between;
-      font-family: var(--font-system);
-      font-size: 10px;
+      border-bottom: 1px solid rgba(0, 210, 255, 0.18);
+      padding-bottom: 3px;
+    }
+    .profile-label {
+      color: #8ba3c7;
+      letter-spacing: 0.5px;
+    }
+    .profile-val {
+      color: #fff;
       font-weight: 700;
+      letter-spacing: 0.8px;
     }
-    .bar-hp { background: linear-gradient(90deg, #c1121f, #ff4d6d); }
-    .bar-mp { background: linear-gradient(90deg, #0077b6, var(--neon-blue)); }
-    .bar-fatigue { background: linear-gradient(90deg, #b5179e, #f72585); }
+    .val-glow {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan);
+    }
 
-    /* LƯỚI THUỘC TÍNH (STR, VIT, INT, CHA, AGI, PER) */
-    .attributes-section {
-      border-top: 1px solid rgba(0, 180, 216, 0.3);
-      padding-top: 10px;
-      margin-top: 8px;
+    /* Thanh HP / MP phong cách Game RPG */
+    .bars-section {
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .stat-points-remaining {
+    .bar-row-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-manhwa);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* KHU VỰC THUỘC TÍNH (ATTRIBUTES) */
+    .stat-points-banner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(0, 50, 100, 0.35);
-      border: 1px solid var(--neon-gold);
-      padding: 6px 10px;
+      background: rgba(3, 20, 50, 0.7);
+      border: 1.5px solid var(--neon-gold);
+      padding: 8px 12px;
       border-radius: 4px;
-      margin-bottom: 10px;
-      font-family: var(--font-system);
-      font-size: 12px;
-      color: var(--neon-gold);
-      text-shadow: 0 0 8px rgba(255, 183, 3, 0.5);
-    }
-    .points-number {
+      margin-bottom: 12px;
+      font-family: var(--font-manhwa);
       font-size: 14px;
+      font-weight: 700;
+      color: var(--neon-gold);
+      letter-spacing: 1px;
+      box-shadow: 0 0 14px rgba(255, 183, 3, 0.4);
+    }
+    .stat-points-badge {
+      font-size: 16px;
       font-weight: 900;
-      color: #fff;
       background: var(--neon-gold);
       color: #000;
-      padding: 1px 8px;
+      padding: 1px 10px;
       border-radius: 12px;
     }
 
@@ -520,290 +668,273 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
-    .attr-box {
-      background: rgba(3, 16, 38, 0.7);
-      border: 1px solid rgba(0, 180, 216, 0.25);
-      border-radius: 4px;
-      padding: 6px 8px;
+    .attr-card {
+      background: rgba(1, 10, 26, 0.8);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      padding: 8px 10px;
+      border-radius: 3px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .attr-left {
-      display: flex;
-      flex-direction: column;
-    }
-    .attr-name {
-      font-family: var(--font-sub);
-      font-size: 12px;
+    .attr-card-name {
+      font-family: var(--font-manhwa);
+      font-size: 13px;
       font-weight: 700;
-      color: var(--text-muted);
+      color: #90b8e6;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
-    .attr-value {
-      font-family: var(--font-system);
-      font-size: 15px;
-      font-weight: 900;
+    .attr-card-val {
+      font-family: var(--font-manhwa);
+      font-size: 18px;
+      font-weight: 700;
       color: #fff;
-      text-shadow: 0 0 6px var(--neon-blue);
+      text-shadow: 0 0 8px var(--neon-cyan);
     }
-    .btn-add-stat {
-      width: 24px;
-      height: 24px;
-      background: linear-gradient(135deg, #0077b6, #00b4d8);
-      border: 1px solid var(--neon-blue);
+    .btn-attr-plus {
+      width: 26px;
+      height: 26px;
+      background: linear-gradient(135deg, #0055cc, #00d2ff);
+      border: 1px solid var(--neon-cyan);
       color: #fff;
-      font-family: var(--font-system);
-      font-size: 14px;
-      font-weight: 900;
-      border-radius: 4px;
+      font-family: var(--font-manhwa);
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 3px;
       transition: all 0.15s;
     }
-    .btn-add-stat:disabled {
-      opacity: 0.3;
+    .btn-attr-plus:disabled {
+      opacity: 0.25;
       cursor: not-allowed;
-      border-color: #444;
-      background: #222;
+      border-color: #333;
+      background: #111;
     }
-    .btn-add-stat:not(:disabled):active {
+    .btn-attr-plus:not(:disabled):active {
       transform: scale(0.9);
-      box-shadow: 0 0 10px var(--neon-blue);
+      box-shadow: 0 0 14px var(--neon-cyan);
     }
 
-    /* ======================================================== */
-    /* BẢNG PHẦN THƯỞNG (REWARD WINDOW - CHUẨN ẢNH 2) */
-    /* ======================================================== */
+    /* ========================================================= */
+    /* BẢNG PHẦN THƯỞNG (CHUẨN ẢNH 2) */
+    /* ========================================================= */
     .reward-box-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 16px;
     }
-    .reward-item-card {
-      background: rgba(3, 20, 45, 0.85);
-      border: 1.5px solid rgba(0, 180, 216, 0.4);
-      border-radius: 6px;
-      padding: 12px 14px;
+    .reward-card {
+      background: rgba(2, 14, 36, 0.9);
+      border: 1.5px solid rgba(0, 210, 255, 0.4);
+      border-radius: 4px;
+      padding: 14px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
       position: relative;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
     }
-    .reward-item-card:hover, .reward-item-card.selected {
-      border-color: var(--neon-blue);
-      box-shadow: 0 0 14px rgba(0, 240, 255, 0.5);
-      background: rgba(0, 40, 80, 0.85);
+    .reward-card:hover, .reward-card.selected {
+      border-color: var(--neon-cyan);
+      background: rgba(0, 40, 90, 0.9);
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+      transform: translateY(-2px);
     }
-    .reward-item-header {
-      font-family: var(--font-system);
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--neon-blue);
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+    .reward-card-title {
+      font-family: var(--font-manhwa);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px var(--neon-cyan);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .reward-item-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-    .reward-check-indicator {
-      width: 18px;
-      height: 18px;
-      border: 1.5px solid var(--neon-blue);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      color: var(--neon-blue);
-    }
-    .reward-item-card.selected .reward-check-indicator {
-      background: var(--neon-blue);
-      color: #000;
-      font-weight: 900;
+    .reward-card-desc {
+      font-size: 13px;
+      color: #b0c8e8;
+      margin-top: 6px;
+      line-height: 1.4;
     }
 
-    .confirm-prompt-text {
+    .confirm-prompt-title {
+      font-family: var(--font-manhwa);
+      font-size: 16px;
+      font-weight: 700;
       text-align: center;
-      font-family: var(--font-system);
-      font-size: 14px;
-      font-weight: 900;
       color: #fff;
-      letter-spacing: 1px;
-      margin: 14px 0 10px;
+      letter-spacing: 1.5px;
+      margin: 16px 0 10px;
       text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(0, 210, 255, 0.6);
     }
-    .reward-actions-row {
+    .reward-btn-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
-    .btn-action-reward {
-      font-family: var(--font-system);
-      font-size: 13px;
-      font-weight: 900;
-      padding: 10px;
-      border-radius: 4px;
+    .btn-reward-confirm {
+      font-family: var(--font-manhwa);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 3px;
       cursor: pointer;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      letter-spacing: 1px;
       transition: all 0.2s;
     }
-    .btn-accept {
-      background: linear-gradient(135deg, #0077b6, #00b4d8);
-      border: 1.5px solid var(--neon-blue);
+    .btn-accept-reward {
+      background: linear-gradient(135deg, #0055cc, #00d2ff);
+      border: 1.5px solid var(--neon-cyan);
       color: #fff;
-      box-shadow: 0 0 10px rgba(0, 180, 216, 0.4);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
     }
-    .btn-accept:active {
-      transform: scale(0.97);
-      box-shadow: 0 0 16px var(--neon-blue);
+    .btn-accept-reward:active {
+      transform: scale(0.96);
+      box-shadow: 0 0 25px var(--neon-cyan);
     }
-    .btn-decline {
-      background: rgba(30, 40, 60, 0.5);
+    .btn-decline-reward {
+      background: rgba(30, 40, 60, 0.6);
       border: 1.5px solid rgba(139, 163, 199, 0.4);
-      color: var(--text-muted);
+      color: #8ba3c7;
     }
 
     /* KHO VẬT PHẨM (INVENTORY) */
-    .inventory-tray {
-      margin-top: 14px;
-      border-top: 1px dashed rgba(0, 180, 216, 0.3);
-      padding-top: 12px;
+    .inventory-zone {
+      margin-top: 18px;
+      border-top: 1px dashed rgba(0, 210, 255, 0.35);
+      padding-top: 14px;
     }
-    .inventory-title {
-      font-family: var(--font-system);
-      font-size: 11px;
+    .inventory-headline {
+      font-family: var(--font-manhwa);
+      font-size: 13px;
+      font-weight: 700;
       color: var(--neon-cyan);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
     }
     .inventory-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
     }
-    .inv-slot {
+    .inv-card {
       aspect-ratio: 1;
-      background: rgba(2, 10, 24, 0.8);
-      border: 1px solid rgba(0, 180, 216, 0.3);
-      border-radius: 6px;
+      background: rgba(1, 10, 26, 0.85);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      border-radius: 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
       position: relative;
+      transition: all 0.2s;
     }
-    .inv-slot:hover {
+    .inv-card:hover {
       border-color: var(--neon-gold);
+      box-shadow: 0 0 12px rgba(255, 183, 3, 0.5);
     }
-    .inv-qty {
+    .inv-qty-tag {
       position: absolute;
-      bottom: 2px;
-      right: 4px;
-      font-family: var(--font-system);
-      font-size: 9px;
+      bottom: 2px; right: 4px;
+      font-family: var(--font-manhwa);
+      font-size: 11px;
       font-weight: 700;
       color: var(--neon-gold);
     }
 
-    /* ======================================================== */
-    /* BẢNG THÔNG BÁO (SYSTEM NOTICE - CHUẨN ẢNH 4) */
-    /* ======================================================== */
-    .notice-card {
-      background: rgba(4, 18, 40, 0.85);
-      border: 1px solid var(--neon-blue);
-      border-radius: 6px;
-      padding: 14px;
-      margin-bottom: 12px;
+    /* ========================================================= */
+    /* BẢNG THÔNG BÁO HỆ THỐNG (CHUẨN ẢNH 4) */
+    /* ========================================================= */
+    .notice-box {
+      background: rgba(2, 14, 36, 0.9);
+      border: 1.5px solid var(--neon-cyan);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 14px;
       text-align: center;
-      box-shadow: 0 0 14px rgba(0, 180, 216, 0.3);
+      box-shadow: 0 0 18px rgba(0, 210, 255, 0.4);
       position: relative;
     }
-    .notice-header-tag {
-      font-family: var(--font-system);
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--neon-blue);
-      letter-spacing: 1.5px;
+    .notice-tag-header {
+      font-family: var(--font-manhwa);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+      text-shadow: 0 0 8px var(--neon-cyan);
     }
-    .notice-highlight-text {
-      font-family: var(--font-sub);
-      font-size: 15px;
+    .notice-content-text {
+      font-family: var(--font-manhwa);
+      font-size: 17px;
       font-weight: 700;
       color: #fff;
-      line-height: 1.4;
+      line-height: 1.45;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .color-green-neon {
-      color: var(--neon-green);
-      text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
-    }
-    .color-red-neon {
-      color: var(--neon-red);
-      text-shadow: 0 0 8px rgba(255, 51, 68, 0.6);
+      letter-spacing: 1px;
     }
 
-    .system-log-feed {
+    .log-feed-box {
       margin-top: 14px;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      max-height: 220px;
+      max-height: 240px;
       overflow-y: auto;
-      padding-right: 4px;
     }
-    .log-entry {
-      background: rgba(2, 12, 28, 0.6);
-      border-left: 3px solid var(--neon-blue);
-      padding: 6px 10px;
-      font-size: 12px;
-      color: var(--text-muted);
+    .log-row {
+      background: rgba(1, 9, 23, 0.7);
+      border-left: 3px solid var(--neon-cyan);
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #c0d8f6;
       border-radius: 0 4px 4px 0;
     }
-    .log-time {
-      font-family: var(--font-system);
-      font-size: 10px;
+    .log-row-time {
+      font-family: var(--font-tech);
+      font-size: 11px;
+      font-weight: 700;
       color: var(--neon-cyan);
       margin-bottom: 2px;
     }
 
-    /* ======================================================== */
-    /* BỘ CHIA NHỎ MỤC TIÊU THÔNG MINH (AI GOAL BREAKDOWN) */
-    /* ======================================================== */
+    /* ========================================================= */
+    /* BỘ CHIA NHỎ MỤC TIÊU (AI GOAL BREAKDOWN) */
+    /* ========================================================= */
     .form-group {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .form-label {
-      font-family: var(--font-sub);
-      font-size: 13px;
+      font-family: var(--font-manhwa);
+      font-size: 14px;
       font-weight: 700;
       color: var(--neon-cyan);
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       margin-bottom: 6px;
       display: block;
       text-transform: uppercase;
     }
     .form-input, .form-select {
       width: 100%;
-      background: rgba(2, 12, 28, 0.8);
-      border: 1px solid rgba(0, 180, 216, 0.4);
-      border-radius: 4px;
+      background: rgba(1, 10, 26, 0.9);
+      border: 1px solid rgba(0, 210, 255, 0.45);
+      border-radius: 3px;
       color: #fff;
       font-family: var(--font-body);
       font-size: 14px;
@@ -812,360 +943,353 @@
       transition: all 0.2s;
     }
     .form-input:focus, .form-select:focus {
-      border-color: var(--neon-blue);
-      box-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
     }
-
-    .preset-chips-row {
+    .preset-chips-box {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 6px;
+      margin-top: 8px;
     }
-    .preset-chip {
-      background: rgba(0, 60, 120, 0.4);
-      border: 1px solid rgba(0, 180, 216, 0.3);
+    .preset-badge {
+      background: rgba(0, 50, 110, 0.5);
+      border: 1px solid rgba(0, 210, 255, 0.4);
       color: var(--neon-cyan);
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 12px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 14px;
       cursor: pointer;
     }
-    .preset-chip:active {
-      background: var(--neon-blue);
+    .preset-badge:active {
+      background: var(--neon-cyan);
       color: #000;
     }
 
-    .btn-generate-quest {
+    .btn-ignite-goal {
       width: 100%;
-      background: linear-gradient(135deg, #023e8a, #0077b6, #00b4d8);
-      border: 1.5px solid var(--neon-blue);
+      background: linear-gradient(135deg, #7b2cbf, #0055cc, #00d2ff);
+      border: 1.5px solid var(--neon-cyan);
       color: #fff;
-      font-family: var(--font-system);
-      font-size: 13px;
-      font-weight: 900;
-      padding: 12px;
-      border-radius: 6px;
+      font-family: var(--font-manhwa);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 4px;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
-      margin-top: 8px;
+      letter-spacing: 2px;
+      box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+      margin-top: 10px;
       transition: all 0.2s;
     }
-    .btn-generate-quest:active {
-      transform: scale(0.98);
-      box-shadow: 0 0 25px var(--neon-blue);
+    .btn-ignite-goal:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 35px var(--neon-cyan);
     }
 
-    /* THANH ĐIỀU HƯỚNG DƯỚI CÙNG (DOCK BAR CHO IPHONE 14 PLUS) */
+    /* ========================================================= */
+    /* DOCK ĐIỀU HƯỚNG DƯỚI CÙNG CHO IPHONE 14 PLUS */
+    /* ========================================================= */
     .bottom-dock {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(2, 10, 24, 0.94);
-      border-top: 1px solid rgba(0, 180, 216, 0.35);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      bottom: 0; left: 0; right: 0;
+      background: rgba(1, 6, 18, 0.95);
+      border-top: 1.5px solid rgba(0, 210, 255, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       display: flex;
       justify-content: space-around;
       padding: 8px 6px calc(env(safe-area-inset-bottom, 12px) + 6px);
       z-index: 100;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+      box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.8);
     }
-    .dock-tab-btn {
+    .dock-tab {
       background: none;
       border: none;
-      color: var(--text-muted);
+      color: #728fae;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 3px;
       cursor: pointer;
-      font-family: var(--font-sub);
-      font-size: 11px;
+      font-family: var(--font-manhwa);
+      font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 4px;
+      min-width: 60px;
       transition: all 0.2s;
-      padding: 4px 8px;
-      border-radius: 6px;
-      min-width: 58px;
     }
-    .dock-tab-btn .tab-icon {
-      font-size: 18px;
+    .dock-tab .tab-ico {
+      font-size: 20px;
+      filter: drop-shadow(0 0 4px rgba(0,0,0,0.8));
     }
-    .dock-tab-btn.active {
-      color: var(--neon-blue);
-      text-shadow: 0 0 8px var(--neon-blue);
-      background: rgba(0, 180, 216, 0.12);
-    }
-
-    /* POPUP HƯỚNG DẪN IPHONE & MODAL */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(8px);
-      z-index: 200;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-card {
-      width: 100%;
-      max-width: 420px;
-      animation: modalSlideUp 0.3s ease-out;
+    .dock-tab.active {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px var(--neon-cyan);
+      background: rgba(0, 210, 255, 0.15);
+      border-bottom: 2px solid var(--neon-cyan);
     }
 
-    @keyframes modalSlideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    /* Hiệu ứng rung màn hình khi chém/hoàn thành quest */
+    .screen-shake {
+      animation: shakeAnim 0.3s cubic-bezier(.36,.07,.19,.97) both;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.06); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.9; }
-    }
-    @keyframes shadowFloat {
-      0% { transform: translateY(0px); filter: drop-shadow(0 0 10px var(--neon-blue)); }
-      100% { transform: translateY(-5px); filter: drop-shadow(0 0 18px var(--neon-cyan)); }
-    }
-
-    /* Hiệu ứng tia sáng level up */
-    .level-up-flash {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle, rgba(0, 240, 255, 0.5) 0%, transparent 80%);
-      pointer-events: none;
-      z-index: 999;
-      animation: flashAnim 1s ease-out forwards;
-    }
-    @keyframes flashAnim {
-      0% { opacity: 0; }
-      30% { opacity: 1; }
-      100% { opacity: 0; }
+    @keyframes shakeAnim {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <!-- THANH TRẠNG THÁI NHANH TRÊN CÙNG -->
+  <!-- Canvas tàn tro bóng đêm bốc lên (Shadow Embers) -->
+  <canvas id="shadowCanvas"></canvas>
+
+  <div class="app-container" id="appMainBox">
+    <!-- THANH TRẠNG THÁI TRÊN CÙNG -->
     <div class="top-bar">
       <div class="top-player-info">
-        <span class="rank-badge" id="topRankBadge">HẠNG E</span>
+        <span class="rank-badge-s" id="topRankBadge">HẠNG S</span>
         <span class="player-name-top" id="topPlayerName" onclick="editPlayerName()" title="Bấm để đổi tên">PHẠM ĐÌNH HẢI ✎</span>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
         <div class="system-clock" id="systemClock">00:00:00</div>
-        <button class="audio-btn" id="audioToggleBtn" onclick="toggleAudio()" title="Bật/Tắt âm thanh">🔊</button>
-        <button class="audio-btn" onclick="openIphoneGuide()" title="Hướng dẫn cài vào iPhone 14 Plus">📱</button>
+        <button class="btn-top-icon" id="audioToggleBtn" onclick="toggleAudio()" title="Bật/Tắt âm thanh">🔊</button>
       </div>
     </div>
 
-    <!-- TAB 1: BẢNG NHIỆM VỤ (DAILY QUEST - CHUẨN ẢNH 1) -->
+    <!-- TAB 1: BẢNG NHIỆM VỤ (CHUẨN ẢNH 1 - CỰC NGẦU) -->
     <div id="tabQuest" class="tab-content">
       <div class="system-window">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
+        <div class="window-inner-frame">
+          <div class="gothic-corner gothic-tl"></div>
+          <div class="gothic-corner gothic-tr"></div>
+          <div class="gothic-corner gothic-bl"></div>
+          <div class="gothic-corner gothic-br"></div>
 
-        <div class="window-header">
-          <div class="window-title">
-            <span>ⓘ</span> THÔNG TIN NHIỆM VỤ
-          </div>
-          <div class="window-subtitle">NHIỆM VỤ HẰNG NGÀY - CHUẨN BỊ ĐỂ TRỞ NÊN MẠNH HƠN</div>
-        </div>
-
-        <div class="window-body">
-          <div class="section-headline">MỤC TIÊU</div>
-
-          <!-- Danh sách nhiệm vụ trong ngày -->
-          <div class="quest-list" id="questListContainer">
-            <!-- Render từ JS -->
-          </div>
-
-          <!-- CẢNH BÁO HÌNH PHẠT (CHÍNH XÁC NHƯ ẢNH 1) -->
-          <div class="warning-penalty-box">
-            <div class="warning-penalty-title">CẢNH BÁO</div>
-            <div class="warning-penalty-desc">
-              NẾU KHÔNG HOÀN THÀNH NHIỆM VỤ HẰNG NGÀY NÀY BẠN SẼ BỊ MANG ĐẾN CHỖ XỬ PHẠT. VUI LÒNG HỢP TÁC THỰC HIỆN.
+          <div class="window-header">
+            <div class="window-title">
+              <span>ⓘ</span> THÔNG TIN NHIỆM VỤ
             </div>
+            <div class="window-subtitle">NHIỆM VỤ HẰNG NGÀY - CHUẨN BỊ ĐỂ TRỞ NÊN MẠNH HƠN</div>
           </div>
 
-          <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẾT NGÀY -->
-          <div class="countdown-container">
-            <svg class="stopwatch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="13" r="8" stroke="#00f0ff" />
-              <path d="M12 9v4l2.5 2.5" stroke="#00f0ff" stroke-linecap="round" />
-              <path d="M10 2h4M12 2v3M19 6l-1.5 1.5M5 6l1.5 1.5" stroke="#00f0ff" stroke-linecap="round" />
-            </svg>
-            <div class="countdown-text" id="dailyCountdown">--:--:--</div>
-            <span style="font-size: 11px; color: var(--text-muted); font-family: var(--font-sub);">THỜI GIAN CÒN LẠI TRONG NGÀY</span>
-          </div>
+          <div class="window-body">
+            <div class="section-headline">MỤC TIÊU</div>
 
-          <!-- Nút hành động nhanh -->
-          <div style="display: flex; gap: 8px; margin-top: 14px;">
-            <button class="btn-step" style="flex: 1; padding: 8px;" onclick="resetQuestsPrompt()">↺ Đặt lại ngày mới</button>
-            <button class="btn-step" style="flex: 1; padding: 8px; border-color: var(--neon-gold); color: var(--neon-gold);" onclick="switchTab('tabReward')">🎁 Xem Thưởng</button>
+            <!-- Danh sách nhiệm vụ chiến binh -->
+            <div class="quest-list" id="questListContainer">
+              <!-- Render tự động từ JS -->
+            </div>
+
+            <!-- CẢNH BÁO HÌNH PHẠT (CHÍNH XÁC NHƯ ẢNH 1) -->
+            <div class="warning-penalty-box">
+              <div class="warning-penalty-title">
+                <span>☠</span> CẢNH BÁO
+              </div>
+              <div class="warning-penalty-desc">
+                NẾU KHÔNG HOÀN THÀNH NHIỆM VỤ HẰNG NGÀY NÀY BẠN SẼ BỊ MANG ĐẾN CHỖ XỬ PHẠT. VUI LÒNG HỢP TÁC THỰC HIỆN.
+              </div>
+            </div>
+
+            <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẾT NGÀY -->
+            <div class="countdown-container">
+              <div class="stopwatch-ring">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2">
+                  <circle cx="12" cy="12" r="9" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div class="countdown-text" id="dailyCountdown">--:--:--</div>
+              <span style="font-size: 12px; color: #8ba3c7; font-family: var(--font-manhwa); letter-spacing: 1px;">
+                THỜI GIAN CÒN LẠI ĐẾN GIỜ XỬ PHẠT
+              </span>
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: 14px;">
+              <button class="btn-step" style="flex: 1; padding: 10px;" onclick="resetQuestsPrompt()">↺ ĐẶT LẠI NGÀY MỚI</button>
+              <button class="btn-step" style="flex: 1; padding: 10px; border-color: var(--neon-gold); color: var(--neon-gold);" onclick="switchTab('tabReward')">🎁 MỞ BẢNG THƯỞNG</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 2: BẢNG TRẠNG THÁI (STATUS WINDOW - CHUẨN ẢNH 3) -->
+    <!-- TAB 2: BẢNG TRẠNG THÁI (CHUẨN ẢNH 3 - CÓ TRANG BỊ & SILHOUETTE PHÁT SÁNG) -->
     <div id="tabStatus" class="tab-content" style="display: none;">
       <div class="system-window">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
+        <div class="window-inner-frame">
+          <div class="gothic-corner gothic-tl"></div>
+          <div class="gothic-corner gothic-tr"></div>
+          <div class="gothic-corner gothic-bl"></div>
+          <div class="gothic-corner gothic-br"></div>
 
-        <div class="window-header">
-          <div class="window-title">BẢNG TRẠNG THÁI</div>
-          <div class="window-subtitle">THÔNG TIN THỢ SĂN VÀ CHỈ SỐ THUỘC TÍNH</div>
-        </div>
-
-        <div class="window-body">
-          <div class="status-profile-grid">
-            <!-- Nhân vật bóng Shadow Hunter -->
-            <div class="character-avatar-zone">
-              <span class="hunter-tag" id="statusHunterTitle">KẺ THỨC TỈNH</span>
-              <svg class="shadow-silhouette" viewBox="0 0 100 180" fill="none">
-                <!-- Bóng nhân vật phong cách Solo Leveling với mắt phát sáng -->
-                <path d="M50 15 C40 15 35 25 35 35 C35 48 42 55 50 55 C58 55 65 48 65 35 C65 25 60 15 50 15 Z" fill="#001830" stroke="#00b4d8" stroke-width="1.5"/>
-                <!-- Tóc lởm chởm ngầu -->
-                <path d="M35 28 L28 20 L38 22 L45 10 L52 18 L60 8 L62 20 L72 18 L65 30" stroke="#00f0ff" stroke-width="1.5" fill="#001025"/>
-                <!-- Mắt xanh phát sáng rực -->
-                <ellipse cx="44" cy="33" rx="2.5" ry="1.2" fill="#00f0ff"/>
-                <ellipse cx="56" cy="33" rx="2.5" ry="1.2" fill="#00f0ff"/>
-                <!-- Thân mình & áo măng tô bóng đêm -->
-                <path d="M50 55 L30 75 L22 135 L35 175 L50 170 L65 175 L78 135 L70 75 Z" fill="#001228" stroke="#00b4d8" stroke-width="1.5"/>
-                <path d="M30 75 L15 120 L25 125 L35 85" fill="#001f3f" stroke="#00f0ff" stroke-width="1"/>
-                <path d="M70 75 L85 120 L75 125 L65 85" fill="#001f3f" stroke="#00f0ff" stroke-width="1"/>
-                <!-- Luồng khí tím / xanh bao quanh -->
-                <path d="M15 140 Q 20 110, 25 80" stroke="rgba(0, 240, 255, 0.4)" stroke-width="2" stroke-dasharray="4 2"/>
-                <path d="M85 140 Q 80 110, 75 80" stroke="rgba(0, 240, 255, 0.4)" stroke-width="2" stroke-dasharray="4 2"/>
-              </svg>
-            </div>
-
-            <!-- Bảng thông số chung -->
-            <div class="hunter-general-info">
-              <div class="info-row">
-                <span class="info-label">TÊN:</span>
-                <span class="info-val" id="statusName">PHẠM ĐÌNH HẢI</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">CẤP ĐỘ:</span>
-                <span class="info-val val-highlight" id="statusLevel">1</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">NGHỀ:</span>
-                <span class="info-val" id="statusJob">KỸ SƯ KỶ LUẬT</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">CHỨC VỤ:</span>
-                <span class="info-val" id="statusRole">NONE</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">EXP:</span>
-                <span class="info-val" id="statusExp">0 / 100</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">MỨC ĐỘ MỆT:</span>
-                <span class="info-val" id="statusFatigue" style="color: var(--neon-purple);">0%</span>
-              </div>
-            </div>
+          <div class="window-header">
+            <div class="window-title">BẢNG TRẠNG THÁI</div>
+            <div class="window-subtitle">HỒ SƠ THỢ SĂN VÀ CHỈ SỐ THUỘC TÍNH</div>
           </div>
 
-          <!-- Thanh chỉ số HP, MP -->
-          <div class="bar-stat-group">
-            <div class="stat-bar-item">
-              <div class="stat-bar-header">
-                <span style="color: #ff4d6d;">HP (SỨC KHỎE)</span>
-                <span id="hpText" style="color: #ff4d6d;">100 / 100</span>
+          <div class="window-body">
+            <div class="status-layout-grid">
+              <!-- Khu vực hiển thị bóng thợ săn Sung Jin-Woo -->
+              <div class="character-showcase">
+                <span class="hunter-title-tag" id="statusHunterTitle">QUÂN VƯƠNG BÓNG ĐÊM</span>
+                
+                <!-- Hình bóng nhân vật phát sáng hào quang cực ngầu -->
+                <svg class="shadow-monarch-svg" viewBox="0 0 100 180" fill="none">
+                  <!-- Hào quang bóng tối bao quanh -->
+                  <path d="M15 150 Q 5 90 20 40 Q 50 10 80 40 Q 95 90 85 150 Z" fill="rgba(123, 44, 191, 0.25)"/>
+                  <path d="M25 140 Q 15 90 30 50 Q 50 25 70 50 Q 85 90 75 140 Z" fill="rgba(0, 210, 255, 0.2)"/>
+                  <!-- Thân hình và áo choàng -->
+                  <path d="M50 20 C42 20 36 28 36 38 C36 50 42 56 50 56 C58 56 64 50 64 38 C64 28 58 20 50 20 Z" fill="#010c1c" stroke="#00f0ff" stroke-width="1.8"/>
+                  <!-- Mái tóc lãng tử manhwa -->
+                  <path d="M34 32 L26 22 L38 24 L46 12 L54 20 L62 10 L64 22 L74 20 L66 34 Z" fill="#02142d" stroke="#00f0ff" stroke-width="1.6"/>
+                  <!-- Đôi mắt phát sáng rực rỡ đặc trưng Solo Leveling -->
+                  <ellipse cx="44" cy="35" rx="3" ry="1.5" fill="#00f0ff"/>
+                  <ellipse cx="56" cy="35" rx="3" ry="1.5" fill="#00f0ff"/>
+                  <path d="M41 35 L33 32" stroke="#00f0ff" stroke-width="1.5"/>
+                  <path d="M59 35 L67 32" stroke="#00f0ff" stroke-width="1.5"/>
+                  <!-- Áo măng tô bóng đêm dũng mãnh -->
+                  <path d="M50 56 L30 76 L20 140 L32 175 L50 170 L68 175 L80 140 L70 76 Z" fill="#010d22" stroke="#00f0ff" stroke-width="1.8"/>
+                  <path d="M30 76 L12 120 L24 126 L36 86 Z" fill="#021a3e" stroke="#00d2ff" stroke-width="1.2"/>
+                  <path d="M70 76 L88 120 L76 126 L64 86 Z" fill="#021a3e" stroke="#00d2ff" stroke-width="1.2"/>
+                  <!-- Dao găm bóng đêm phát sáng -->
+                  <path d="M12 120 L8 145 L14 142 L16 122 Z" fill="#00f0ff" stroke="#fff" stroke-width="1"/>
+                  <path d="M88 120 L92 145 L86 142 L84 122 Z" fill="#00f0ff" stroke="#fff" stroke-width="1"/>
+                </svg>
               </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill bar-hp" id="hpBarFill" style="width: 100%;"></div>
+
+              <!-- Thông tin người chơi bên phải -->
+              <div class="hunter-profile-info">
+                <div class="profile-row">
+                  <span class="profile-label">TÊN:</span>
+                  <span class="profile-val" id="statusName">PHẠM ĐÌNH HẢI</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">CẤP ĐỘ:</span>
+                  <span class="profile-val val-glow" id="statusLevel">1</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">NGHỀ:</span>
+                  <span class="profile-val" id="statusJob">KỸ SƯ KỶ LUẬT</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">CHỨC VỤ:</span>
+                  <span class="profile-val" id="statusRole">NONE</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">EXP:</span>
+                  <span class="profile-val" id="statusExp">0 / 100</span>
+                </div>
+                <div class="profile-row">
+                  <span class="profile-label">MỨC ĐỘ MỆT:</span>
+                  <span class="profile-val" id="statusFatigue" style="color: var(--neon-purple); text-shadow: 0 0 8px var(--neon-purple);">0%</span>
+                </div>
               </div>
             </div>
 
-            <div class="stat-bar-item">
-              <div class="stat-bar-header">
-                <span style="color: var(--neon-blue);">MP (TINH THẦN / Ý CHÍ)</span>
-                <span id="mpText" style="color: var(--neon-blue);">50 / 50</span>
+            <!-- 8 Ô TRANG BỊ CỦA THỢ SĂN (CHUẨN ẢNH 3) -->
+            <div class="equip-slots-preview">
+              <div class="equip-slot" title="Vũ khí chính: Song đao Bóng Đêm">
+                <span>🗡️</span>
+                <span class="equip-slot-name">VŨ KHÍ</span>
               </div>
-              <div class="progress-bar-bg">
-                <div class="progress-bar-fill bar-mp" id="mpBarFill" style="width: 100%;"></div>
+              <div class="equip-slot" title="Áo giáp: Giáp Hiệp Sĩ">
+                <span>🛡️</span>
+                <span class="equip-slot-name">GIÁP</span>
+              </div>
+              <div class="equip-slot" title="Nhẫn: Nhẫn Kỷ Luật Thép">
+                <span>💍</span>
+                <span class="equip-slot-name">NHẪN</span>
+              </div>
+              <div class="equip-slot" title="Giày: Giày Thần Tốc">
+                <span>👢</span>
+                <span class="equip-slot-name">GIÀY</span>
               </div>
             </div>
-          </div>
 
-          <!-- KHU VỰC THUỘC TÍNH (ATTRIBUTES) -->
-          <div class="attributes-section">
-            <div class="stat-points-remaining">
+            <!-- Các thanh HP, MP -->
+            <div class="bars-section">
+              <div>
+                <div class="bar-row-header">
+                  <span style="color: #ff3366; text-shadow: 0 0 8px #ff3366;">HP (SỨC KHỎE)</span>
+                  <span id="hpText" style="color: #ff3366;">100 / 100</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" id="hpBarFill" style="background: linear-gradient(90deg, #b00020, #ff0055); width: 100%;"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bar-row-header">
+                  <span style="color: var(--neon-cyan); text-shadow: 0 0 8px var(--neon-cyan);">MP (TINH THẦN / Ý CHÍ)</span>
+                  <span id="mpText" style="color: var(--neon-cyan);">50 / 50</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" id="mpBarFill" style="width: 100%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BẢNG THUỘC TÍNH (STR, VIT, INT, CHA, AGI, PER) -->
+            <div class="stat-points-banner">
               <span>ĐIỂM TÍCH CÒN LẠI:</span>
-              <span class="points-number" id="unallocatedPoints">3</span>
+              <span class="stat-points-badge" id="unallocatedPoints">3</span>
             </div>
 
             <div class="attributes-grid">
-              <!-- Sức mạnh -->
-              <div class="attr-box">
-                <div class="attr-left">
-                  <span class="attr-name">SỨC MẠNH:</span>
-                  <span class="attr-value" id="attrSTR">10</span>
+              <div class="attr-card">
+                <div>
+                  <div class="attr-card-name">SỨC MẠNH (STR):</div>
+                  <div class="attr-card-val" id="attrSTR">10</div>
                 </div>
-                <button class="btn-add-stat" onclick="allocateStat('STR')" id="btnStatSTR">+</button>
+                <button class="btn-attr-plus" onclick="allocateStat('STR')" id="btnStatSTR">+</button>
               </div>
 
-              <!-- Sức sống / Thể lực -->
-              <div class="attr-box">
-                <div class="attr-left">
-                  <span class="attr-name">THỂ LỰC:</span>
-                  <span class="attr-value" id="attrVIT">10</span>
+              <div class="attr-card">
+                <div>
+                  <div class="attr-card-name">THỂ LỰC (VIT):</div>
+                  <div class="attr-card-val" id="attrVIT">10</div>
                 </div>
-                <button class="btn-add-stat" onclick="allocateStat('VIT')" id="btnStatVIT">+</button>
+                <button class="btn-attr-plus" onclick="allocateStat('VIT')" id="btnStatVIT">+</button>
               </div>
 
-              <!-- Trí tuệ -->
-              <div class="attr-box">
-                <div class="attr-left">
-                  <span class="attr-name">TRÍ TUỆ:</span>
-                  <span class="attr-value" id="attrINT">10</span>
+              <div class="attr-card">
+                <div>
+                  <div class="attr-card-name">TRÍ TUỆ (INT):</div>
+                  <div class="attr-card-val" id="attrINT">10</div>
                 </div>
-                <button class="btn-add-stat" onclick="allocateStat('INT')" id="btnStatINT">+</button>
+                <button class="btn-attr-plus" onclick="allocateStat('INT')" id="btnStatINT">+</button>
               </div>
 
-              <!-- Ngoại hình / Thần thái -->
-              <div class="attr-box">
-                <div class="attr-left">
-                  <span class="attr-name">NGOẠI HÌNH:</span>
-                  <span class="attr-value" id="attrCHA">10</span>
+              <div class="attr-card">
+                <div>
+                  <div class="attr-card-name">NGOẠI HÌNH (CHA):</div>
+                  <div class="attr-card-val" id="attrCHA">10</div>
                 </div>
-                <button class="btn-add-stat" onclick="allocateStat('CHA')" id="btnStatCHA">+</button>
+                <button class="btn-attr-plus" onclick="allocateStat('CHA')" id="btnStatCHA">+</button>
               </div>
 
-              <!-- Nhanh nhẹn / Kỷ luật -->
-              <div class="attr-box">
-                <div class="attr-left">
-                  <span class="attr-name">KỶ LUẬT:</span>
-                  <span class="attr-value" id="attrAGI">10</span>
+              <div class="attr-card">
+                <div>
+                  <div class="attr-card-name">KỶ LUẬT (AGI):</div>
+                  <div class="attr-card-val" id="attrAGI">10</div>
                 </div>
-                <button class="btn-add-stat" onclick="allocateStat('AGI')" id="btnStatAGI">+</button>
+                <button class="btn-attr-plus" onclick="allocateStat('AGI')" id="btnStatAGI">+</button>
               </div>
 
-              <!-- Nhạy bén / Trực giác -->
-              <div class="attr-box">
-                <div class="attr-left">
-                  <span class="attr-name">NHẠY BÉN:</span>
-                  <span class="attr-value" id="attrPER">10</span>
+              <div class="attr-card">
+                <div>
+                  <div class="attr-card-name">NHẠY BÉN (PER):</div>
+                  <div class="attr-card-val" id="attrPER">10</div>
                 </div>
-                <button class="btn-add-stat" onclick="allocateStat('PER')" id="btnStatPER">+</button>
+                <button class="btn-attr-plus" onclick="allocateStat('PER')" id="btnStatPER">+</button>
               </div>
             </div>
           </div>
@@ -1173,229 +1297,255 @@
       </div>
     </div>
 
-    <!-- TAB 3: BẢNG PHẦN THƯỞNG (REWARDS - CHUẨN ẢNH 2) -->
+    <!-- TAB 3: BẢNG PHẦN THƯỞNG (CHUẨN ẢNH 2 - MỞ RƯƠNG HUYỀN THOẠI) -->
     <div id="tabReward" class="tab-content" style="display: none;">
       <div class="system-window">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
+        <div class="window-inner-frame">
+          <div class="gothic-corner gothic-tl"></div>
+          <div class="gothic-corner gothic-tr"></div>
+          <div class="gothic-corner gothic-bl"></div>
+          <div class="gothic-corner gothic-br"></div>
 
-        <div class="window-header">
-          <div class="window-title">
-            <span>⬡</span> THƯỞNG NHIỆM VỤ
-          </div>
-          <div class="window-subtitle">CHỌN PHẦN THƯỞNG CỦA BẠN (CÓ THỂ CHỌN MỘT TRONG CÁC MỤC DƯỚI ĐÂY)</div>
-        </div>
-
-        <div class="window-body">
-          <div class="reward-box-list">
-            <!-- Thưởng 1: Hồi phục thể trạng -->
-            <div class="reward-item-card" id="rewardCard1" onclick="selectReward(1)">
-              <div class="reward-item-header">
-                <span>PHẦN THƯỞNG #1. HỒI PHỤC CHỈ SỐ</span>
-                <div class="reward-check-indicator" id="rewardCheck1">✓</div>
-              </div>
-              <div class="reward-item-desc">Hồi phục toàn bộ mệt mỏi về 0%, nạp đầy 100% thanh HP và MP ngay lập tức.</div>
+          <div class="window-header">
+            <div class="window-title">
+              <span>⬡</span> THƯỞNG NHIỆM VỤ
             </div>
-
-            <!-- Thưởng 2: Điểm chỉ số +3 -->
-            <div class="reward-item-card" id="rewardCard2" onclick="selectReward(2)">
-              <div class="reward-item-header">
-                <span>PHẦN THƯỞNG #2. ĐIỂM CHỈ SỐ +3</span>
-                <div class="reward-check-indicator" id="rewardCheck2">✓</div>
-              </div>
-              <div class="reward-item-desc">Nhận ngay 3 Điểm Tích Lũy tự do để tự tay nâng cấp Sức mạnh, Thể lực, Trí tuệ hoặc Ngoại hình.</div>
-            </div>
-
-            <!-- Thưởng 3: Hộp quà ngẫu nhiên +1 -->
-            <div class="reward-item-card" id="rewardCard3" onclick="selectReward(3)">
-              <div class="reward-item-header">
-                <span>PHẦN THƯỞNG #3. HỘP QUÀ NGẪU NHIÊN +1</span>
-                <div class="reward-check-indicator" id="rewardCheck3">✓</div>
-              </div>
-              <div class="reward-item-desc">Mở rương bí mật: Thẻ miễn phạt 1 ngày, Thần dược Cà phê, Vé tự thưởng nghỉ ngơi, Danh hiệu hiếm...</div>
-            </div>
+            <div class="window-subtitle">CHỌN PHẦN THƯỞNG CỦA BẠN (CÓ THỂ CHỌN MỘT TRONG CÁC MỤC DƯỚI ĐÂY)</div>
           </div>
 
-          <div class="confirm-prompt-text">BẠN CÓ MUỐN XÁC NHẬN?</div>
+          <div class="window-body">
+            <div class="reward-box-list">
+              <div class="reward-card" id="rewardCard1" onclick="selectReward(1)">
+                <div class="reward-card-title">
+                  <span>PHẦN THƯỞNG #1. HỒI PHỤC CHỈ SỐ</span>
+                  <span>⚡</span>
+                </div>
+                <div class="reward-card-desc">Xóa sạch 100% mệt mỏi về 0%, nạp đầy 100% thanh HP và MP ngay lập tức.</div>
+              </div>
 
-          <div class="reward-actions-row">
-            <button class="btn-action-reward btn-accept" onclick="claimSelectedReward()">CHẤP NHẬN</button>
-            <button class="btn-action-reward btn-decline" onclick="switchTab('tabQuest')">TỪ CHỐI</button>
-          </div>
+              <div class="reward-card selected" id="rewardCard2" onclick="selectReward(2)">
+                <div class="reward-card-title">
+                  <span>PHẦN THƯỞNG #2. ĐIỂM CHỈ SỐ +3</span>
+                  <span style="color: var(--neon-gold);">★</span>
+                </div>
+                <div class="reward-card-desc">Nhận ngay +3 Điểm Tích Lũy tự do để tự tay nâng cấp Sức mạnh, Thể lực, Trí tuệ hoặc Ngoại hình.</div>
+              </div>
 
-          <!-- KHO VẬT PHẨM & PHẦN THƯỞNG ĐÃ NHẬN -->
-          <div class="inventory-tray">
-            <div class="inventory-title">TỦ ĐỒ & VẬT PHẨM ĐÃ THU THẬP</div>
-            <div class="inventory-grid" id="inventoryContainer">
-              <!-- Render vật phẩm -->
+              <div class="reward-card" id="rewardCard3" onclick="selectReward(3)">
+                <div class="reward-card-title">
+                  <span>PHẦN THƯỞNG #3. HỘP QUÀ NGẪU NHIÊN +1</span>
+                  <span>🎁</span>
+                </div>
+                <div class="reward-card-desc">Mở rương bí mật: Thẻ miễn phạt 1 ngày, Thần dược Cà phê, Vé tự thưởng nghỉ ngơi, Danh hiệu hiếm...</div>
+              </div>
+            </div>
+
+            <div class="confirm-prompt-title">BẠN CÓ MUỐN XÁC NHẬN?</div>
+
+            <div class="reward-btn-grid">
+              <button class="btn-reward-confirm btn-accept-reward" onclick="claimSelectedReward()">CHẤP NHẬN</button>
+              <button class="btn-reward-confirm btn-decline-reward" onclick="switchTab('tabQuest')">TỪ CHỐI</button>
+            </div>
+
+            <!-- TỦ ĐỒ VẬT PHẨM -->
+            <div class="inventory-zone">
+              <div class="inventory-headline">TỦ ĐỒ & BẢO BỐI ĐÃ THU THẬP</div>
+              <div class="inventory-grid" id="inventoryContainer">
+                <!-- Render từ JS -->
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 4: BẢNG THÔNG BÁO (SYSTEM NOTICE - CHUẨN ẢNH 4) -->
+    <!-- TAB 4: BẢNG THÔNG BÁO (CHUẨN ẢNH 4) -->
     <div id="tabNotice" class="tab-content" style="display: none;">
-      <!-- Khung thông báo 1 chuẩn ảnh 4 -->
-      <div class="notice-card">
-        <div class="notice-header-tag">ⓘ THÔNG BÁO</div>
-        <div class="notice-highlight-text">
-          HỆ THỐNG NÀY SẼ GIÚP <span class="color-green-neon">NGƯỜI CHƠI</span> PHÁT TRIỂN
+      <div class="notice-box">
+        <div class="notice-tag-header">ⓘ THÔNG BÁO</div>
+        <div class="notice-content-text">
+          HỆ THỐNG NÀY SẼ GIÚP <span style="color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green);">NGƯỜI CHƠI</span> PHÁT TRIỂN
         </div>
       </div>
 
-      <!-- Khung cảnh báo 2 chuẩn ảnh 4 -->
-      <div class="notice-card" style="border-color: var(--neon-red); box-shadow: 0 0 14px rgba(255, 51, 68, 0.3);">
-        <div class="notice-header-tag" style="color: var(--neon-red);">ⓘ THÔNG BÁO</div>
-        <div class="notice-highlight-text">
-          NẾU BẠN KHÔNG TUÂN THỦ THEO YÊU CẦU TỪ HỆ THỐNG BẠN CÓ THỂ SẼ NHẬN <span class="color-red-neon">HÌNH PHẠT</span>
+      <div class="notice-box" style="border-color: var(--neon-red); box-shadow: 0 0 20px rgba(255, 0, 60, 0.45);">
+        <div class="notice-tag-header" style="color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red);">ⓘ THÔNG BÁO</div>
+        <div class="notice-content-text">
+          NẾU BẠN KHÔNG TUÂN THỦ THEO YÊU CẦU TỪ HỆ THỐNG BẠN CÓ THỂ SẼ NHẬN <span style="color: var(--neon-red); text-shadow: 0 0 12px var(--neon-red);">HÌNH PHẠT</span>
         </div>
       </div>
 
-      <!-- Nhật ký hệ thống ghi lại lịch sử -->
       <div class="system-window">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
+        <div class="window-inner-frame">
+          <div class="gothic-corner gothic-tl"></div>
+          <div class="gothic-corner gothic-tr"></div>
+          <div class="gothic-corner gothic-bl"></div>
+          <div class="gothic-corner gothic-br"></div>
 
-        <div class="window-header">
-          <div class="window-title">NHẬT KÝ HỆ THỐNG</div>
-          <div class="window-subtitle">LỊCH SỬ TIẾN HÓA & KỶ LUẬT</div>
-        </div>
+          <div class="window-header">
+            <div class="window-title">NHẬT KÝ HỆ THỐNG</div>
+            <div class="window-subtitle">LỊCH SỬ TIẾN HÓA VÀ THĂNG CẤP</div>
+          </div>
 
-        <div class="window-body">
-          <div class="system-log-feed" id="systemLogFeed">
-            <!-- Render từ JS -->
+          <div class="window-body">
+            <div class="log-feed-box" id="systemLogFeed">
+              <!-- Render log từ JS -->
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 5: BỘ CHIA NHỎ MỤC TIÊU THÔNG MINH (AI GOAL BREAKDOWN) -->
+    <!-- TAB 5: BỘ CHIA NHỎ MỤC TIÊU (AI GOAL BREAKDOWN) -->
     <div id="tabGoalAI" class="tab-content" style="display: none;">
       <div class="system-window">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
+        <div class="window-inner-frame">
+          <div class="gothic-corner gothic-tl"></div>
+          <div class="gothic-corner gothic-tr"></div>
+          <div class="gothic-corner gothic-bl"></div>
+          <div class="gothic-corner gothic-br"></div>
 
-        <div class="window-header">
-          <div class="window-title">⚙ BỘ PHÂN GIẢI MỤC TIÊU</div>
-          <div class="window-subtitle">CHIA NHỎ MỤC TIÊU LỚN THÀNH NHIỆM VỤ THỰC THI HẰNG NGÀY</div>
-        </div>
-
-        <div class="window-body">
-          <div class="form-group">
-            <label class="form-label">MỤC TIÊU BẠN MUỐN ĐẠT ĐƯỢC:</label>
-            <input type="text" class="form-input" id="goalInput" placeholder="VD: Giảm 4kg mỡ, Đọc xong 3 cuốn sách, v.v.">
-            <div class="preset-chips-row">
-              <span class="preset-chip" onclick="fillGoal('Giảm 4kg mỡ thừa & vóc dáng săn chắc', 30, 'VIT')">🏃 Giảm cân 30 ngày</span>
-              <span class="preset-chip" onclick="fillGoal('Đọc xong 2 cuốn sách phát triển bản thân', 21, 'INT')">📚 Đọc sách 21 ngày</span>
-              <span class="preset-chip" onclick="fillGoal('Tập chống đẩy và cơ ngực nở nang', 30, 'STR')">💪 Tập cơ bắp 30 ngày</span>
-              <span class="preset-chip" onclick="fillGoal('Dậy sớm lúc 6h và ngủ đủ 7 tiếng', 14, 'AGI')">⏰ Dậy sớm 14 ngày</span>
-              <span class="preset-chip" onclick="fillGoal('Uống đủ 2.5 lít nước & chăm sóc da mặt', 14, 'CHA')">✨ Ngoại hình 14 ngày</span>
-            </div>
+          <div class="window-header">
+            <div class="window-title">⚙ PHÂN GIẢI MỤC TIÊU</div>
+            <div class="window-subtitle">BỘ NÃO AI CHIA NHỎ MỤC TIÊU LỚN THÀNH NHIỆM VỤ THỰC CHIẾN</div>
           </div>
 
-          <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <div>
-              <label class="form-label">THỜI GIAN (SỐ NGÀY):</label>
-              <input type="number" class="form-input" id="goalDays" value="30" min="3" max="365">
+          <div class="window-body">
+            <div class="form-group">
+              <label class="form-label">MỤC TIÊU BẠN MUỐN ĐẠT ĐƯỢC:</label>
+              <input type="text" class="form-input" id="goalInput" placeholder="VD: Giảm 4kg mỡ, Đọc xong 3 cuốn sách, v.v.">
+              <div class="preset-chips-box">
+                <span class="preset-badge" onclick="fillGoal('Giảm 4kg mỡ thừa & vóc dáng săn chắc', 30, 'VIT')">🏃 Giảm cân 30 ngày</span>
+                <span class="preset-badge" onclick="fillGoal('Đọc xong 2 cuốn sách phát triển bản thân', 21, 'INT')">📚 Đọc sách 21 ngày</span>
+                <span class="preset-badge" onclick="fillGoal('Tập chống đẩy và cơ ngực nở nang', 30, 'STR')">💪 Tập cơ bắp 30 ngày</span>
+                <span class="preset-badge" onclick="fillGoal('Dậy sớm lúc 6h và ngủ đủ 7 tiếng', 14, 'AGI')">⏰ Dậy sớm 14 ngày</span>
+                <span class="preset-badge" onclick="fillGoal('Uống đủ 2.5 lít nước & chăm sóc da mặt', 14, 'CHA')">✨ Ngoại hình 14 ngày</span>
+              </div>
             </div>
-            <div>
-              <label class="form-label">THUỘC TÍNH CHÍNH:</label>
-              <select class="form-select" id="goalStatFocus">
-                <option value="STR">Sức mạnh (STR)</option>
-                <option value="VIT" selected>Thể lực (VIT)</option>
-                <option value="INT">Trí tuệ (INT)</option>
-                <option value="CHA">Ngoại hình (CHA)</option>
-                <option value="AGI">Kỷ luật (AGI)</option>
-                <option value="PER">Nhạy bén (PER)</option>
+
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div>
+                <label class="form-label">THỜI GIAN (SỐ NGÀY):</label>
+                <input type="number" class="form-input" id="goalDays" value="30" min="3" max="365">
+              </div>
+              <div>
+                <label class="form-label">THUỘC TÍNH TRỌNG TÂM:</label>
+                <select class="form-select" id="goalStatFocus">
+                  <option value="STR">Sức mạnh (STR)</option>
+                  <option value="VIT" selected>Thể lực (VIT)</option>
+                  <option value="INT">Trí tuệ (INT)</option>
+                  <option value="CHA">Ngoại hình (CHA)</option>
+                  <option value="AGI">Kỷ luật (AGI)</option>
+                  <option value="PER">Nhạy bén (PER)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">MỨC ĐỘ THỬ THÁCH:</label>
+              <select class="form-select" id="goalIntensity">
+                <option value="normal">Thợ Săn Tập Sự (Dễ thở, kiên trì mỗi ngày)</option>
+                <option value="hard" selected>Thợ Săn Hạng B (Kỷ luật nghiêm khắc)</option>
+                <option value="solo">Quân Vương Bóng Đêm (Hardcore Solo Leveling)</option>
               </select>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label class="form-label">MỨC ĐỘ THỬ THÁCH:</label>
-            <select class="form-select" id="goalIntensity">
-              <option value="normal">Thợ Săn Tập Sự (Vừa sức, kiên trì mỗi ngày)</option>
-              <option value="hard" selected>Thợ Săn Hạng B (Tiêu chuẩn kỷ luật nghiêm)</option>
-              <option value="solo">Quân Vương Bóng Đêm (Hardcore Solo Leveling)</option>
-            </select>
-          </div>
-
-          <button class="btn-generate-quest" onclick="generateDailyQuestsFromGoal()">
-            ⚡ PHÂN TÍCH VÀ BƠM VÀO BẢNG NHIỆM VỤ
-          </button>
-
-          <!-- Hiển thị bản xem trước lộ trình -->
-          <div id="aiBreakdownPreview" style="margin-top: 14px; display: none;">
-            <!-- Render kết quả phân giải -->
+            <button class="btn-ignite-goal" onclick="generateDailyQuestsFromGoal()">
+              ⚡ PHÂN TÍCH VÀ BƠM VÀO BẢNG NHIỆM VỤ
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DOCK ĐIỀU HƯỚNG DƯỚI CÙNG CHO IPHONE 14 PLUS -->
+  <!-- DOCK ĐIỀU HƯỚNG DƯỚI CÙNG -->
   <nav class="bottom-dock">
-    <button class="dock-tab-btn active" id="btnTabQuest" onclick="switchTab('tabQuest')">
-      <span class="tab-icon">⚔️</span>
+    <button class="dock-tab active" id="btnTabQuest" onclick="switchTab('tabQuest')">
+      <span class="tab-ico">⚔️</span>
       <span>Nhiệm Vụ</span>
     </button>
-    <button class="dock-tab-btn" id="btnTabStatus" onclick="switchTab('tabStatus')">
-      <span class="tab-icon">👤</span>
+    <button class="dock-tab" id="btnTabStatus" onclick="switchTab('tabStatus')">
+      <span class="tab-ico">👤</span>
       <span>Chỉ Số</span>
     </button>
-    <button class="dock-tab-btn" id="btnTabReward" onclick="switchTab('tabReward')">
-      <span class="tab-icon">🎁</span>
+    <button class="dock-tab" id="btnTabReward" onclick="switchTab('tabReward')">
+      <span class="tab-ico">🎁</span>
       <span>Thưởng</span>
     </button>
-    <button class="dock-tab-btn" id="btnTabNotice" onclick="switchTab('tabNotice')">
-      <span class="tab-icon">📜</span>
+    <button class="dock-tab" id="btnTabNotice" onclick="switchTab('tabNotice')">
+      <span class="tab-ico">📜</span>
       <span>Thông Báo</span>
     </button>
-    <button class="dock-tab-btn" id="btnTabGoalAI" onclick="switchTab('tabGoalAI')">
-      <span class="tab-icon">⚡</span>
+    <button class="dock-tab" id="btnTabGoalAI" onclick="switchTab('tabGoalAI')">
+      <span class="tab-ico">⚡</span>
       <span>Mục Tiêu</span>
     </button>
   </nav>
 
-  <!-- MODAL HƯỚNG DẪN CÀI LÊN IPHONE 14 PLUS -->
-  <div class="modal-overlay" id="iphoneGuideModal" onclick="closeModalOnBg(event)">
-    <div class="modal-card">
-      <div class="system-window">
-        <div class="corner corner-tl"></div>
-        <div class="corner corner-tr"></div>
-        <div class="corner corner-bl"></div>
-        <div class="corner corner-br"></div>
-        <div class="window-header">
-          <div class="window-title">📱 CÀI ĐẶT IPHONE 14 PLUS</div>
-          <div class="window-subtitle">ĐƯA HỆ THỐNG RA MÀN HÌNH CHÍNH NHƯ MỘT ỨNG DỤNG</div>
-        </div>
-        <div class="window-body" style="font-size: 13px; line-height: 1.6;">
-          <p style="margin-bottom: 8px;">Anh Hải thực hiện đúng 3 thao tác đơn giản trên Safari của iPhone:</p>
-          <ol style="padding-left: 18px; margin-bottom: 12px; color: var(--neon-cyan);">
-            <li>Mở đường link trang web này bằng trình duyệt <b>Safari</b> trên iPhone 14 Plus.</li>
-            <li>Bấm vào nút <b>Chia sẻ</b> (biểu tượng hình vuông có mũi tên chỉ lên ở thanh đáy Safari).</li>
-            <li>Cuộn xuống chọn <b>"Thêm vào Màn hình chính" (Add to Home Screen)</b> rồi bấm <b>Thêm</b>.</li>
-          </ol>
-          <p style="color: var(--neon-green); font-size: 12px; margin-bottom: 14px;">
-            ✓ Biểu tượng HỆ THỐNG sẽ nằm ngay trên màn hình iPhone, bấm vào mở toàn màn hình siêu mượt mà không có thanh địa chỉ!
-          </p>
-          <button class="btn-action-reward btn-accept" style="width: 100%;" onclick="closeIphoneGuide()">ĐÃ HIỂU</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCRIPT LOGIC TOÀN BỘ HỆ THỐNG -->
+  <!-- KỊCH BẢN LOGIC HỆ THỐNG VÀ HIỆU ỨNG TÀN TRO BÓNG ĐÊM -->
   <script>
     // ==========================================
-    // 1. KHO LƯU TRỮ VÀ DỮ LIỆU MẶC ĐỊNH
+    // 1. HIỆU ỨNG TÀN TRO BÓNG ĐÊM (SHADOW EMBERS)
+    // ==========================================
+    const canvas = document.getElementById("shadowCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    class ShadowParticle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 20;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = Math.random() * 1.5 + 0.6;
+        this.speedX = (Math.random() - 0.5) * 0.8;
+        this.opacity = Math.random() * 0.6 + 0.2;
+        this.color = Math.random() > 0.4 ? 'rgba(0, 240, 255, ' : 'rgba(157, 78, 221, ';
+      }
+      update() {
+        this.y -= this.speedY;
+        this.x += this.speedX;
+        this.opacity -= 0.003;
+        if (this.y < -10 || this.opacity <= 0) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color + this.opacity + ')';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#00f0ff';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new ShadowParticle());
+    }
+
+    function animateEmbers() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateEmbers);
+    }
+    animateEmbers();
+
+    // ==========================================
+    // 2. DỮ LIỆU THỢ SĂN VÀ LOCALSTORAGE
     // ==========================================
     const DEFAULT_DATA = {
       playerName: "PHẠM ĐÌNH HẢI",
@@ -1404,7 +1554,7 @@
       expMax: 100,
       job: "KỸ SƯ KỶ LUẬT",
       role: "NONE",
-      title: "KẺ THỨC TỈNH",
+      title: "QUÂN VƯƠNG BÓNG ĐÊM",
       hp: 100,
       hpMax: 100,
       mp: 50,
@@ -1435,7 +1585,7 @@
         { time: "08:05", text: "Bảng nhiệm vụ hàng ngày đã được kích hoạt. Hãy nỗ lực để trở nên mạnh hơn!" }
       ],
       rewardClaimedToday: false,
-      selectedRewardIndex: 2, // Mặc định chọn phần thưởng #2 (Điểm chỉ số +3)
+      selectedRewardIndex: 2,
       soundEnabled: true,
       lastActiveDate: new Date().toISOString().slice(0, 10)
     };
@@ -1448,16 +1598,12 @@
     }
 
     // ==========================================
-    // 2. BỘ TỔNG HỢP ÂM THANH WEB AUDIO API (KHÔNG CẦN TẢI FILE MP3 NGOÀI)
+    // 3. ÂM THANH KIẾM CHÉM & CHIME SOLO LEVELING
     // ==========================================
     let audioCtx = null;
     function getAudioContext() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
       return audioCtx;
     }
 
@@ -1467,64 +1613,72 @@
         const ctx = getAudioContext();
         const now = ctx.currentTime;
 
-        if (type === 'click') {
+        if (type === 'slash') {
+          // Tiếng kiếm chém vút sắc bén
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(600, now);
-          osc.frequency.exponentialRampToValueAtTime(300, now + 0.05);
-          gain.gain.setValueAtTime(0.2, now);
-          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(1200, now);
+          osc.frequency.exponentialRampToValueAtTime(120, now + 0.15);
+          gain.gain.setValueAtTime(0.4, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
           osc.connect(gain);
           gain.connect(ctx.destination);
           osc.start(now);
-          osc.stop(now + 0.05);
+          osc.stop(now + 0.16);
         } else if (type === 'chime') {
-          // Tiếng "Ting" hệ thống Solo Leveling
-          [880, 1760].forEach((freq, i) => {
+          // Tiếng Ting hệ thống
+          [900, 1800].forEach((freq, i) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now + i * 0.06);
-            gain.gain.setValueAtTime(0.25, now + i * 0.06);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.06 + 0.35);
+            gain.gain.setValueAtTime(0.3, now + i * 0.06);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.06 + 0.4);
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start(now + i * 0.06);
-            osc.stop(now + i * 0.06 + 0.4);
+            osc.stop(now + i * 0.06 + 0.45);
           });
         } else if (type === 'levelup') {
-          // Tiếng thăng cấp rực rỡ
-          [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+          // Tiếng thăng cấp hoành tráng
+          [523.25, 659.25, 783.99, 1046.50, 1318.51].forEach((freq, i) => {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(freq, now + i * 0.1);
-            gain.gain.setValueAtTime(0.25, now + i * 0.1);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.5);
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + i * 0.09);
+            gain.gain.setValueAtTime(0.35, now + i * 0.09);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.09 + 0.55);
             osc.connect(gain);
             gain.connect(ctx.destination);
-            osc.start(now + i * 0.1);
-            osc.stop(now + i * 0.1 + 0.55);
+            osc.start(now + i * 0.09);
+            osc.stop(now + i * 0.09 + 0.6);
           });
-        } else if (type === 'reward') {
-          // Tiếng mở rương quà
-          [440, 554.37, 659.25, 880, 1108.73].forEach((freq, i) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, now + i * 0.08);
-            gain.gain.setValueAtTime(0.2, now + i * 0.08);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.4);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start(now + i * 0.08);
-            osc.stop(now + i * 0.08 + 0.45);
-          });
+        } else {
+          // Click nhẹ
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(700, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.04);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.04);
         }
-      } catch (e) {
-        console.log("Audio not supported or blocked", e);
+      } catch (e) {}
+    }
+
+    function triggerScreenShake() {
+      const box = document.getElementById("appMainBox");
+      if (box) {
+        box.classList.remove("screen-shake");
+        void box.offsetWidth;
+        box.classList.add("screen-shake");
       }
+      if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
     }
 
     function toggleAudio() {
@@ -1535,12 +1689,11 @@
     }
 
     // ==========================================
-    // 3. ĐIỀU HƯỚNG TABS
+    // 4. CHUYỂN TABS
     // ==========================================
     function switchTab(tabId) {
       playSound('click');
-      const tabs = ['tabQuest', 'tabStatus', 'tabReward', 'tabNotice', 'tabGoalAI'];
-      tabs.forEach(t => {
+      ['tabQuest', 'tabStatus', 'tabReward', 'tabNotice', 'tabGoalAI'].forEach(t => {
         const el = document.getElementById(t);
         if (el) el.style.display = (t === tabId) ? 'block' : 'none';
       });
@@ -1564,19 +1717,15 @@
     }
 
     // ==========================================
-    // 4. BẢNG NHIỆM VỤ & CẬP NHẬT TIẾN ĐỘ
+    // 5. RENDER NHIỆM VỤ VÀ HOÀN THÀNH
     // ==========================================
     function renderQuests() {
       const container = document.getElementById("questListContainer");
       if (!container) return;
-
       container.innerHTML = "";
-      let allDone = true;
 
       hunterData.quests.forEach((q, idx) => {
-        if (!q.completed) allDone = false;
         const pct = Math.min(100, Math.round((q.current / q.target) * 100));
-
         const card = document.createElement("div");
         card.className = `quest-card ${q.completed ? 'completed' : ''}`;
         card.innerHTML = `
@@ -1603,11 +1752,6 @@
         `;
         container.appendChild(card);
       });
-
-      // Nếu hoàn thành toàn bộ nhiệm vụ ngày
-      if (allDone && hunterData.quests.length > 0 && !hunterData.rewardClaimedToday) {
-        // Tự động nhắc nhở nhận thưởng
-      }
     }
 
     function updateQuestStep(idx, delta) {
@@ -1637,26 +1781,21 @@
     function completeQuest(idx) {
       const q = hunterData.quests[idx];
       q.completed = true;
-      playSound('chime');
+      playSound('slash');
+      triggerScreenShake();
 
-      // Tăng điểm chỉ số trực tiếp
       if (hunterData.stats[q.attr] !== undefined) {
         hunterData.stats[q.attr] += q.attrVal;
       }
-
-      // Tăng EXP
       addExp(20);
-
-      // Thêm log
       addLog(`Nhiệm vụ [${q.name}] hoàn thành! +${q.attrVal} ${getAttrName(q.attr)}, +20 EXP.`);
 
-      // Kiểm tra xem đã xong hết tất cả quest chưa
       const allDone = hunterData.quests.every(item => item.completed);
       if (allDone) {
         playSound('levelup');
-        addLog(`TUYỆT VỜI! Bạn đã hoàn thành 100% nhiệm vụ hôm nay. Hãy vào Bảng Phần Thưởng để nhận quà!`);
+        addLog(`CHIẾN THẮNG TUYỆT ĐỐI! Toàn bộ nhiệm vụ hôm nay đã hoàn thành! Bảng phần thưởng sẵn sàng.`);
         setTimeout(() => {
-          if (confirm("CHÚC MỪNG THỢ SĂN!\nBạn đã hoàn thành toàn bộ nhiệm vụ hôm nay.\nBạn có muốn mở BẢNG PHẦN THƯỞNG ngay bây giờ?")) {
+          if (confirm("CHÚC MỪNG QUÂN VƯƠNG!\nToàn bộ nhiệm vụ hôm nay đã hoàn tất.\nBạn có muốn mở BẢNG PHẦN THƯỞNG ngay bây giờ?")) {
             switchTab('tabReward');
           }
         }, 300);
@@ -1675,20 +1814,13 @@
         hunterData.mpMax += 5;
         hunterData.mp = hunterData.mpMax;
         playSound('levelup');
-        showLevelUpFlash();
+        triggerScreenShake();
         addLog(`THĂNG CẤP! Bạn đã đạt Cấp độ ${hunterData.level}! Nhận +3 Điểm chỉ số tự do!`);
       }
     }
 
-    function showLevelUpFlash() {
-      const div = document.createElement("div");
-      div.className = "level-up-flash";
-      document.body.appendChild(div);
-      setTimeout(() => div.remove(), 1000);
-    }
-
     // ==========================================
-    // 5. BẢNG TRẠNG THÁI & PHÂN BỔ THUỘC TÍNH
+    // 6. BẢNG TRẠNG THÁI VÀ CHỈ SỐ
     // ==========================================
     function renderStatus() {
       document.getElementById("topPlayerName").textContent = hunterData.playerName + " ✎";
@@ -1700,23 +1832,20 @@
       document.getElementById("statusExp").textContent = `${hunterData.exp} / ${hunterData.expMax}`;
       document.getElementById("statusFatigue").textContent = `${hunterData.fatigue}%`;
 
-      // Cập nhật rank
-      let rank = "HẠNG E";
-      if (hunterData.level >= 30) rank = "HẠNG S";
-      else if (hunterData.level >= 20) rank = "HẠNG A";
-      else if (hunterData.level >= 12) rank = "HẠNG B";
-      else if (hunterData.level >= 6) rank = "HẠNG C";
-      else if (hunterData.level >= 3) rank = "HẠNG D";
+      let rank = "HẠNG S";
+      if (hunterData.level < 5) rank = "HẠNG E";
+      else if (hunterData.level < 10) rank = "HẠNG D";
+      else if (hunterData.level < 18) rank = "HẠNG C";
+      else if (hunterData.level < 25) rank = "HẠNG B";
+      else if (hunterData.level < 35) rank = "HẠNG A";
       document.getElementById("topRankBadge").textContent = rank;
 
-      // HP & MP bars
       document.getElementById("hpText").textContent = `${hunterData.hp} / ${hunterData.hpMax}`;
       document.getElementById("hpBarFill").style.width = `${Math.round((hunterData.hp / hunterData.hpMax) * 100)}%`;
 
       document.getElementById("mpText").textContent = `${hunterData.mp} / ${hunterData.mpMax}`;
       document.getElementById("mpBarFill").style.width = `${Math.round((hunterData.mp / hunterData.mpMax) * 100)}%`;
 
-      // Stats
       document.getElementById("unallocatedPoints").textContent = hunterData.unallocatedPoints;
       ['STR', 'VIT', 'INT', 'CHA', 'AGI', 'PER'].forEach(statKey => {
         const valEl = document.getElementById("attr" + statKey);
@@ -1728,10 +1857,11 @@
 
     function allocateStat(statKey) {
       if (hunterData.unallocatedPoints > 0) {
-        playSound('click');
+        playSound('slash');
+        triggerScreenShake();
         hunterData.unallocatedPoints -= 1;
         hunterData.stats[statKey] += 1;
-        addLog(`Đã phân bổ 1 điểm vào [${getAttrName(statKey)}] (Hiện tại: ${hunterData.stats[statKey]}).`);
+        addLog(`Phân bổ 1 điểm vào [${getAttrName(statKey)}] (Hiện tại: ${hunterData.stats[statKey]}).`);
         saveData();
       }
     }
@@ -1757,7 +1887,7 @@
     }
 
     // ==========================================
-    // 6. BẢNG PHẦN THƯỞNG (REWARDS)
+    // 7. BẢNG PHẦN THƯỞNG
     // ==========================================
     function selectReward(num) {
       playSound('click');
@@ -1773,44 +1903,41 @@
 
     function claimSelectedReward() {
       const choice = hunterData.selectedRewardIndex || 2;
-      playSound('reward');
+      playSound('levelup');
+      triggerScreenShake();
 
       if (choice === 1) {
-        // Hồi phục chỉ số
         hunterData.fatigue = 0;
         hunterData.hp = hunterData.hpMax;
         hunterData.mp = hunterData.mpMax;
-        addLog("ĐÃ NHẬN THƯỞNG #1: Hồi phục toàn bộ mệt mỏi về 0%, HP/MP đầy cây!");
+        addLog("ĐÃ NHẬN THƯỞNG #1: Hồi sinh toàn bộ chỉ số, HP/MP đầy 100%!");
         alert("🎉 ĐÃ NHẬN THƯỞNG #1:\nCơ thể bạn được hồi sinh hoàn toàn!\nMức độ mệt: 0%\nHP & MP: Đầy 100%!");
       } else if (choice === 2) {
-        // Điểm chỉ số +3
         hunterData.unallocatedPoints += 3;
         addLog("ĐÃ NHẬN THƯỞNG #2: Nhận +3 Điểm Tích Lũy tự do!");
-        alert("🎉 ĐÃ NHẬN THƯỞNG #2:\nBạn nhận được +3 Điểm chỉ số!\nHãy vào BẢNG TRẠNG THÁI để cộng điểm cho Sức mạnh, Trí tuệ hoặc Ngoại hình!");
+        alert("🎉 ĐÃ NHẬN THƯỞNG #2:\nNhận +3 Điểm chỉ số!\nVào BẢNG TRẠNG THÁI để cộng điểm cho Sức mạnh, Trí tuệ hoặc Ngoại hình!");
       } else if (choice === 3) {
-        // Hộp quà ngẫu nhiên
         const mysteryRewards = [
           { name: "Thẻ Miễn Phạt 1 Ngày", icon: "🛡️", desc: "Dùng để tránh bị phạt khi bận việc đột xuất." },
           { name: "Thần Dược Cà Phê Bất Tử", icon: "☕", desc: "Xóa sạch mệt mỏi và tăng 50 MP ngay lập tức." },
-          { name: "Vé Tự Thưởng: 1 Giờ Giải Trí Thảnh Thơi", icon: "🎟️", desc: "Xem phim hoặc uống trà sữa không áy náy!" },
-          { name: "Danh Hiệu Mới: 'KẺ THỨC TỈNH KIÊN CƯỜNG'", icon: "👑", desc: "Ghi nhận ý chí kỷ luật vượt bậc." },
+          { name: "Vé Tự Thưởng: 1 Giờ Giải Trí Thảnh Thơi", icon: "🎟️", desc: "Xem phim hoặc uống cà phê không áy náy!" },
+          { name: "Danh Hiệu Mới: 'QUÂN VƯƠNG KIÊN CƯỜNG'", icon: "👑", desc: "Ghi nhận ý chí kỷ luật vượt bậc." },
           { name: "Thỏi Vàng May Mắn (+60 EXP)", icon: "🪙", desc: "Cộng dồn 60 điểm kinh nghiệm thăng cấp." }
         ];
         const randomItem = mysteryRewards[Math.floor(Math.random() * mysteryRewards.length)];
         
-        // Thêm vào kho đồ hoặc hiệu ứng
         if (randomItem.name.includes("Thỏi Vàng")) {
           addExp(60);
         } else if (randomItem.name.includes("Danh Hiệu")) {
-          hunterData.title = "KẺ THỨC TỈNH KIÊN CƯỜNG";
+          hunterData.title = "QUÂN VƯƠNG KIÊN CƯỜNG";
         } else {
           const exist = hunterData.inventory.find(i => i.name === randomItem.name);
           if (exist) exist.qty += 1;
           else hunterData.inventory.push({ id: "item_" + Date.now(), name: randomItem.name, icon: randomItem.icon, desc: randomItem.desc, qty: 1 });
         }
 
-        addLog(`ĐÃ MỞ HỘP QUÀ BÍ MẬT: Nhận được [${randomItem.name}]!`);
-        alert(`🎁 CHÚC MỪNG BẠN ĐÃ MỞ HỘP QUÀ:\n${randomItem.icon} ${randomItem.name}\n${randomItem.desc}`);
+        addLog(`ĐÃ MỞ RƯƠNG BÍ MẬT: Nhận được [${randomItem.name}]!`);
+        alert(`🎁 CHÚC MỪNG QUÂN VƯƠNG:\n${randomItem.icon} ${randomItem.name}\n${randomItem.desc}`);
       }
 
       hunterData.rewardClaimedToday = true;
@@ -1825,11 +1952,11 @@
 
       hunterData.inventory.forEach(item => {
         const slot = document.createElement("div");
-        slot.className = "inv-slot";
+        slot.className = "inv-card";
         slot.title = `${item.name}: ${item.desc}`;
         slot.innerHTML = `
           <span>${item.icon}</span>
-          <span class="inv-qty">x${item.qty}</span>
+          <span class="inv-qty-tag">x${item.qty}</span>
         `;
         slot.onclick = () => useInventoryItem(item);
         container.appendChild(slot);
@@ -1857,7 +1984,7 @@
     }
 
     // ==========================================
-    // 7. BẢNG THÔNG BÁO & NHẬT KÝ HỆ THỐNG
+    // 8. BẢNG THÔNG BÁO VÀ NHẬT KÝ
     // ==========================================
     function addLog(text) {
       const now = new Date();
@@ -1874,9 +2001,9 @@
 
       hunterData.logs.forEach(log => {
         const div = document.createElement("div");
-        div.className = "log-entry";
+        div.className = "log-row";
         div.innerHTML = `
-          <div class="log-time">[HỆ THỐNG] ${log.time}</div>
+          <div class="log-row-time">[HỆ THỐNG] ${log.time}</div>
           <div>${log.text}</div>
         `;
         container.appendChild(div);
@@ -1884,7 +2011,7 @@
     }
 
     // ==========================================
-    // 8. BỘ CHIA NHỎ MỤC TIÊU THÔNG MINH (AI GOAL BREAKDOWN)
+    // 9. BỘ CHIA NHỎ MỤC TIÊU (AI BREAKDOWN)
     // ==========================================
     function fillGoal(name, days, stat) {
       playSound('click');
@@ -1904,9 +2031,9 @@
         return;
       }
 
-      playSound('reward');
+      playSound('slash');
+      triggerScreenShake();
 
-      // Thuật toán chia nhỏ mục tiêu thông minh
       let generatedQuests = [];
 
       if (stat === 'STR' || goal.toLowerCase().includes("cơ bắp") || goal.toLowerCase().includes("tập gym") || goal.toLowerCase().includes("chống đẩy")) {
@@ -1941,7 +2068,6 @@
           { id: "g_" + Date.now() + "_4", name: `Tập thể dục giữ vóc dáng cân đối`, target: 30, current: 0, unit: "phút", attr: "VIT", attrVal: 1, completed: false }
         ];
       } else {
-        // Mặc định chuẩn Solo Leveling cân bằng
         generatedQuests = [
           { id: "g_" + Date.now() + "_1", name: `Thực hiện 40 cái chống đẩy`, target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
           { id: "g_" + Date.now() + "_2", name: `Đi bộ / Chạy bộ bền bỉ`, target: 3, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false },
@@ -1950,7 +2076,6 @@
         ];
       }
 
-      // Nạp nhiệm vụ vào Bảng nhiệm vụ của người chơi
       hunterData.quests = generatedQuests;
       hunterData.rewardClaimedToday = false;
       addLog(`Mục tiêu mới: [${goal}] (${days} ngày) đã được phân giải thành công vào Bảng Nhiệm Vụ!`);
@@ -1961,15 +2086,12 @@
     }
 
     // ==========================================
-    // 9. ĐỒNG HỒ & BẢO TRÌ NGÀY MỚI
+    // 10. ĐỒNG HỒ & BẢO TRÌ NGÀY MỚI
     // ==========================================
     function updateClockAndCountdown() {
       const now = new Date();
-      // Đồng hồ góc trên
-      const timeStr = now.toTimeString().split(' ')[0];
-      document.getElementById("systemClock").textContent = timeStr;
+      document.getElementById("systemClock").textContent = now.toTimeString().split(' ')[0];
 
-      // Đếm ngược đến hết ngày (23:59:59)
       const midnight = new Date();
       midnight.setHours(23, 59, 59, 999);
       const diffMs = midnight - now;
@@ -1984,17 +2106,13 @@
         document.getElementById("dailyCountdown").textContent = "00:00:00";
       }
 
-      // Kiểm tra qua ngày mới
       const todayDate = now.toISOString().slice(0, 10);
       if (hunterData.lastActiveDate !== todayDate) {
-        // Kiểm tra xem hôm trước có hoàn thành nhiệm vụ không
         const allDone = hunterData.quests.every(q => q.completed);
         if (!allDone) {
-          // Bị phạt hoặc cảnh báo
           hunterData.fatigue = Math.min(100, hunterData.fatigue + 20);
-          addLog("CẢNH BÁO: Bạn chưa hoàn thành nhiệm vụ ngày hôm qua! Mức độ mệt tăng +20%.");
+          addLog("CẢNH BÁO: Chưa hoàn thành nhiệm vụ ngày hôm qua! Mức độ mệt tăng +20%.");
         }
-        // Đặt lại ngày mới
         hunterData.quests.forEach(q => {
           q.current = 0;
           q.completed = false;
@@ -2017,24 +2135,6 @@
       }
     }
 
-    // ==========================================
-    // 10. MODAL IPHONE 14 PLUS GUIDE
-    // ==========================================
-    function openIphoneGuide() {
-      playSound('click');
-      document.getElementById("iphoneGuideModal").classList.add("active");
-    }
-    function closeIphoneGuide() {
-      playSound('click');
-      document.getElementById("iphoneGuideModal").classList.remove("active");
-    }
-    function closeModalOnBg(e) {
-      if (e.target.id === 'iphoneGuideModal') closeIphoneGuide();
-    }
-
-    // ==========================================
-    // KHỞI ĐỘNG HỆ THỐNG
-    // ==========================================
     function renderAll() {
       renderQuests();
       renderStatus();
@@ -2043,12 +2143,10 @@
       selectReward(hunterData.selectedRewardIndex || 2);
     }
 
-    // Đăng ký Service Worker cho PWA
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW register failed:', err));
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
     }
 
-    // Chạy đồng hồ mỗi giây
     setInterval(updateClockAndCountdown, 1000);
     updateClockAndCountdown();
     renderAll();
