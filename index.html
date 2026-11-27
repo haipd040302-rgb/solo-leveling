@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿FAILED: 13. Add Uplevel & Focus Room functions - Anchor not found! FAILED: 12. Update completeQuest for streak & multiplier - Anchor not found! FAILED: 11. Update renderQuests card top - Anchor not found! FAILED: 10. Update confirmAddTierGoal for difficulty scaling - Anchor not found! FAILED: 9. Update Gantt footer with Uplevel button - Anchor not found! FAILED: 8. Update Gantt card header - Anchor not found! FAILED: 7. Add JS state variables & helpers - Anchor not found! FAILED: 6. Update DEFAULT_DATA - Anchor not found! FAILED: 5. Inject 3 new modals - Anchor not found! FAILED: 4. Difficulty selector in Create Goal modal - Anchor not found! FAILED: 3. Top bar and streak banner - Anchor not found! FAILED: 2. Inject CSS - Anchor not found! OK: 1. Remove backup buttons <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -1052,6 +1052,159 @@
       30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
       40%, 60% { transform: translate3d(4px, 0, 0); }
     }
+
+    /* STREAK & FOCUS & DIFFICULTY STYLES */
+    .btn-top-focus {
+      background: linear-gradient(135deg, rgba(157, 78, 221, 0.4), rgba(0, 210, 255, 0.3));
+      border: 1px solid #c77dff;
+      color: #fff;
+      font-family: var(--font-manhwa);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 0 10px rgba(157, 78, 221, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-top-focus:active {
+      transform: scale(0.95);
+      background: #9d4edd;
+    }
+
+    .streak-banner {
+      background: linear-gradient(135deg, rgba(255, 69, 0, 0.22), rgba(255, 170, 0, 0.12));
+      border: 1px solid rgba(255, 100, 0, 0.55);
+      box-shadow: 0 0 15px rgba(255, 80, 0, 0.3);
+      border-radius: 4px;
+      padding: 7px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .streak-banner:hover {
+      box-shadow: 0 0 22px rgba(255, 80, 0, 0.5);
+      border-color: #ffaa00;
+    }
+    .streak-flame-icon {
+      font-size: 18px;
+      display: inline-block;
+      animation: flamePulse 1.2s infinite alternate ease-in-out;
+    }
+    @keyframes flamePulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 2px #ff4500); }
+      100% { transform: scale(1.22); filter: drop-shadow(0 0 8px #ffaa00); }
+    }
+    .streak-title {
+      font-family: var(--font-manhwa);
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffaa00;
+      letter-spacing: 0.8px;
+    }
+    .streak-multiplier {
+      font-family: var(--font-manhwa);
+      font-size: 11px;
+      font-weight: 700;
+      color: #00f0ff;
+      background: rgba(0, 240, 255, 0.15);
+      padding: 2px 7px;
+      border-radius: 3px;
+      border: 1px solid rgba(0, 240, 255, 0.4);
+    }
+
+    /* DIFFICULTY BADGES & BUTTONS */
+    .diff-btn {
+      background: rgba(2, 14, 36, 0.8);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      color: #b0c8e8;
+      font-family: var(--font-manhwa);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 4px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .diff-btn.active {
+      border-color: var(--neon-cyan);
+      background: rgba(0, 210, 255, 0.2);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+    }
+    .diff-badge {
+      font-family: var(--font-manhwa);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .diff-easy {
+      background: rgba(0, 200, 100, 0.18);
+      border: 1px solid #00e676;
+      color: #69f0ae;
+    }
+    .diff-medium {
+      background: rgba(255, 190, 0, 0.18);
+      border: 1px solid #ffd600;
+      color: #ffe57f;
+    }
+    .diff-hard {
+      background: rgba(255, 23, 68, 0.22);
+      border: 1px solid #ff1744;
+      color: #ff5252;
+      animation: hardGlow 2s infinite alternate;
+    }
+    @keyframes hardGlow {
+      0% { box-shadow: 0 0 3px rgba(255, 23, 68, 0.4); }
+      100% { box-shadow: 0 0 10px rgba(255, 23, 68, 0.8); }
+    }
+
+    .btn-uplevel-goal {
+      background: linear-gradient(135deg, rgba(0, 90, 180, 0.4), rgba(0, 210, 255, 0.25));
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-family: var(--font-manhwa);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: all 0.15s;
+    }
+    .btn-uplevel-goal:active {
+      background: var(--neon-cyan);
+      color: #010a18;
+    }
+
+    .uplevel-option {
+      display: block;
+      background: rgba(2, 14, 36, 0.85);
+      border: 1.5px solid rgba(0, 210, 255, 0.25);
+      border-radius: 4px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+    .uplevel-option:hover, .uplevel-option.selected {
+      border-color: var(--neon-cyan);
+      background: rgba(0, 40, 90, 0.8);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -1066,9 +1219,25 @@
         <span class="rank-badge-s" id="topRankBadge">HẠNG S</span>
         <span class="player-name-top" id="topPlayerName" onclick="editPlayerName()" title="Bấm để đổi tên">PHẠM ĐÌNH HẢI ✎</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="btn-top-focus" onclick="openFocusRoomModal()" title="Vào Hầm Ngục Tập Trung Sâu">🧘 LUYỆN SÂU</button>
         <div class="system-clock" id="systemClock">00:00:00</div>
         <button class="btn-top-icon" id="audioToggleBtn" onclick="toggleAudio()" title="Bật/Tắt âm thanh">🔊</button>
+      </div>
+    </div>
+
+    <!-- BĂNG CHUỖI KỶ LUẬT (STREAK BANNER) -->
+    <div class="streak-banner" onclick="openStreakModal()" title="Bấm xem chi tiết chuỗi kỷ luật">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="streak-flame-icon">🔥</span>
+        <div>
+          <span class="streak-title" id="streakTextDisplay">CHUỖI KỶ LUẬT: 1 NGÀY</span>
+          <span style="font-size: 11px; color: #b0c8e8; margin-left: 6px;">(Kỷ lục: <span id="streakRecordText">1</span> ngày)</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <span class="streak-multiplier" id="streakMultiplierBadge">x1.0 EXP</span>
+        <span style="font-size: 12px; color: var(--neon-cyan);">ℹ️</span>
       </div>
     </div>
 
@@ -1468,11 +1637,7 @@
               </div>
             </div>
 
-            <!-- Nút sao lưu dữ liệu dự phòng -->
-            <div style="display: flex; gap: 8px; margin-top: 14px;">
-              <button class="btn-step" style="flex: 1; padding: 8px;" onclick="exportDataBackup()">💾 Sao lưu dữ liệu</button>
-              <button class="btn-step" style="flex: 1; padding: 8px;" onclick="importDataBackup()">📥 Khôi phục dữ liệu</button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -1550,6 +1715,21 @@
                   <option value="AGI">Kỷ luật (AGI)</option>
                   <option value="PER">Nhạy bén (PER)</option>
                 </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">MỨC ĐỘ KHÓ (CÀNG KHÓ ĐIỂM THƯỞNG CÀNG CAO):</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
+                <button type="button" class="diff-btn" id="modalDiffEasy" onclick="selectModalDiff('easy')">
+                  🟢 DỄ<br><span style="font-size: 10px; color: #8ba3c7;">Beginner (+1đ)</span>
+                </button>
+                <button type="button" class="diff-btn active" id="modalDiffMed" onclick="selectModalDiff('medium')">
+                  🟡 VỪA<br><span style="font-size: 10px; color: #8ba3c7;">Chuẩn (+2đ)</span>
+                </button>
+                <button type="button" class="diff-btn" id="modalDiffHard" onclick="selectModalDiff('hard')">
+                  🔴 KHÓ<br><span style="font-size: 10px; color: #8ba3c7;">Hardcore (+3đ)</span>
+                </button>
               </div>
             </div>
 
@@ -1690,6 +1870,197 @@
     </div>
   </div>
 
+  <!-- MODAL 5: ĐIỀU CHỈNH & UPLEVEL ĐỘ KHÓ MỤC TIÊU -->
+  <div class="modal-overlay" id="uplevelGoalModal">
+    <div class="modal-box">
+      <div class="system-window" style="border-color: var(--neon-cyan); box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);">
+        <div class="window-inner-frame">
+          <div class="gothic-corner gothic-tl"></div>
+          <div class="gothic-corner gothic-tr"></div>
+          <div class="gothic-corner gothic-bl"></div>
+          <div class="gothic-corner gothic-br"></div>
+          
+          <div class="window-header">
+            <div class="window-title">⚡ ĐIỀU CHỈNH & UPLEVEL ĐỘ KHÓ</div>
+            <div class="window-subtitle">NÂNG TẦM BẢN THÂN • TĂNG ĐIỂM THƯỞNG THUỘC TÍNH</div>
+          </div>
+
+          <div class="window-body">
+            <div style="font-family: var(--font-manhwa); font-size: 15px; color: #fff; margin-bottom: 12px; background: rgba(0,20,40,0.6); padding: 8px 10px; border-radius: 4px; border: 1px solid rgba(0,210,255,0.3);" id="uplevelGoalTargetName">
+              ---
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">CHỌN CẤP ĐỘ KHÓ MỚI:</label>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label class="uplevel-option" id="optDiffEasy" onclick="pickUplevelDiff('easy')">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="diff-badge diff-easy">🟢 DỄ (BEGINNER)</span>
+                    <span style="font-size: 11px; color: #69f0ae; font-weight: bold;">+1 Điểm thuộc tính / task</span>
+                  </div>
+                  <div style="font-size: 11px; color: #8ba3c7; margin-top: 4px;">Khối lượng nhẹ nhàng để duy trì thói quen không áp lực.</div>
+                </label>
+
+                <label class="uplevel-option selected" id="optDiffMed" onclick="pickUplevelDiff('medium')">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="diff-badge diff-medium">🟡 TRUNG BÌNH (INTERMEDIATE)</span>
+                    <span style="font-size: 11px; color: #ffe57f; font-weight: bold;">+2 Điểm thuộc tính / task</span>
+                  </div>
+                  <div style="font-size: 11px; color: #8ba3c7; margin-top: 4px;">Chuẩn kỷ luật rèn luyện thường ngày của Thợ Săn.</div>
+                </label>
+
+                <label class="uplevel-option" id="optDiffHard" onclick="pickUplevelDiff('hard')">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="diff-badge diff-hard">🔴 KHÓ (DIFFICULT / HARDCORE)</span>
+                    <span style="font-size: 11px; color: #ff5252; font-weight: bold;">+3 Điểm thuộc tính + EXP x2</span>
+                  </div>
+                  <div style="font-size: 11px; color: #8ba3c7; margin-top: 4px;">Khối lượng tăng gấp đôi! Bứt phá giới hạn, thăng cấp thần tốc.</div>
+                </label>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
+              <button class="btn-step" style="padding: 10px;" onclick="closeUplevelModal()">ĐÓNG LẠI</button>
+              <button class="btn-job-gacha" style="background: linear-gradient(135deg, #0055cc, #00d2ff); margin: 0; padding: 10px;" onclick="confirmUplevelGoalAction()">
+                XÁC NHẬN ĐỔI
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 6: HẦM NGỤC TẬP TRUNG SÂU (DEEP FOCUS DUNGEON) -->
+  <div class="modal-overlay" id="focusRoomModal">
+    <div class="modal-box" style="max-width: 460px;">
+      <div class="system-window" style="border-color: #9d4edd; box-shadow: 0 0 35px rgba(157, 78, 221, 0.5);">
+        <div class="window-inner-frame" style="border-color: rgba(157, 78, 221, 0.4);">
+          <div class="gothic-corner gothic-tl" style="border-color: #9d4edd;"></div>
+          <div class="gothic-corner gothic-tr" style="border-color: #9d4edd;"></div>
+          <div class="gothic-corner gothic-bl" style="border-color: #9d4edd;"></div>
+          <div class="gothic-corner gothic-br" style="border-color: #9d4edd;"></div>
+          
+          <div class="window-header" style="background: linear-gradient(180deg, rgba(157, 78, 221, 0.25) 0%, transparent 100%);">
+            <div class="window-title" style="color: #c77dff; text-shadow: 0 0 10px #9d4edd;">
+              <span>🌀</span> HẦM NGỤC TẬP TRUNG SÂU
+            </div>
+            <div class="window-subtitle" style="color: #e0aaff;">CÔ LẬP SAO NHÃNG • RÈN Ý CHÍ & TRÍ TUỆ THỢ SĂN</div>
+          </div>
+
+          <div class="window-body" style="text-align: center;">
+            <!-- Cài đặt trước khi vào -->
+            <div id="focusSetupSection">
+              <div style="font-size: 12px; color: #8ba3c7; margin-bottom: 8px;">CHỌN THỜI GIAN VÀO HẦM NGỤC:</div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+                <button type="button" class="gantt-filter-btn active" id="btnFocus25" onclick="setFocusMinutes(25)">⚡ 25 PHÚT<br><span style="font-size: 10px;">Pomodoro</span></button>
+                <button type="button" class="gantt-filter-btn" id="btnFocus45" onclick="setFocusMinutes(45)">🎯 45 PHÚT<br><span style="font-size: 10px;">Luyện Sâu</span></button>
+                <button type="button" class="gantt-filter-btn" id="btnFocus60" onclick="setFocusMinutes(60)">👑 60 PHÚT<br><span style="font-size: 10px;">Quân Vương</span></button>
+              </div>
+
+              <div class="form-group" style="text-align: left;">
+                <label class="form-label">MỤC TIÊU TẬP TRUNG LẦN NÀY:</label>
+                <input type="text" class="form-input" id="focusTaskInput" placeholder="VD: Lập kế hoạch tuần, Đọc tài liệu LSP...">
+              </div>
+
+              <!-- Âm thanh tập trung -->
+              <div style="text-align: left; margin-bottom: 14px;">
+                <label class="form-label">ÂM THANH SÓNG NÃO TẬP TRUNG:</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
+                  <button type="button" class="gantt-filter-btn active" id="btnSoundAlpha" onclick="setFocusSound('alpha')">🧠 Sóng Alpha</button>
+                  <button type="button" class="gantt-filter-btn" id="btnSoundRain" onclick="setFocusSound('rain')">🌧️ Mưa Đêm</button>
+                  <button type="button" class="gantt-filter-btn" id="btnSoundNone" onclick="setFocusSound('none')">🔇 Im Lặng</button>
+                </div>
+              </div>
+
+              <button class="btn-job-gacha" style="background: linear-gradient(135deg, #7b2cbf, #00d2ff); font-size: 15px; padding: 12px;" onclick="startFocusSession()">
+                ⚡ BẮT ĐẦU VÀO HẦM NGỤC
+              </button>
+              <button class="btn-step" style="width: 100%; margin-top: 8px; padding: 8px;" onclick="closeFocusRoomModal()">ĐÓNG LẠI</button>
+            </div>
+
+            <!-- Màn hình đếm ngược khi đang trong hầm ngục -->
+            <div id="focusRunningSection" style="display: none;">
+              <div style="position: relative; width: 190px; height: 190px; margin: 10px auto;">
+                <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                  <circle cx="50" cy="50" r="44" stroke="rgba(157, 78, 221, 0.2)" stroke-width="6" fill="none" />
+                  <circle id="focusProgressRing" cx="50" cy="50" r="44" stroke="#00f0ff" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="276.46" stroke-dashoffset="0" style="transition: stroke-dashoffset 1s linear;" />
+                </svg>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                  <div style="font-family: var(--font-manhwa); font-size: 36px; font-weight: 700; color: #fff; text-shadow: 0 0 15px var(--neon-cyan);" id="focusCountdownDisplay">25:00</div>
+                  <div style="font-size: 11px; color: #c77dff; font-family: var(--font-manhwa); letter-spacing: 1px;" id="focusStatusNote">ĐANG RÈN LUYỆN Ý CHÍ</div>
+                </div>
+              </div>
+
+              <div style="font-family: var(--font-manhwa); font-size: 14px; color: var(--neon-gold); margin-bottom: 6px;" id="focusRunningTaskName">
+                ---
+              </div>
+              <div style="font-size: 12px; color: #b0c8e8; font-style: italic; min-height: 36px; padding: 0 15px; margin-bottom: 12px;" id="focusQuoteText">
+                "Một bước tiến hôm nay là một cấp độ ngày mai."
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button class="btn-step" id="btnFocusPause" onclick="togglePauseFocus()">⏸️ TẠM DỪNG</button>
+                <button class="btn-job-gacha" style="background: linear-gradient(135deg, #00a86b, #00d2ff); margin: 0; padding: 10px;" onclick="completeFocusEarly()">
+                  ✓ HOÀN THÀNH
+                </button>
+              </div>
+              <button class="btn-delete-goal-danger" style="margin: 10px auto 0; padding: 6px 14px;" onclick="abortFocusSession()">
+                🚪 RỜI HẦM NGỤC (HỦY)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 7: CHI TIẾT CHUỖI KỶ LUẬT (STREAK INFO MODAL) -->
+  <div class="modal-overlay" id="streakInfoModal">
+    <div class="modal-box">
+      <div class="system-window" style="border-color: #ff6600; box-shadow: 0 0 25px rgba(255, 102, 0, 0.4);">
+        <div class="window-inner-frame" style="border-color: rgba(255, 102, 0, 0.35);">
+          <div class="gothic-corner gothic-tl" style="border-color: #ff6600;"></div>
+          <div class="gothic-corner gothic-tr" style="border-color: #ff6600;"></div>
+          <div class="gothic-corner gothic-bl" style="border-color: #ff6600;"></div>
+          <div class="gothic-corner gothic-br" style="border-color: #ff6600;"></div>
+          
+          <div class="window-header" style="background: linear-gradient(180deg, rgba(255, 102, 0, 0.25) 0%, transparent 100%);">
+            <div class="window-title" style="color: #ffaa00; text-shadow: 0 0 10px #ff6600;">
+              <span>🔥</span> CHUỖI KỶ LUẬT THỢ SĂN
+            </div>
+            <div class="window-subtitle" style="color: #ffe5b4;">DUY TRÌ MỖI NGÀY • NHÂN ĐÔI SỨC MẠNH</div>
+          </div>
+
+          <div class="window-body">
+            <div style="text-align: center; margin-bottom: 16px;">
+              <div style="font-size: 42px; animation: flamePulse 1s infinite alternate;">🔥</div>
+              <div style="font-family: var(--font-manhwa); font-size: 26px; font-weight: 700; color: #ffaa00;" id="streakModalDayCount">1 NGÀY LIÊN TỤC</div>
+              <div style="font-size: 12px; color: #8ba3c7; margin-top: 4px;">Kỷ lục dài nhất: <b id="streakModalRecordCount" style="color: #fff;">1</b> ngày</div>
+            </div>
+
+            <div style="background: rgba(2, 14, 36, 0.8); border: 1px solid rgba(255, 102, 0, 0.3); border-radius: 4px; padding: 12px; margin-bottom: 12px; font-size: 12px; line-height: 1.6;">
+              <div style="color: var(--neon-gold); font-weight: bold; margin-bottom: 4px;">👑 CÁC MỐC THƯỞNG KỶ LUẬT:</div>
+              <div>• <b>Chuỗi 3 ngày:</b> Hệ số x1.2 EXP toàn bộ nhiệm vụ</div>
+              <div>• <b>Chuỗi 7 ngày:</b> Hệ số x1.5 EXP + Thưởng +2 Điểm Tích Lũy</div>
+              <div>• <b>Chuỗi 14 ngày:</b> Tặng 1 Thẻ Đóng Băng Chuỗi bảo hiểm</div>
+              <div>• <b>Chuỗi 30 ngày:</b> Danh hiệu "Chúa Tể Kỷ Luật" + +5 Điểm Tích Lũy</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0, 40, 90, 0.4); padding: 8px 12px; border-radius: 4px; border: 1px dashed var(--neon-cyan); margin-bottom: 14px; font-size: 12px;">
+              <span>🛡️ Thẻ Đóng Băng Chuỗi dự phòng:</span>
+              <b style="color: var(--neon-cyan); font-size: 14px;" id="streakModalFreezeCount">1 thẻ</b>
+            </div>
+
+            <button class="btn-job-gacha" style="background: linear-gradient(135deg, #d35400, #ffaa00); margin: 0; padding: 10px;" onclick="closeStreakModal()">
+              TIẾP TỤC RÈN LUYỆN
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ==========================================
     // 1. TÀN TRO BÓNG ĐÊM
@@ -1762,12 +2133,18 @@
       fatigue: 0,
       unallocatedPoints: 0,
       stats: { STR: 12, VIT: 10, INT: 14, CHA: 10, AGI: 10, PER: 10 },
+      streak: 1,
+      streakRecord: 1,
+      streakLastCompletedDate: "",
+      streakFreezeCards: 1,
+      focusMinutesTotal: 0,
       // 3 Tầng mục tiêu
       goals: [
         {
           id: "g_init_1",
           name: "Rèn luyện thể lực cơ bản & giảm mỡ",
           type: "short", // short | mid | long
+          diff: "medium", // easy | medium | hard
           startDate: new Date().toISOString().slice(0, 10),
           endDate: new Date(Date.now() + 21*86400000).toISOString().slice(0, 10),
           totalDays: 21,
@@ -1778,10 +2155,10 @@
       ],
       // Nhiệm vụ hằng ngày liên kết với mục tiêu
       quests: [
-        { id: "q1", goalId: "g_init_1", tier: "short", name: "[Ngắn hạn] Chống đẩy rèn ngực và tay", target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-        { id: "q2", goalId: "g_init_1", tier: "short", name: "[Ngắn hạn] Gập bụng siết cơ cốt lõi", target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false },
-        { id: "q3", goalId: "g_init_1", tier: "short", name: "[Ngắn hạn] Squat cơ đùi & đốt mỡ", target: 40, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false },
-        { id: "q4", goalId: "g_init_1", tier: "short", name: "[Ngắn hạn] Chạy bộ hoặc đi bộ nhanh", target: 3, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false }
+        { id: "q1", goalId: "g_init_1", tier: "short", diff: "medium", name: "[Ngắn hạn] Chống đẩy rèn ngực và tay", target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 2, completed: false },
+        { id: "q2", goalId: "g_init_1", tier: "short", diff: "medium", name: "[Ngắn hạn] Gập bụng siết cơ cốt lõi", target: 40, current: 0, unit: "cái", attr: "STR", attrVal: 2, completed: false },
+        { id: "q3", goalId: "g_init_1", tier: "short", diff: "medium", name: "[Ngắn hạn] Squat cơ đùi & đốt mỡ", target: 40, current: 0, unit: "cái", attr: "VIT", attrVal: 2, completed: false },
+        { id: "q4", goalId: "g_init_1", tier: "short", diff: "medium", name: "[Ngắn hạn] Chạy bộ hoặc đi bộ nhanh", target: 3, current: 0, unit: "km", attr: "VIT", attrVal: 2, completed: false }
       ],
       inventory: [
         { id: "item1", name: "Thẻ Miễn Phạt 1 Ngày", icon: "🛡️", desc: "Dùng để tránh bị phạt khi bận việc đột xuất.", qty: 1 },
@@ -1921,7 +2298,84 @@
     // ==========================================
     let activeGanttFilter = "all";
     let modalSelectedTier = "short";
+    let modalSelectedDiff = "medium";
     let pendingDeleteGoalId = null;
+    let pendingUplevelGoalId = null;
+    let selectedUplevelDiff = "medium";
+
+    // HẦM NGỤC TẬP TRUNG SÂU STATE
+    let focusTimerInterval = null;
+    let focusTotalSeconds = 25 * 60;
+    let focusRemainingSeconds = 25 * 60;
+    let focusIsPaused = false;
+    let focusSelectedSound = "alpha";
+    let focusAudioOsc1 = null;
+    let focusAudioOsc2 = null;
+    let focusAudioGain = null;
+
+    function getDiffName(diff) {
+      if (diff === 'easy') return '🟢 Dễ';
+      if (diff === 'hard') return '🔴 Khó';
+      return '🟡 Vừa';
+    }
+
+    function getDiffBadgeClass(diff) {
+      if (diff === 'easy') return 'diff-easy';
+      if (diff === 'hard') return 'diff-hard';
+      return 'diff-medium';
+    }
+
+    function selectModalDiff(diff) {
+      playSound('click');
+      modalSelectedDiff = diff;
+      ['easy', 'medium', 'hard'].forEach(d => {
+        const idMap = { easy: 'modalDiffEasy', medium: 'modalDiffMed', hard: 'modalDiffHard' };
+        const el = document.getElementById(idMap[d]);
+        if (el) {
+          if (d === diff) el.classList.add('active');
+          else el.classList.remove('active');
+        }
+      });
+    }
+
+    function getStreakMultiplier() {
+      const s = hunterData.streak || 1;
+      if (s >= 30) return 2.0;
+      if (s >= 14) return 1.8;
+      if (s >= 7) return 1.5;
+      if (s >= 3) return 1.2;
+      return 1.0;
+    }
+
+    function updateStreakDisplay() {
+      const s = hunterData.streak || 1;
+      const rec = Math.max(hunterData.streakRecord || 1, s);
+      const mult = getStreakMultiplier();
+
+      const textEl = document.getElementById("streakTextDisplay");
+      const recEl = document.getElementById("streakRecordText");
+      const multEl = document.getElementById("streakMultiplierBadge");
+
+      if (textEl) textEl.textContent = `CHUỖI KỶ LUẬT: ${s} NGÀY`;
+      if (recEl) recEl.textContent = rec;
+      if (multEl) multEl.textContent = `x${mult} EXP`;
+
+      const mDay = document.getElementById("streakModalDayCount");
+      const mRec = document.getElementById("streakModalRecordCount");
+      const mFreeze = document.getElementById("streakModalFreezeCount");
+      if (mDay) mDay.textContent = `${s} NGÀY LIÊN TỤC`;
+      if (mRec) mRec.textContent = rec;
+      if (mFreeze) mFreeze.textContent = `${hunterData.streakFreezeCards || 0} thẻ`;
+    }
+
+    function openStreakModal() {
+      playSound('chime');
+      updateStreakDisplay();
+      document.getElementById("streakInfoModal").classList.add("active");
+    }
+    function closeStreakModal() {
+      document.getElementById("streakInfoModal").classList.remove("active");
+    }
 
     const PRESETS = {
       short: [
@@ -2014,6 +2468,7 @@
           <div class="gantt-card-header">
             <div>
               <span class="quest-tag-tier ${tierBadgeClass}">${getTierName(g.type)}</span>
+              <span class="diff-badge ${getDiffBadgeClass(g.diff || 'medium')}">${getDiffName(g.diff || 'medium')}</span>
               <span class="gantt-title-text">${g.name}</span>
             </div>
             <div class="gantt-days-countdown">${daysLeftText}</div>
@@ -2027,8 +2482,12 @@
 
           <div class="gantt-card-footer">
             <span>${g.startDate} ➔ ${g.endDate} (${g.totalDays} ngày)</span>
-            <div style="display: flex; gap: 8px; align-items: center;">
-              <span style="color: var(--neon-cyan); font-weight: bold;">+${getAttrName(g.stat)}</span>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <span style="color: var(--neon-cyan); font-weight: bold; font-size: 11px;">+${getAttrName(g.stat)}</span>
+              <!-- NÚT ĐỔI ĐỘ KHÓ / UPLEVEL -->
+              <button class="btn-uplevel-goal" onclick="openUplevelModal('${g.id}')">
+                <span>⚡</span> Uplevel
+              </button>
               <!-- NÚT XÓA MỤC TIÊU CÓ CONFIRM BẢO VỆ -->
               <button class="btn-delete-goal-danger" onclick="promptDeleteGoal('${g.id}')">
                 <span>🗑️</span> Xóa
@@ -2154,10 +2613,12 @@
       const startDate = new Date().toISOString().slice(0, 10);
       const endDate = new Date(Date.now() + days * 86400000).toISOString().slice(0, 10);
 
+      const diff = modalSelectedDiff || "medium";
       const newGoal = {
         id: goalId,
         name: name,
         type: type,
+        diff: diff,
         startDate: startDate,
         endDate: endDate,
         totalDays: days,
@@ -2166,24 +2627,31 @@
         completed: false
       };
 
+      // HỆ SỐ ĐỘ KHÓ
+      const diffMult = diff === 'easy' ? 0.6 : (diff === 'hard' ? 1.8 : 1.0);
+      const diffAttrReward = diff === 'easy' ? 1 : (diff === 'hard' ? 3 : 2);
+
       // TỰ ĐỘNG PHÂN RÃ NHIỆM VỤ HÀNG NGÀY
       let newDailyQuests = [];
       const prefix = `[${getTierName(type)}]`;
 
       if (stat === 'STR' || name.toLowerCase().includes("cơ bắp") || name.toLowerCase().includes("chống đẩy") || name.toLowerCase().includes("gym")) {
-        const qty = type === 'short' ? 40 : (type === 'mid' ? 60 : 80);
-        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `${prefix} Chống đẩy rèn thể lực: ${name}`, target: qty, current: 0, unit: "cái", attr: "STR", attrVal: 1, completed: false });
-        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, name: `${prefix} Squat cơ đùi & đốt mỡ`, target: qty, current: 0, unit: "cái", attr: "VIT", attrVal: 1, completed: false });
+        const baseQty = type === 'short' ? 40 : (type === 'mid' ? 60 : 80);
+        const qty = Math.max(10, Math.round(baseQty * diffMult));
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, diff: diff, name: `${prefix} Chống đẩy rèn thể lực: ${name}`, target: qty, current: 0, unit: "cái", attr: "STR", attrVal: diffAttrReward, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, diff: diff, name: `${prefix} Squat cơ đùi & đốt mỡ`, target: qty, current: 0, unit: "cái", attr: "VIT", attrVal: diffAttrReward, completed: false });
       } else if (stat === 'INT' || name.toLowerCase().includes("sách") || name.toLowerCase().includes("học") || name.toLowerCase().includes("tiếng anh")) {
-        const pages = type === 'short' ? 15 : (type === 'mid' ? 20 : 10);
-        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `${prefix} Đọc sách/Học chuyên môn: ${name}`, target: pages, current: 0, unit: "trang", attr: "INT", attrVal: 1, completed: false });
-        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, name: `${prefix} Ghi lại 1 bài học thực tế`, target: 1, current: 0, unit: "ý", attr: "PER", attrVal: 1, completed: false });
+        const basePages = type === 'short' ? 15 : (type === 'mid' ? 20 : 10);
+        const pages = Math.max(5, Math.round(basePages * diffMult));
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, diff: diff, name: `${prefix} Đọc sách/Học chuyên môn: ${name}`, target: pages, current: 0, unit: "trang", attr: "INT", attrVal: diffAttrReward, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, diff: diff, name: `${prefix} Ghi lại 1 bài học thực tế`, target: 1, current: 0, unit: "ý", attr: "PER", attrVal: diffAttrReward, completed: false });
       } else if (stat === 'VIT' || name.toLowerCase().includes("chạy") || name.toLowerCase().includes("giảm") || name.toLowerCase().includes("thể lực")) {
-        const km = type === 'short' ? 3 : (type === 'mid' ? 5 : 4);
-        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `${prefix} Chạy bộ/Đi bộ: ${name}`, target: km, current: 0, unit: "km", attr: "VIT", attrVal: 1, completed: false });
-        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, name: `${prefix} Uống 2.5L nước & Không ăn vặt`, target: 2.5, current: 0, unit: "lít", attr: "CHA", attrVal: 1, completed: false });
+        const baseKm = type === 'short' ? 3 : (type === 'mid' ? 5 : 4);
+        const km = Math.max(1, Math.round(baseKm * diffMult * 10) / 10);
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, diff: diff, name: `${prefix} Chạy bộ/Đi bộ: ${name}`, target: km, current: 0, unit: "km", attr: "VIT", attrVal: diffAttrReward, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_2", goalId: goalId, tier: type, diff: diff, name: `${prefix} Uống 2.5L nước & Không ăn vặt`, target: 2.5, current: 0, unit: "lít", attr: "CHA", attrVal: diffAttrReward, completed: false });
       } else {
-        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, name: `${prefix} Hành động kỷ luật: ${name}`, target: 1, current: 0, unit: "lần", attr: stat, attrVal: 1, completed: false });
+        newDailyQuests.push({ id: "q_" + Date.now() + "_1", goalId: goalId, tier: type, diff: diff, name: `${prefix} Hành động kỷ luật: ${name}`, target: 1, current: 0, unit: "lần", attr: stat, attrVal: diffAttrReward, completed: false });
       }
 
       // CỘNG DỒN VÀO DANH SÁCH (BẢO TOÀN NHIỆM VỤ CŨ!)
@@ -2226,10 +2694,11 @@
             <div>
               <div style="margin-bottom: 2px;">
                 <span class="quest-tag-tier ${tierBadgeClass}">${getTierName(q.tier || 'short')}</span>
+                <span class="diff-badge ${getDiffBadgeClass(q.diff || 'medium')}">${getDiffName(q.diff || 'medium')}</span>
                 <span class="quest-status-badge">${q.completed ? '[ĐÃ HOÀN THÀNH]' : '[ĐANG THỰC HIỆN]'}</span>
               </div>
               <div class="quest-name">${q.name}</div>
-              <div class="quest-attr-reward">+1 Điểm Tích Lũy | +${q.attrVal} ${getAttrName(q.attr)} | +20 EXP</div>
+              <div class="quest-attr-reward">+${q.attrVal || 1} Điểm Tích Lũy | +${q.attrVal || 1} ${getAttrName(q.attr)} | +${(q.attrVal || 1)*20} EXP</div>
             </div>
             <div class="quest-progress-text">[${q.current}/${q.target}${q.unit ? ' ' + q.unit : ''}]</div>
           </div>
@@ -2280,19 +2749,29 @@
       playSound('slash');
       triggerScreenShake();
 
-      hunterData.unallocatedPoints += 1;
+      const earnedPoints = q.attrVal || 1;
+      hunterData.unallocatedPoints += earnedPoints;
       if (hunterData.stats[q.attr] !== undefined) {
-        hunterData.stats[q.attr] += q.attrVal;
+        hunterData.stats[q.attr] += earnedPoints;
       }
-      addExp(20);
-      addLog(`Hoàn thành [${q.name}]! +1 Điểm tích lũy, +${q.attrVal} ${getAttrName(q.attr)}, +20 EXP.`);
+      const expReward = Math.round(earnedPoints * 20 * getStreakMultiplier());
+      addExp(expReward);
+      addLog(`Hoàn thành [${q.name}]! +${earnedPoints} Điểm tích lũy, +${earnedPoints} ${getAttrName(q.attr)}, +${expReward} EXP.`);
 
       const allDone = hunterData.quests.every(item => item.completed);
       if (allDone && hunterData.quests.length > 0) {
         playSound('levelup');
+        const todayDate = new Date().toISOString().slice(0, 10);
+        if (hunterData.streakLastCompletedDate !== todayDate) {
+          hunterData.streak = (hunterData.streak || 0) + 1;
+          hunterData.streakRecord = Math.max(hunterData.streakRecord || 1, hunterData.streak);
+          hunterData.streakLastCompletedDate = todayDate;
+          addLog(`🔥 CHUỖI KỶ LUẬT THĂNG HẠNG: Đạt ${hunterData.streak} ngày liên tục!`);
+          updateStreakDisplay();
+        }
         addLog(`CHIẾN THẮNG TUYỆT ĐỐI! Toàn bộ nhiệm vụ hôm nay đã hoàn thành! Bảng phần thưởng sẵn sàng.`);
         setTimeout(() => {
-          if (confirm("CHÚC MỪNG QUÂN VƯƠNG!\nToàn bộ nhiệm vụ hôm nay đã hoàn tất.\nBạn có muốn mở BẢNG PHẦN THƯỞNG ngay bây giờ?")) {
+          if (confirm("CHÚC MỪNG QUÂN VƯƠNG!\nToàn bộ nhiệm vụ hôm nay đã hoàn tất (Chuỗi: " + hunterData.streak + " ngày)!\nBạn có muốn mở BẢNG PHẦN THƯỞNG ngay bây giờ?")) {
             switchTab('tabReward');
           }
         }, 300);
@@ -2645,6 +3124,15 @@
           hunterData.fatigue = Math.min(100, hunterData.fatigue + 25);
           hunterData.hp = Math.max(10, hunterData.hp - 20);
           addLog("CẢNH BÁO: Chưa hoàn thành nhiệm vụ ngày hôm qua! Bị trừ 20 HP, Mức độ mệt tăng +25%.");
+
+          // Xử lý chuỗi streak
+          if (hunterData.streakFreezeCards > 0) {
+            hunterData.streakFreezeCards -= 1;
+            addLog("🛡️ BẢO VỆ CHUỖI: Đã tự động kích hoạt Thẻ Đóng Băng Chuỗi để giữ nguyên streak kỷ luật!");
+          } else {
+            hunterData.streak = 1;
+            addLog("⚠️ CHUỖI KỶ LUẬT ĐÃ ĐẶT LẠI VỀ 1 NGÀY do chưa hoàn thành nhiệm vụ hôm qua.");
+          }
         }
         hunterData.quests.forEach(q => {
           q.current = 0;
@@ -2668,6 +3156,294 @@
       }
     }
 
+    // ==========================================
+    // 11. CƠ CHẾ UPLEVEL ĐỘ KHÓ MỤC TIÊU
+    // ==========================================
+    function openUplevelModal(goalId) {
+      playSound('click');
+      const g = hunterData.goals.find(item => item.id === goalId);
+      if (!g) return;
+      pendingUplevelGoalId = goalId;
+      selectedUplevelDiff = g.diff || 'medium';
+      document.getElementById("uplevelGoalTargetName").innerHTML = `
+        MỤC TIÊU: <b>${g.name}</b><br>
+        <span style="font-size: 12px; color: #8ba3c7;">Độ khó hiện tại: </span>
+        <span class="diff-badge ${getDiffBadgeClass(selectedUplevelDiff)}">${getDiffName(selectedUplevelDiff)}</span>
+      `;
+      pickUplevelDiff(selectedUplevelDiff);
+      document.getElementById("uplevelGoalModal").classList.add("active");
+    }
+
+    function closeUplevelModal() {
+      pendingUplevelGoalId = null;
+      document.getElementById("uplevelGoalModal").classList.remove("active");
+    }
+
+    function pickUplevelDiff(diff) {
+      playSound('click');
+      selectedUplevelDiff = diff;
+      const opts = { easy: 'optDiffEasy', medium: 'optDiffMed', hard: 'optDiffHard' };
+      Object.keys(opts).forEach(k => {
+        const el = document.getElementById(opts[k]);
+        if (el) {
+          if (k === diff) el.classList.add('selected');
+          else el.classList.remove('selected');
+        }
+      });
+    }
+
+    function confirmUplevelGoalAction() {
+      if (!pendingUplevelGoalId) return;
+      playSound('levelup');
+      triggerScreenShake();
+
+      const g = hunterData.goals.find(item => item.id === pendingUplevelGoalId);
+      if (!g) return;
+      const oldDiff = g.diff || 'medium';
+      const newDiff = selectedUplevelDiff;
+      g.diff = newDiff;
+
+      // Cập nhật chỉ tiêu và điểm thưởng của các nhiệm vụ liên kết
+      const oldMult = oldDiff === 'easy' ? 0.6 : (oldDiff === 'hard' ? 1.8 : 1.0);
+      const newMult = newDiff === 'easy' ? 0.6 : (newDiff === 'hard' ? 1.8 : 1.0);
+      const newAttrReward = newDiff === 'easy' ? 1 : (newDiff === 'hard' ? 3 : 2);
+
+      hunterData.quests.forEach(q => {
+        if (q.goalId === pendingUplevelGoalId) {
+          q.diff = newDiff;
+          q.attrVal = newAttrReward;
+          // Scale target theo tỉ lệ mới
+          const baseTarget = q.target / oldMult;
+          q.target = Math.max(1, Math.round(baseTarget * newMult));
+          if (q.current > q.target) q.current = q.target;
+        }
+      });
+
+      addLog(`UPLEVEL ĐỘ KHÓ: [${g.name}] đã chuyển sang [${getDiffName(newDiff)}]! Nhiệm vụ hàng ngày đã tự động nâng chỉ tiêu.`);
+      saveData();
+      closeUplevelModal();
+      alert(`🎉 ĐÃ CẬP NHẬT ĐỘ KHÓ MỤC TIÊU!\n- Mục tiêu: ${g.name}\n- Cấp độ mới: ${getDiffName(newDiff)}\n✓ Chỉ tiêu các bài tập hàng ngày đã được điều chỉnh và điểm thưởng thuộc tính tăng lên +${newAttrReward} điểm!`);
+    }
+
+    // ==========================================
+    // 12. HẦM NGỤC TẬP TRUNG SÂU (DEEP FOCUS ROOM)
+    // ==========================================
+    const FOCUS_QUOTES = [
+      "Một bước tiến hôm nay là một cấp độ ngày mai.",
+      "Kỷ luật là thứ vũ khí sắc bén nhất của Thợ Săn.",
+      "Cô lập sao nhãng, tập trung tối đa, kết quả tối đa.",
+      "Vượt qua cơn lười là đánh bại con quái vật lớn nhất.",
+      "Quân vương bóng đêm không bao giờ bỏ cuộc giữa chừng."
+    ];
+
+    function openFocusRoomModal() {
+      playSound('chime');
+      document.getElementById("focusRoomModal").classList.add("active");
+      document.getElementById("focusSetupSection").style.display = "block";
+      document.getElementById("focusRunningSection").style.display = "none";
+      setFocusMinutes(25);
+      setFocusSound('alpha');
+    }
+
+    function closeFocusRoomModal() {
+      if (focusTimerInterval) {
+        if (!confirm("Hầm ngục đang diễn ra! Bạn có chắc muốn rời đi không?")) return;
+        abortFocusSession();
+      }
+      document.getElementById("focusRoomModal").classList.remove("active");
+    }
+
+    function setFocusMinutes(mins) {
+      playSound('click');
+      focusTotalSeconds = mins * 60;
+      focusRemainingSeconds = focusTotalSeconds;
+      [25, 45, 60].forEach(m => {
+        const btn = document.getElementById("btnFocus" + m);
+        if (btn) {
+          if (m === mins) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+    }
+
+    function setFocusSound(soundType) {
+      playSound('click');
+      focusSelectedSound = soundType;
+      ['alpha', 'rain', 'none'].forEach(s => {
+        const idMap = { alpha: 'btnSoundAlpha', rain: 'btnSoundRain', none: 'btnSoundNone' };
+        const btn = document.getElementById(idMap[s]);
+        if (btn) {
+          if (s === soundType) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+      if (focusTimerInterval && !focusIsPaused) {
+        stopFocusAudio();
+        startFocusAudio();
+      }
+    }
+
+    function startFocusAudio() {
+      if (!hunterData.soundEnabled || focusSelectedSound === 'none') return;
+      try {
+        const ctx = getAudioContext();
+        if (focusSelectedSound === 'alpha') {
+          focusAudioGain = ctx.createGain();
+          focusAudioGain.gain.setValueAtTime(0.06, ctx.currentTime);
+
+          focusAudioOsc1 = ctx.createOscillator();
+          focusAudioOsc1.type = 'sine';
+          focusAudioOsc1.frequency.setValueAtTime(216, ctx.currentTime);
+
+          focusAudioOsc2 = ctx.createOscillator();
+          focusAudioOsc2.type = 'sine';
+          focusAudioOsc2.frequency.setValueAtTime(226, ctx.currentTime); // 10Hz difference = Alpha wave
+
+          focusAudioOsc1.connect(focusAudioGain);
+          focusAudioOsc2.connect(focusAudioGain);
+          focusAudioGain.connect(ctx.destination);
+
+          focusAudioOsc1.start();
+          focusAudioOsc2.start();
+        } else if (focusSelectedSound === 'rain') {
+          const bufferSize = ctx.sampleRate * 2;
+          const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+          const output = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+          }
+          const whiteNoise = ctx.createBufferSource();
+          whiteNoise.buffer = noiseBuffer;
+          whiteNoise.loop = true;
+
+          const filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(450, ctx.currentTime);
+
+          focusAudioGain = ctx.createGain();
+          focusAudioGain.gain.setValueAtTime(0.04, ctx.currentTime);
+
+          whiteNoise.connect(filter);
+          filter.connect(focusAudioGain);
+          focusAudioGain.connect(ctx.destination);
+
+          whiteNoise.start();
+          focusAudioOsc1 = whiteNoise;
+        }
+      } catch (e) {}
+    }
+
+    function stopFocusAudio() {
+      try {
+        if (focusAudioOsc1) { focusAudioOsc1.stop(); focusAudioOsc1.disconnect(); focusAudioOsc1 = null; }
+        if (focusAudioOsc2) { focusAudioOsc2.stop(); focusAudioOsc2.disconnect(); focusAudioOsc2 = null; }
+        if (focusAudioGain) { focusAudioGain.disconnect(); focusAudioGain = null; }
+      } catch (e) {}
+    }
+
+    function startFocusSession() {
+      playSound('slash');
+      triggerScreenShake();
+
+      const taskName = document.getElementById("focusTaskInput").value.trim() || "Rèn luyện ý chí & kế hoạch";
+      document.getElementById("focusRunningTaskName").textContent = `🎯 MỤC TIÊU: ${taskName}`;
+      document.getElementById("focusSetupSection").style.display = "none";
+      document.getElementById("focusRunningSection").style.display = "block";
+
+      focusRemainingSeconds = focusTotalSeconds;
+      focusIsPaused = false;
+      document.getElementById("btnFocusPause").textContent = "⏸️ TẠM DỪNG";
+
+      updateFocusDisplay();
+      startFocusAudio();
+
+      if (focusTimerInterval) clearInterval(focusTimerInterval);
+      focusTimerInterval = setInterval(tickFocusTimer, 1000);
+      addLog(`Vào Hầm Ngục Tập Trung Sâu: [${taskName}] (${Math.round(focusTotalSeconds/60)} phút).`);
+    }
+
+    function tickFocusTimer() {
+      if (focusIsPaused) return;
+      focusRemainingSeconds -= 1;
+      updateFocusDisplay();
+
+      if (focusRemainingSeconds % 180 === 0) {
+        const q = FOCUS_QUOTES[Math.floor(Math.random() * FOCUS_QUOTES.length)];
+        document.getElementById("focusQuoteText").textContent = `"${q}"`;
+      }
+
+      if (focusRemainingSeconds <= 0) {
+        clearInterval(focusTimerInterval);
+        focusTimerInterval = null;
+        stopFocusAudio();
+        completeFocusSessionReward(true);
+      }
+    }
+
+    function updateFocusDisplay() {
+      const mins = Math.floor(focusRemainingSeconds / 60);
+      const secs = focusRemainingSeconds % 60;
+      document.getElementById("focusCountdownDisplay").textContent = 
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+      const totalLen = 276.46;
+      const progress = (focusTotalSeconds - focusRemainingSeconds) / focusTotalSeconds;
+      const offset = totalLen * (1 - progress);
+      const ring = document.getElementById("focusProgressRing");
+      if (ring) ring.style.strokeDashoffset = offset;
+    }
+
+    function togglePauseFocus() {
+      playSound('click');
+      focusIsPaused = !focusIsPaused;
+      document.getElementById("btnFocusPause").textContent = focusIsPaused ? "▶️ TIẾP TỤC" : "⏸️ TẠM DỪNG";
+      if (focusIsPaused) stopFocusAudio();
+      else startFocusAudio();
+    }
+
+    function completeFocusEarly() {
+      if (confirm("Bạn có muốn kết thúc phiên tập trung sâu ngay bây giờ và nhận phần thưởng không?")) {
+        clearInterval(focusTimerInterval);
+        focusTimerInterval = null;
+        stopFocusAudio();
+        completeFocusSessionReward(false);
+      }
+    }
+
+    function completeFocusSessionReward(isFullTime) {
+      playSound('levelup');
+      triggerScreenShake();
+
+      hunterData.stats.INT += 2;
+      hunterData.stats.PER += 1;
+      hunterData.unallocatedPoints += 1;
+      hunterData.fatigue = Math.max(0, hunterData.fatigue - 15);
+      hunterData.mp = Math.min(hunterData.mpMax, hunterData.mp + 20);
+      addExp(50);
+
+      const minsDone = Math.round((focusTotalSeconds - focusRemainingSeconds) / 60);
+      hunterData.focusMinutesTotal = (hunterData.focusMinutesTotal || 0) + minsDone;
+
+      addLog(`HOÀN THÀNH HẦM NGỤC TẬP TRUNG SÂU (${minsDone} phút)! Nhận +2 Trí tuệ (INT), +1 Nhạy bén (PER), +1 Điểm tích lũy, +50 EXP, Giảm 15% mệt mỏi!`);
+      saveData();
+
+      document.getElementById("focusSetupSection").style.display = "block";
+      document.getElementById("focusRunningSection").style.display = "none";
+      document.getElementById("focusRoomModal").classList.remove("active");
+
+      alert(`🎉 CHÚC MỪNG QUÂN VƯƠNG ĐÃ HOÀN THÀNH PHIÊN TẬP TRUNG SÂU!\n- Thời gian luyện sâu: ${minsDone} phút\n- Thưởng thuộc tính: +2 Trí Tuệ (INT), +1 Nhạy Bén (PER)\n- Điểm tích lũy tự do: +1 Điểm\n- Kinh nghiệm: +50 EXP\n- Tinh thần hồi phục: +20 MP, -15% Mệt mỏi!`);
+    }
+
+    function abortFocusSession() {
+      clearInterval(focusTimerInterval);
+      focusTimerInterval = null;
+      stopFocusAudio();
+      document.getElementById("focusSetupSection").style.display = "block";
+      document.getElementById("focusRunningSection").style.display = "none";
+      document.getElementById("focusRoomModal").classList.remove("active");
+      addLog("Đã hủy phiên tập trung sâu giữa chừng.");
+    }
+
     function renderAll() {
       renderQuests();
       renderStatus();
@@ -2675,6 +3451,7 @@
       renderLogs();
       renderGanttChart();
       updateGoalStats();
+      updateStreakDisplay();
       selectReward(hunterData.selectedRewardIndex || 2);
     }
 
